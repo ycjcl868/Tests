@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Html5定位</title>
+  <script>
+  window.onload = function(){
+   window.navigator.geolocation.getCurrentPosition(function(position){
+       alert(position.coords.latitude);
+       alert(position.coords.longitude);
+       alert(1);
+   })
+}
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
