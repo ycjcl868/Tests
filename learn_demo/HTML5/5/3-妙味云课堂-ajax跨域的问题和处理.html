@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src=""></script>
+    <script>
+        /*
+        XMLHttpRequest level2改进版，可以进行跨域
+        在标准浏览器下，XMLHttpRequest对象已经是升级版本，支持了更多的特性
+        可以跨域请求
+        但是想实现跨域请求，还需要后端的相关配合才可以
+        ajax.php:
+        header('Access-Control-Allow-Origin:http://www.classjia.com');//这是允许控制访问该资源的源
+        XMLHttpRequest：增加很多功能，不推荐使用onreadystatechange,推荐使用onload
+
+
+
+
+        XDomainRequest:IE如果想实现跨域请求，则需要另外一个对象
+        没有onreadystatechange事件
+
+
+         */
+        window.onload = function(){
+            var oBtn = document.getElementById("btn");
+            oBtn.onclick = function(){
+//                var xhr = new XMLHttpRequest();
+//                xhr.onreadystatechange = function(){
+//                    if(xhr.readyState ==4){
+//                        if(xhr.status == 200){
+//                            alert(xhr.responseText);
+//                        }
+//                    }
+//                }
+
+                var xhr1 = new XDomainRequest();
+                xhr1.onload = function(){
+                    alert(this.responseText);
+                }
+
+                xhr.open('get','',true);
+                xhr.send();
+
+
+
+
+            }
+        };
+
+
+
+    </script>
+</head>
+<body>
+<input type="button" value="获取同域下内容" id="btn"/>
+
+
+
+</body>
+</html>

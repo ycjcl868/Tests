@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         cookie 数据存储到计算机中，通过浏览器控制添加与删除数据
+         cookie的特点
+         存储限制
+         --域名100个cookie，每组值大小4kb
+         客户端、服务器端、都会请求服务器（头信息）
+         页面间的cookie是共享的
+
+         sessionStorage
+         --session临时回话，从页面打开到页面关闭的时间段
+         --窗口的临时存储，页面关闭，本地存储消失
+         localStorage
+         --永久存储（可以手动删除数据）
+
+         storage的特点
+         --存储量限制（5M）
+         --客户端完成，不会请求服务器处理
+         --sessionStorage数据是不共享、localStorage共享
+
+         API
+         setItem():
+         --设置数据，key/value类型，类型都是字符串
+         --可以用获取属性的形式操作
+         getItem():
+         --获取数据，通过key来获取到相应的value
+         removeItem():
+         --删除数据，通过key来删除相应的value
+         clear():
+         --删除全部存储的值
+
+
+         */
+        window.onload = function () {
+            /*     var aInput = document.getElementsByTagName("input");
+             aInput[0].onclick = function () {
+             //sessionStorage:临时性存储
+             //localStorage：永久性存储
+             window.sessionStorage.setItem("name", aInput[3].value);
+             }
+             aInput[1].onclick = function () {
+             //sessionStorage:临时性存储
+             //localStorage：永久性存储
+             alert(window.sessionStorage.getItem("name"));
+             }
+             aInput[1].onclick = function () {
+             //sessionStorage:临时性存储
+             //localStorage：永久性存储
+             alert(window.sessionStorage.removeItem("name"));
+             }*/
+
+            var aInput = document.getElementsByTagName("input");
+            var oT = document.getElementById("t1");
+
+            if (window.localStorage.getItem('name')) {
+                aInput[0].value = window.localStorage.getItem('name');
+            }
+            if (window.localStorage.getItem('sex')) {
+                for (var i = 0; i < aInput.length; i++) {
+                    if (aInput[i].value == window.localStorage.getItem('sex')) {
+                        aInput[i].checked = true;
+                    }
+                }
+            }
+
+
+            window.onunload = function () {
+                if (aInput[0].value) {
+                    window.localStorage.setItem('name', aInput[0].value);
+                }
+                for (var i = 0; i < aInput.length; i++) {
+                    if (aInput[i].checked == true) {
+                        window.localStorage.setItem('sex', aInput[i].value);
+                    }
+                }
+            }
+
+
+        };
+    </script>
+</head>
+<body>
+<!--<input type="button" value="设置"/>
+<input type="button" value="获取"/>
+<input type="button" value="删除"/>
+<input type="text"/>-->
+
+<p>用户名：<input type="text"/></p>
+
+<p>性别：
+    <input type="radio" value="男" name="sex"/>男
+    <input type="radio" value="女" name="sex"/>女
+</p>
+内容：<textarea id="t1"></textarea>
+
+</body>
+</html>

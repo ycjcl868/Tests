@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cropzoom使用</title>
+  <link href="//cdn.bootcss.com/jqueryui/1.11.3/jquery-ui.min.css" rel="stylesheet">
+  <script src="//cdn.bootcss.com/jqueryui/1.11.3/jquery-ui.min.js"></script>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script src="jquery.cropzoom.js"></script>
+  <style type="text/css">
+.crop{width:680px; margin:20px auto; border:1px solid #d3d3d3; padding:4px; background:#fff}
+#cropzoom_container{float:left; width:500px}
+#preview{float:left; width:150px; height:200px; border:1px solid #999; margin-left:10px; padding:4px; background:#f7f7f7;}
+.page_btn{float:right; width:150px;  margin-top:20px; line-height:30px; text-align:center}
+.clear{clear:both}
+.btn{cursor:pointer}
+</style>
+  <script>
+ $(function() {
+     var cropzoom = $('#cropzoom_container').cropzoom({
+          width: 500,//DIV层宽度
+          height: 360,//DIV层高度
+          bgColor: '#ccc',//DIV层背景颜色
+          enableRotation: true,//是否允许旋转图片true false
+          enableZoom: true,//是否允许放大缩小
+          selector: {
+         w:150,//选择器宽度
+         h:200,//旋转高度
+         showPositionsOnDrag:true,//是否显示拖拽的位置洗洗脑
+         showDimetionsOnDrag:false,
+               centered: true,//居中
+         bgInfoLayer:'#fff',
+               borderColor: 'blue',//选择区域边框样式
+         animated: false,
+         maxWidth:150,//最大宽度
+         maxHeight:200,//最大高度
+               borderColorHover: 'yellow'//鼠标放到选择器的边框颜色
+           },
+           image: {
+               source: 'http://www.js-css.cn/jscode/focus/focus19/images/b2.jpg',
+               width: 450,//图片宽度
+               height: 300,//图片高度
+               minZoom: 30,//最小放大比例
+               maxZoom: 150//最大放大比例
+            }
+      });
+   $("#crop").click(function(){//裁剪提交
+      cropzoom.send('resize_and_crop.php', 'POST', {}, function(imgRet) {
+               $("#generated").attr("src", imgRet);
+          });
+   });
+   $("#restore").click(function(){//显示初始状态照片
+      $("#generated").attr("src", "tmp/head.gif");
+      cropzoom.restore();
+   });
+});
+  </script>
+</head>
+<body>
+
+  <div class="crop">
+   <div id="cropzoom_container"></div>
+   <div id="preview"><img id="generated" src="tmp/head.gif"  /></div>
+   <div class="page_btn">
+      <input type="button" class="btn" id="crop" value="剪切照片" />
+      <input type="button" class="btn" id="restore" value="照片复位" />
+   </div>
+   <div class="clear"></div>
+</div>
+
+</body>
+</html>

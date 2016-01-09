@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        window.onload = function () {
+            var oBody = document.body;
+            var oP = document.getElementById("time");
+            var aImg = document.getElementsByTagName("img");
+
+
+            setInterval(getTime,1000);
+            getTime();
+
+
+            function toTwo(num){
+                if(num<10){
+                    return '0'+num;
+                }else{
+                    return ''+num;
+                }
+            }
+
+
+
+            function getTime(){
+                /*
+                 系统时间对象
+                 数据类型是数字
+                 */
+                //alert(new Date());//当前系统的时间对象
+
+                //object
+
+                var myTime = new Date();
+
+
+                //number
+                var iHours = myTime.getHours();
+                var iMin = myTime.getMinutes();
+                var iSec = myTime.getSeconds();
+
+                var str = '';
+                str = toTwo(iHours)  + toTwo(iMin) + toTwo(iSec);
+                oP.innerHTML = str;
+                for(var i = 0;i<6;i++){
+                aImg[i].src = '../img/number/0'+str.charAt(i)+'.png';
+                }
+
+
+
+            }
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+<p id="time" style="font-size: 12px"></p>
+<img src="../img/number/01.png" alt=""/>
+<img src="../img/number/01.png" alt=""/>
+<img src="../img/number/01.png" alt=""/>
+<img src="../img/number/01.png" alt=""/>
+<img src="../img/number/01.png" alt=""/>
+<img src="../img/number/01.png" alt=""/>
+
+
+</body>
+</html>

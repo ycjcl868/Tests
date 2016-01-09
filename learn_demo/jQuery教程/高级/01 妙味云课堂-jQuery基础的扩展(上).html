@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+        基础方法扩充：
+        get():下标和length属性
+        otherWidth():针对隐藏元素和参数true
+        text()：合体的特例
+        remove():detach()
+        $():$(document).ready()
+
+
+        get()就是把jq转成原生js
+        length也是jq中的
+         */
+
+
+        $(function(){
+           /* alert($('#div1').get(0).innerHTML);
+
+            //混用
+
+            for(var i =0;i<$('li').get().length;i++){
+                $('li').get(i).style.background = 'red';
+                //$('li')[i].style.background=  'red';
+            }*/
+
+            $(function(){
+                alert($('div').text());//会获取全部内容
+            })
+
+        })
+    </script>
+</head>
+<body>
+<div id="div1"><span>span</span></div>
+<div>div2</div>
+<div>div3</div>
+</body>
+</html>

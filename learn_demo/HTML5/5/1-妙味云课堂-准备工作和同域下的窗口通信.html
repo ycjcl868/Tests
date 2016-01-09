@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        postMessage对象
+        接收消息的窗口对象.postMessage()
+        一参：发送的数据，二参：接收的域
+        交互方式
+        --iframe：父页面：contentWindow、子页面：window.top
+        --窗口页：父页面：wiindow.open、子页面：window.opener
+        接收事件：
+        --message
+        --ev.origin:发送数据来源的域
+        --ev.data：发送的数据
+
+        我们可以通过js去访问被包含页面的DOM元素
+
+
+         */
+        window.onload = function(){
+            var oBtn = document.getElementById("btn");
+            var oBtn1 = document.getElementById("btn1");
+            var newWindow = null;
+
+            var oMyIframe = document.getElementById("myframe");
+            oBtn.onclick = function(){
+                //如果我们要操作一个iframe里面的dom元素，首先要获取到iframe引入的页面window对象
+                //oMyIframe.contentWindow ->被iframe包含的页面的window对象
+                oMyIframe.contentWindow.document.body.style.background = 'red';
+                alert(oMyIframe.contentWindow.document.body.innerHTML);
+            };
+            oBtn1.onclick = function(){
+                //window.open返回被打开窗口的window对象
+
+                newWindow = window.open('2.iframe.html','_blank');
+            }
+
+
+        };
+    </script>
+</head>
+<body>
+<input type="button" value="点击我，改变背景色" id="btn"/>
+<input type="button" value="点击我，开启一个新的窗口打开4.window.open.html页面" id="btn1"/>
+<iframe id="myframe" src="2.iframe.html" frameborder="0"></iframe>
+
+</body>
+</html>

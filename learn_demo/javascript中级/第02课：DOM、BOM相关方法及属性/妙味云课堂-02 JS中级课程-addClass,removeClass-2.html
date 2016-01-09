@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            var oDiv = document.getElementById("div1");
+            addClass(oDiv,'box1');
+
+            removeClass(oDiv,'box1');
+
+
+            function removeClass(obj,className){
+                //如果原来有class
+                if(obj.className != ''){
+                    var arrClassName = obj.className.split(' ');
+                    var _index = arrIndexOf(arrClassName,className);
+                    if(_index!=-1){
+                        arrClassName.splice(_index,1);
+                        obj.className = arrClassName.join(' ');
+
+                    }
+
+
+
+
+
+                }else{
+                    //如果原来没有class
+                }
+            }
+
+
+
+
+
+
+
+
+
+            function addClass(obj,className){
+                //如果原来没有class
+                if(obj.className == ''){
+                    obj.className = className;
+                }else{
+                    //如果原来有class
+                    //如果要添加的class在原来的class中不存在
+                    var arrClassName = obj.className.split(' ');
+                    var _index = arrIndexOf(arrClassName,className);
+                    if(_index != -1){
+                    obj.className += ' '+ className;
+                    };
+                }
+            };
+
+            function arrIndexOf(arr,v){
+                for(var i =0;i<arr.length;i++){
+                    if(arr[i] == v){
+                        return i;
+                    }
+                };
+                return -1;
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+
+
+<div id="div1" class="box"></div>
+<div id="div2"></div>
+
+</body>
+</html>

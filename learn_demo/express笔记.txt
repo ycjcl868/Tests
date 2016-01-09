@@ -1,0 +1,24 @@
+如果不知道版本，先在package.json中输入"app":"*"  号，npm install 可以查出最新的版本
+
+<%= header %>  //输出变量header(从app.js中传过来的)
+<% include ../ %>  //引用public中的资源文件
+res.redirect('/',302);//重定向
+通过text/html来判断是浏览器还是api
+HTTP服务器模块发送请求给web服务器时会触发一个request事件
+node与其它的不同，大部分代码是在处理回调函数
+事件驱动：切菜时，停止切菜将炉火关小，同一时间只能处理一件事情，单线程
+事件循环：
+当调用需要阻塞等待的数据库函数时，采用回调函数替代闲置等待
+无序并行的I/O，若要顺序执行I/O任务，则嵌套一个
+在node中使用error事件来捕捉I/O错误
+
+
+express路由：
+/a*      匹配/afoo  /a.bar   /a/qux
+/b*/c*d  匹配/b/cd   /b/cfood   /b//c/d/
+*        匹配/a /c /d   /b/c/d   /b/c/d/ffe
+*表示的是一个以上字符
+
+express.limit()方法指示Express把请求正文的大小限制在1MB以内
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+    </style>
+    <script>
+        /*
+         鼠标滚轮事件：
+         ie/chrome:onmousewheel
+         event.wheelDelta代表上下
+         上：120
+         下：-120
+
+
+         FF：DOMMouseScroll必须用addEventListener
+         FF:event.detail
+         上：-3
+         下'3
+
+         最好变成boolean值
+
+         return false阻止的是 obj.on事件名称=fn 所触发的默认行为
+         addEventListener绑定的事件需要通过event下面的preventDefault()
+         */
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+//            if(oDiv.addEventListener){
+//                oDiv.addEventListener('DOMMouseScroll',fn,false);
+//            }
+
+
+            oDiv.onmousewheel = fn;
+            function fn(ev) {
+                //alert(1);
+
+                var ev = ev || event;
+                var b = true;
+                //alert(ev.wheelDelta);
+                if (ev.wheelDelta) {
+                    b = ev.wheelDelta > 0 ? true : false;
+                } else {
+                    b = ev.detail < 0 ? true : false;
+                }
+
+
+                if (b) {
+                    this.style.height = this.offsetHeight - 10 + 'px';
+                } else {
+                    this.style.height = this.offsetHeight + 10 + 'px';
+                }
+
+
+                if(event.preventDefault){
+                    ev.preventDefault();
+                }
+
+                return false;
+            };
+
+
+        };
+
+
+    </script>
+</head>
+<body style="height: 2000px;">
+<div id="div1"></div>
+
+</body>
+</html>

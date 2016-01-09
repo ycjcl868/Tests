@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        窗口尺寸与大小
+        1、可视区尺寸
+        - document.documentElement.clientWidth
+        - document.documentElement.clientHeight
+
+        2、滚动距离
+        - document.body.scrollTop/scrollLeft
+        - document.documentElement.scrollTop/scrollLeft
+
+        3、内容高度
+        - document.body.scrollHeight
+
+        文档高度
+        - document.documentElement.offsetHeight
+        - document.body.offsetHeight
+
+         */
+
+        window.onload = function(){
+            /*
+            可视区的尺寸
+            clientWidth
+            clientHeight
+             */
+            //alert(document.documentElement.clientHeight);
+
+            /*
+            滚动距离：可视区的距离到页面顶部的距离
+            */
+            var oDiv1 = document.getElementById("div1");
+            var oBody = document.getElementById("body");
+
+            document.onclick = function(){
+                /*
+                滚动条的距离：
+                document.documentElement.scrollTop
+                谷歌有问题，它认为滚动条属于body
+                 */
+                alert(oBody.currentStyle);
+
+                //处理兼容
+                var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+                //alert(scrollTop);
+
+                /*
+                内容高：oDiv.scrollHeight，除了border
+                 */
+                //alert(oDiv1.scrollHeight);
+
+
+                /*
+                文档高
+                 */
+                //alert(document.documentElement.offsetHeight);
+
+                //滚动事件
+                /*
+                onscroll:当滚动条滚动的时候触发
+                onresize:当窗口大小发生改变时触发
+                 */
+            }
+
+            var i = 0;
+            window.onscroll = function(){
+                //按时间，拉的越慢触发的越多
+                document.title = i++;
+            }
+            window.onsize = function(){
+                document.title = i++;
+            }
+
+
+        }
+
+    </script>
+</head>
+<body id="body" style="height: 2000px">
+<div id="div1" style="width: 100px;height: 100px;border: 1px solid red;padding: 10px;margin: 10px">
+    <div style="width: 100px;height: 200px;background: blue"></div>
+
+</div>
+
+
+</body>
+</html>

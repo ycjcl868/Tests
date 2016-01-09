@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+    </script>
+</head>
+<body>
+
+
+<!--通关口令：-->
+<!--<input type="text" id="text1"/>-->
+<!--<input type="button" id="btn1" value="验证"/>-->
+<!--<script>-->
+    <!--var oText = document.getElementById("text1");-->
+    <!--var oBtn = document.getElementById("btn1");-->
+    <!-- -->
+<!--</script>-->
+
+
+<img src="../../background_image_jobs.jpg" id="img1" alt=""/>
+<script>
+    var oImg = document.getElementById("img1");
+    //没有条件，创造条件
+    var onOff = true;
+    oImg.onclick = function(){
+        if(onOff){
+        this.src = '../../iphone.png';
+            onOff =false;
+        }else{
+            this.src = '../../background_image_jobs.jpg';
+            onOff =true;
+        }
+
+    }
+</script>
+
+
+
+</body>
+</html>

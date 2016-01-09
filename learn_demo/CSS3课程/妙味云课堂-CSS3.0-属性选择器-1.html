@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+
+            /*不支持IE9-*/
+            /*考虑向前兼容
+            WebkitTransition
+            MozTransition
+            MsTransition
+            OTransition
+            */
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -ms-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+        }
+        .box:hover{
+            width: 200px;
+            height: 200px;
+            background: blue;
+        }
+
+        p {
+            height: 30px;
+            border: 1px solid #000;
+        }
+
+        p[miaov=leo]{
+            background: red;
+        }
+        /*具有该属性*/
+        p[miaov~=old]{
+            background: green;
+        }
+
+
+        /*指定了属性名，以g开头*/
+        p[miaov^=g]{
+            background: black;
+        }
+
+        /*以xx结束*/
+        p[miaov$=g]{
+            background: #cc0;
+        }
+
+        /*包含了d就行*/
+        p[miaov*=d]{
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+
+    <p miaov="bleo old">leo</p>
+    <p miaov="bdp">dp</p>
+    <p miaov="bzm">zm</p>
+    <p miaov="gxm">xm</p>
+
+</body>
+</html>

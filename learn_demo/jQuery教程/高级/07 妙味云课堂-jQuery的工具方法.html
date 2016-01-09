@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+        之前$().css()   $().html()   $().val()
+        也存在这样的写法：不仅可以给JQ用，也可以给原生js用,工具方法
+        $.xxx()
+        $.yyy()
+        $.zzz()
+
+
+
+        $下的常用方法
+        --type()
+        --trim()
+        --inArray()==index，针对数组
+        --proxy():改变this指向
+        --noConflict()
+        --parseJSON()
+        --makeArray()
+         */
+
+        $(function(){
+
+            var a = 'hello';
+            //$.type()
+
+            //alert(typeof a);
+            //alert($.type(a));更加强大了
+
+
+            var str = '   h el l o   ';
+            alert($.trim(str));
+
+            var arr = ['a','b','c','d'];
+            alert($.inArray('b',arr));
+
+            function show(n1,n2){
+                alert(this);//window
+            }
+/*
+            $.proxy(show,document)(1,2);
+            $.proxy(show,document,1,2)();*/
+
+            //事件传参
+            $(document).click($.proxy(show,window,3,4));
+
+
+        })
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

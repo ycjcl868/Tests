@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: black;
+        }
+
+        canvas {
+            background: white;
+        }
+
+        span {
+            color: white;
+        }
+    </style>
+    <script>
+        /*
+         canvas:默认宽300，高150
+         绘制环境
+         getContext("2d");目前支持2d的场景
+
+         绘制方块
+         --fillRect(L,T,W,H); 默认颜色是黑色
+         --strokeRect(L,T,W,H);带边框的方块
+         --默认一像素黑色边框，显示出来的不一样原因
+
+         设置绘图
+         --fillStyle：填充颜色（绘制canvas是有顺序的）
+         --lineWidth:线宽度，是一个数值
+         --strokeStyle：边线颜色
+
+         边界绘制：
+         lineJoin:边界连接点样式
+         --miter(默认)、round(圆角)、bevel(斜角)
+         lineCap:端点样式
+         --butt(默认)、round(圆角)、square(高度多出为宽一半的值)
+
+         绘制路径：
+         beginPath:开始绘制路径
+         closePath:结束绘制路径
+         moveTo:移动到绘制的新目标点
+         lineTo:新的目标点
+
+         绘制路径2
+         stroke:画线，默认黑色
+         fill:填充，默认黑色
+         rect：矩形区域
+         clearRect：删除一个画布的矩形区域
+         save：保存路径
+         restore：恢复路径
+         小例子：鼠标画线
+         小例子：方块移动
+
+         在style样式中改变canvas的宽和高
+         里面的元素是改变比例
+
+         */
+        window.onload = function () {
+            var canvas = document.getElementById("c1");
+            var oGC = canvas.getContext("2d");//webgl是3d绘图
+            var num = 0;
+
+
+//            oGC.strokeStyle = 'blue';
+//            oGC.lineWidth = 5;
+//
+//            oGC.lineJoin = 'bevel';
+//
+//            oGC.fillRect(50, 50, 200, 200);
+//            //oGC.strokeRect(50,50,200,200);  实际上是2像素,就像是PS中，
+//            oGC.strokeRect(50, 50, 200, 200); // 这样就是1个像素
+//
+//
+//            oGC.save();
+//            oGC.fillStyle = 'red';
+//
+//            oGC.beginPath();
+//            oGC.moveTo(100, 100);
+//            oGC.lineTo(200, 200);
+//            oGC.lineTo(300, 200);
+//
+//            oGC.closePath();
+//            oGC.fill();
+//
+//            oGC.restore();
+//
+//
+//            oGC.save();
+//            oGC.fillStyle = 'blue';
+//            oGC.beginPath();
+//            oGC.moveTo(100, 200);
+//            oGC.lineTo(200, 300);
+//            oGC.lineTo(300, 300);
+//
+//            oGC.closePath();
+//            oGC.fill();
+//            oGC.restore();
+//
+//
+//            oGC.beginPath();
+//            oGC.rect(100,100,100,100);
+//            oGC.closePath();
+//            oGC.stroke();
+
+//            oGC.strokeStyle = 'red';
+//            oGC.lineWidth = 2;
+//            oGC.lineCap = 'round';
+//
+//            oGC.save();
+//            oGC.beginPath();
+//            oGC.moveTo(100,100);
+//            oGC.lineTo(200,200);
+//            oGC.stroke();
+//
+
+
+
+//            canvas.onmousedown = function (ev) {
+//                var ev = ev || event;
+//                oGC.moveTo(ev.clientX-canvas.offsetLeft,ev.clientY-canvas.offsetTop);
+//                document.onmousemove = function(ev){
+//                    var ev = ev||event;
+//                    oGC.lineTo(ev.clientX-canvas.offsetLeft,ev.clientY-canvas.offsetTop);
+//                    oGC.stroke();
+//                }
+//                document.onmouseup = function(){
+//                    document.onmousemove = document.onmouseup = null;
+//                }
+//            }
+
+            oGC.fillRect(0,0,100,100);
+            setInterval(function () {
+                num++;
+                oGC.clearRect(0,0,canvas.width,canvas.height);
+                oGC.fillRect(num,num,100,100);
+
+            },30)
+
+
+
+
+        };
+    </script>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">
+    <span>不支持canvas的浏览器</span>
+</canvas>
+
+</body>
+</html>

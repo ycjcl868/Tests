@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            // var str = '妙味课堂';
+            // alert(str.charAt(2));//课
+
+            // chatCodeAt()，将编码值输出
+            // alert(str.charCodeAt());  0-9  48-57
+
+            // 在整个字符串的编码，返回汉字
+            // String.fromCharCode();
+            var aInput = document.getElementsByTagName("input");
+            aInput[1].onclick = function(){
+                var str = aInput[0].value;
+                if(detectNum(str)){
+                    alert("恭喜，全是数字");
+                }else{
+                    alert("有字母");
+                }
+            };
+            function detectNum(str){
+                var n = 0;
+                for(var i =0;i<str.length;i++){
+                    n = str.charCodeAt(i);
+                    //不是数字
+                    if(n<48 ||n>57){
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+
+
+        }
+
+    </script>
+</head>
+<body>
+<input type="text"/>
+<input type="button" value="检测"/>
+
+</body>
+</html>

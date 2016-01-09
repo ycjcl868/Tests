@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="password" name="pass" id="pass" />
+<span id="passstrength"></span>
+
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+    /*
+    隐式迭代：
+
+     */
+    $(function(){
+    });
+
+    $(document).ready(function(){
+        alert(1);
+    });
+
+
+    $(document).ready(function(){
+        alert(2);
+    });
+
+    $(document).ready(function(){
+        alert(3);
+    });
+
+    //都执行
+
+
+    //若用window.onload 只执行最后一个
+    window.onload = function(){
+        alert('a');
+    };
+    window.onload = function(){
+        alert('b');
+    };
+
+</script>
+</body>
+</html>

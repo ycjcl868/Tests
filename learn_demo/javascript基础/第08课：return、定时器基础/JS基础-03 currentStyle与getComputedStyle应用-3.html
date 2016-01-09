@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../miaovi.js"></script>
+    <style>
+        div{
+            width: 100px;
+            height: 120px;
+            background: red;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('btn1').onclick = function(){
+               // alert($('div1').id);
+
+
+
+                //弹出空，因为只有写到标签里才能读取到
+                alert($('div1').style);
+
+                //要想获取css中的style
+                alert(getComputedStyle($('div1')).width);
+                /*
+                获取到的是计算机（浏览器）计算后的样式
+                 */
+
+                //低版本IE8以下的getComputedStyle()有问题
+                alert($('div1').currentStyle.width);
+
+                //属性判断法
+                /*
+                获取到的是计算机（浏览器）计算后的样式
+                background:url() red .....复合样式(不要获取)
+                backgroundColor         =>单一样式（不要用来做判断）
+
+                不要有空格
+
+                不要获取未设置后的样式：不兼容
+
+
+                //Firefox 4.0之前有一个小bug，后面必须要跟东西
+                要写成=>  getStyle($('div1'),'');
+
+                 */
+
+                function getStyle(obj,attr){
+                    return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+                }
+
+
+
+
+
+
+
+
+
+
+            };
+        });
+
+
+
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="按钮"/>
+<div id="div1"></div>
+
+</body>
+</html>

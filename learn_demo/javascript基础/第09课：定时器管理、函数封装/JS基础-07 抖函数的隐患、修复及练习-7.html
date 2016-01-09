@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img {
+            position: absolute;
+            top: 200px;
+            width: 100px;
+            margin: 50px;
+        }
+
+    </style>
+    <script>
+        /*
+
+         */
+        window.onload = function () {
+            var aImg = document.getElementsByTagName("img");
+            var onOff = true;
+            for (var i = 0; i < aImg.length; i++) {
+                aImg[i].style.left = 80 + i * 110 + 'px';
+
+                //有一个小bug，不停地移上去时，会错位
+                aImg[i].onmouseover = function () {
+                    var _this = this;
+                    shake(_this, 'left', function () {
+                        shake(_this, 'top');
+                    });
+                };
+            }
+
+
+            function shake(obj, position, fn) {
+                if (onOff) {
+                    //图片原来的位置，初始化的位置
+                    var pos = parseInt(getStyle(obj, position));
+                    onOff = false;
+                }
+                //获取抖动的频率
+                var arr = [];//20,-20,18,-18,....,0
+                var num = 0;
+                obj.shake = null;
+                for (var i = 4; i > 0; i -= 1) {
+                    arr.push(i, -i);
+                }
+                ;
+                arr.push(0);
+                clearInterval(obj.shake);
+                obj.shake = setInterval(function () {
+                    obj.style[position] = pos + arr[num] + 'px';
+                    num++;
+                    if (num == arr.length) {
+                        clearInterval(obj.shake);
+                        if (fn) {
+                            fn();
+                        }
+                        onOff = true;
+                    }
+                }, 50);
+            }
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+
+<img src="../img/1.jpg" alt=""/>
+<img src="../img/2.jpg" alt=""/>
+<img src="../img/3.jpg" alt=""/>
+<img src="../img/4.jpg" alt=""/>
+<img src="../img/5.jpg" alt=""/>
+<img src="../img/6.jpg" alt=""/>
+<img src="../img/7.jpg" alt=""/>
+<img src="../img/8.jpg" alt=""/>
+<img src="../img/9.jpg" alt=""/>
+<script src="../miaovi.js"></script>
+</body>
+</html>

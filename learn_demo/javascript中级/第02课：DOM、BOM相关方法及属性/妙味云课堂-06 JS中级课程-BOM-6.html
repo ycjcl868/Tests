@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        BOM:Browser Object Model浏览器对象模型
+         */
+        window.onload = function(){
+          //  var aInput = document.getElementsByTagName("input");
+          //  var opener = null;
+            /*
+            window.
+                (window.)open(页面的地址url，打开方式)方法：打开一个新的窗口/页面
+                如果url为空，则默认打开一个空白页面
+                如果打开方式为空，默认为新窗口方式打开
+                返回值：返回新打开的窗口的window对象
+
+             */
+          //  aInput[0].onclick = function(){
+          //      opener = window.open("http://www.baidu.com","_blank");
+                //alert(opener);  =>object
+
+                //alert(opener == window);  =>false
+
+                //opener.document.body.style.background = 'red';
+
+            //}
+
+            /*
+            close()方法 关闭窗口
+            1、firefox：默认无法关闭
+            2、chrome：默认直接关闭
+            3、ie：询问用户
+             */
+          //  aInput[1].onclick = function(){
+          //      window.close();
+          //  }
+           // aInput[2].onclick = function(){
+            //    opener.close();
+                //可以关闭在本窗口中通过js打开的新窗口
+
+         //   }
+
+        //window.navigator.userAgent  ->浏览器信息
+        //alert(window.navigator.userAgent);
+         /*   if(window.navigator.userAgent.indexOf('MSIE')!= -1){
+                alert('我是ie');
+            }else{
+                alert('我不是ie');
+            }*/
+
+
+            //window.location;浏览器地址信息
+            //var arr = [1,2,3];
+            //alert(typeof arr);
+            //alert(window.location);
+
+            //window.location.href地址信息
+            //alert(window.location.href);
+
+            //window.location.search：url?后面的内容
+            //alert(window.location.search);
+
+            //window.location.hash:url#后面的内容
+            alert(window.location.hash);
+
+
+
+
+
+        }
+
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="按钮一"/>
+<input type="button" id="btn1" value="关闭窗口"/>
+<input type="button" id="btn2" value="新窗口"/>
+
+</body>
+</html>

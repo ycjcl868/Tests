@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: url("../img/2.jpg") no-repeat center 0;
+            background-size: cover;
+            text-align: center;
+        }
+
+
+    </style>
+    <script>
+        /*
+         定时器：时间概念‘
+         var timer = setInterval(函数，毫秒);设置定时器，(相当于发动机)
+         clearInterval(timer);清除定时器
+
+
+         var timer = setTimeout(函数，毫秒);执行一次，(相当于炸弹)
+         clearTimeout(timer);
+         原则：
+         1、添加事件定时器时，要先关后开
+         */
+
+        window.onload =function(){
+            var oImg = document.getElementById("miaovi");
+            setTimeout(function(){
+                oImg.style.display = 'inline-block';
+                setTimeout(function(){
+                    oImg.style.display = 'none';
+                },3000);
+            },2000)
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+<img src="../img/1.jpg" style="display: none" id="miaovi" alt=""/>
+
+</body>
+</html>

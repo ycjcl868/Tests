@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: black;
+        }
+
+        canvas {
+            background: white;
+        }
+
+        span {
+            color: white;
+        }
+    </style>
+    <script>
+        /*
+         绘制圆
+         arc(x,y,半径,起始弧度,结束弧度，旋转方向true/false);
+         顺时针：默认false
+
+         弧度=角度*Nath.PI/180
+
+
+         绘制其他曲线
+         arcTo(x1,y1,x2,y2,r);
+         --第一组坐标、第二组坐标、半径
+         quadraticCurveTo(dx,dy,x1,y1);
+         --贝塞尔曲线：第一组控制点、第二组结束坐标
+         bezierCurveTo(dx1,dy1,dx2,dy2,x1,y1);
+         --贝塞尔曲线：第一组控制点、第二组控制点、第三组结束点
+
+
+         变换：
+         translate
+         --偏移：从起始点为基准点，移动当前坐标位置
+         rotate
+         --旋转：参数为弧度
+         --例子：旋转的小方块
+         scale
+         --缩放例子：旋转加缩放的小方块
+         */
+        window.onload = function () {
+            var canvas = document.getElementById("canvas1");
+            var oGC = canvas.getContext("2d");
+
+//            function toDraw() {
+//                var x = 200;
+//                var y = 200;
+//                var r = 150;
+//
+//
+//                var oDate = new Date();
+//                var oHours = oDate.getHours();
+//                var oMin = oDate.getMinutes();
+//                var oSec = oDate.getSeconds();
+//
+//                var oHoursvalue = (-90+oHours*30+oMin*0.5+oSec*0.5/60)*Math.PI/180;
+//                var oMinvalue = (-90+oMin*6+oSec*0.1)*Math.PI/180;
+//                var oSecvalue = (-90+oSec*6)*Math.PI/180;
+//
+//
+//                oGC.clearRect(0,0,canvas.width,canvas.height);
+//
+//                oGC.lineWidth = 3;
+//
+//                oGC.beginPath();
+//                for(var i =0;i<60;i++){
+//                    oGC.moveTo(x,y);
+//                    oGC.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+//                };
+//                oGC.closePath();
+//                oGC.stroke();
+//
+//                oGC.fillStyle = 'white';
+//                oGC.beginPath();
+//                oGC.moveTo(x,y);
+//                oGC.arc(x,y,r-10,0,2*Math.PI,false);
+//                oGC.closePath();
+//                oGC.fill();
+//                oGC.beginPath();
+//
+//
+//
+//                for(var i =0;i<12;i++){
+//                    oGC.moveTo(x,y);
+//                    oGC.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+//                };
+//
+//                oGC.closePath();
+//                oGC.stroke();
+//
+//
+//                oGC.fillStyle = 'white';
+//                oGC.beginPath();
+//                oGC.moveTo(x,y);
+//                oGC.arc(x,y,r-20,0,2*Math.PI,false);
+//                oGC.closePath();
+//                oGC.fill();
+//                oGC.beginPath();
+//
+//
+//                //时
+//                oGC.beginPath();
+//                oGC.moveTo(x,y);
+//                oGC.arc(x,y,r-80,oHoursvalue,oHoursvalue,false);
+//                oGC.closePath();
+//                oGC.stroke();
+//
+//
+//                //分
+//                oGC.beginPath();
+//                oGC.moveTo(x,y);
+//                oGC.arc(x,y,r-40,oMinvalue,oMinvalue,false);
+//                oGC.closePath();
+//                oGC.stroke();
+//
+//                //秒
+//                oGC.beginPath();
+//                oGC.moveTo(x,y);
+//                oGC.arc(x,y,r-20,oSecvalue,oSecvalue,false);
+//                oGC.closePath();
+//                oGC.stroke();
+//
+//            };
+//            toDraw();
+//            setInterval(toDraw,1000);
+
+//            oGC.beginPath();
+//            oGC.moveTo(100,200);
+//            //oGC.arcTo(100,100,200,100,50);
+//            //oGC.quadraticCurveTo(100,100,200,100);
+//            oGC.bezierCurveTo(100,100,200,200,200,100);
+//            oGC.stroke();
+//            oGC.closePath();
+
+
+//            oGC.translate(100,100);
+//            oGC.rotate(45*Math.PI/180);
+//            oGC.scale(1,0.5);
+//            oGC.fillRect(0,0,100,100);
+
+
+            var num = 0;
+
+            setInterval(function(){
+                num++;
+                oGC.save();
+                oGC.clearRect(0,0,canvas.width,canvas.height);
+                oGC.translate(100,100);
+
+                oGC.rotate(num*Math.PI/180);
+                oGC.fillRect(0,0,100,100);
+                oGC.restore();
+            },20);
+
+
+
+
+
+
+        };
+
+    </script>
+</head>
+<body>
+<canvas id="canvas1" width="400" height="400"></canvas>
+
+</body>
+</html>

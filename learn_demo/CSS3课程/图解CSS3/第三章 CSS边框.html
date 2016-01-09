@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .elm {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 20px solid red;
+        }
+
+        .elm p {
+            text-align: center;
+            line-height: 60px;
+            font-size: 20px;
+        }
+
+        #abc {
+            width: 200px;
+            height: 100px;
+            border: 10px solid transparent;
+            border-radius: 15px 0 15px 0;
+            border-top-colors: #a0a #909 #808 #707 #606 #505 #404 #303;
+            border-right-colors:#a0a #909 #808 #707 #606 #505 #404 #303;
+            border-bottom-colors:#a0a #909 #808 #707 #606 #505 #404 #303;
+            border-left-colors:#a0a #909 #808 #707 #606 #505 #404 #303;
+            border-image-source:url("../img/1.png");
+        }
+
+        #abcd{
+            width: 200px;
+            height: 100px;
+            border:12px double green;
+            border-image: url("../img/1.png") 124;
+        }
+
+        .border-image-btn{
+            display: inline-block;
+            border:18px solid green;
+            border-width: 0 18px;
+            border-image: url("../img/2.jpg") 0 18 50 18;
+            padding: 13px 10px 17px;
+            font-size: 16px;
+            color:#fff;
+            font-weight: bold;
+            text-decoration: none;
+            line-height: 15px;
+            margin: 10px;
+        }
+
+        .border-image-btn:hover{
+            border-image: url("../img/2.jpg") 50 18 0 18;
+        }
+
+
+        .tabs-box{
+            border-bottom: 3px solid #9eaab6;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            zoom: 1;
+        }
+        .tabs-box li{
+            float: left;
+            display: inline;
+            margin: 0 12px 0 0;
+            list-style: none outside none;
+            border: 1px solid #9eaab6;
+            padding: 5px;
+            border-image: url("../img/2.jpg") 0 5 0 5;
+            border-width: 0 5px;
+            text-align: center;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.8);
+            color: rgba(0, 125, 200, 0.5);
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div id="abc"></div>
+<div id="abcd"></div>
+
+
+<a href="" class="border-image-btn">Click Me</a>
+<a href="" class="border-image-btn">用力点击我吧！</a>
+<a href="" class="border-image-btn">CSS3 Border-image Button</a>
+
+
+
+
+
+<ul class="tabs-box">
+    <li>Home</li>
+    <li>CSS3</li>
+    <li>Html5</li>
+    <li>JavaScript</li>
+    <li>jQuery</li>
+
+</ul>
+
+
+<script src="prefixfree.min.js"></script>
+
+</body>
+</html>

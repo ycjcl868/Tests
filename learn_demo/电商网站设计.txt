@@ -1,0 +1,81 @@
+技术基础：
+javascript css html
+
+基本框架和类库
+jQuery  requirejs/seajs  MVX framework
+
+设计模式
+继承&重用
+
+性能优化
+http cache/local cache /compress /DOM render
+
+其他
+Restful API design & 自动化(grunt & nodejs) & 跨终端适配 & 代码托管
+
+
+以产品的角度去想，不要去想技术
+
+
+一切前端语言的根源:www.w3.org
+
+目录系统在前端 ：更高效的组织开发目录
+module模块
+service
+template模板
+M:数据层，存放与服务器打交道的代码
+V:视图层
+C:控制层
+
+页面角度：
+
+
+CMD按需加载 依赖就看
+AMD依赖关系前置
+
+
+更合理的技术选型
+
+扩展性好不好，可以评估产品需求和改动能不能快速上线的标准
+
+优化：
+代码层面 code review & 代码规范
+架构层面 可以扩展性是否受到制约
+协议层面 通过http(s)协议优化
+综合   优化往往是多种技术的综合使用
+
+
+代码
+
+
+1。必须了解哪些是布局模块，哪些是重用的。从大的块
+布局模块：
+header
+nav
+search
+
+
+css样式重置
+
+公共样式：
+wrap包裹层
+fl
+fr
+clear清浮动
+
+左右：
+main
+    section
+    option
+    main_ad
+
+side
+    section_ad
+
+footer
+
+用icon图标
+
+该用id的时候用id
+
+找出共同的部分

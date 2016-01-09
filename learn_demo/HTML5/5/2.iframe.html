@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>这是b内容</title>
+    <script>
+        window.onload = function () {
+            window.addEventListener('message', function (ev) {
+                //alert('b.com下的页面接收到了内容了');
+                //message事件的事件对象下保存了发送过来的内容
+                //ev.data:发送过来的数据
+                //alert('我接收到了a.com页面发送过来的内容'+ev.data)
+
+                //如何识别发送者
+                alert(ev.origin);
+                //parent = window对象  如果当前页面是顶级的，没有被其它页面所包含，parent就是当前页面的window对象，那么
+                //被包含了，则parent 就是包含当前页面的父级页面的window对象
+
+                /*
+                window:当前窗口
+                parent:父级窗口
+                top:顶级窗口
+
+                 */
+
+
+            }, false);
+
+        }
+
+
+    </script>
+</head>
+<body>
+这是b内容
+</body>
+</html>

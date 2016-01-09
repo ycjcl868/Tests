@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: black;
+            font-size: 25px;
+            color: #fff;
+        }
+
+        #canvas1 {
+            background: white;
+        }
+
+        li {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        /*
+         什么是worker?
+         JS的单线程(放入UI队列的个数，利用定时器解决)
+         可以让web应用程序具备后台处理能力，对多线程的支持非常好
+
+         worker API
+         new Worker('后台处理的js地址')
+         利用postMessage传输数据
+         importScripts('导入其他js文件')
+
+
+
+         */
+        window.onload = function () {
+            var canvas = document.getElementById("canvas1");
+            var oGC = canvas.getContext("2d");
+            oGC.fillRect(0, 0, 100, 100);
+            var oImg = oGC.getImageData(0, 0, 100, 100);
+
+            //alert(getXY(oImg,3,5));
+            setXY(oImg, 3, 5, [255, 0, 0, 255]);
+            oGC.putImageData(oImg, 100, 100);
+            for (var i = 0; i < oImg.length; i++) {
+                setXY(oImg, i, 5, [255, 0, 0, 255]);
+            }
+            ;
+
+
+            function getXY(obj, x, y) {
+                var w = obj.width;
+                var h = obj.height;
+                var d = obj.data;
+                var color = [];
+                color[0] = d[4 * (y * w + x)];
+                color[1] = d[4 * (y * w + x) + 1];
+                color[2] = d[4 * (y * w + x) + 2];
+                color[3] = d[4 * (y * w + x) + 3];
+            }
+
+            function setXY(obj, x, y, color) {
+                var w = obj.width;
+                var h = obj.height;
+                var d = obj.data;
+                d[4 * (y * w + x)] = color[0];
+                d[4 * (y * w + x) + 1] = color[1];
+                d[4 * (y * w + x) + 2] = color[2];
+                d[4 * (y * w + x) + 3] = color[3];
+            }
+
+
+            var aLi = document.getElementsByTagName("li");
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].onclick = function () {
+                    //计算的时间
+                    console.time(1);
+
+                    oGC.clearRect(0, 0, canvas.width, canvas.height);
+                    var str = this.innerHTML;
+                    var h = 180;
+                    var timer = null;
+                    clearInterval(timer);
+                    var iNow = 0;
+                    oGC.font = '150px impact';
+                    oGC.textBaseline = 'top';
+                    oGC.fillStyle = 'red';
+                    var w = oGC.measureText(str).width;
+                    oGC.fillText(str, (canvas.width - w) / 2, (canvas.height - h) / 2);
+                    var oImg = oGC.getImageData((canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+                    oGC.clearRect(0, 0, canvas.width, canvas.height);
+
+                    var w1 = new Worker('test.js');
+                    w1.postMessage(w * h);
+                    w1.onmessage = function (ev) {
+                        var arr = ev.data;
+                        var newImg = oGC.createImageData(w, h);
+                        timer = setInterval(function () {
+                            for (var i = 0; i < arr[iNow].length; i++) {
+                                newImg.data[arr[iNow][i] * 4] = oImg.data[4 * arr[iNow][i]];
+                                newImg.data[arr[iNow][i] * 4 + 1] = oImg.data[4 * arr[iNow][i] + 1];
+                                newImg.data[arr[iNow][i] * 4 + 2] = oImg.data[4 * arr[iNow][i] + 2];
+                                newImg.data[arr[iNow][i] * 4 + 3] = oImg.data[4 * arr[iNow][i] + 3];
+                            }
+                            ;
+                            oGC.putImageData(newImg, (canvas.width - w) / 2, (canvas.height - h) / 2);
+                            if (iNow == 9) {
+                                iNow = 0;
+                                clearInterval(timer);
+                            } else {
+                                iNow++;
+                            }
+                        }, 100);
+                        w1.close();
+                    };
+
+
+                    console.timeEnd(1);
+                }
+            }
+
+
+
+            oGC.fillRect(0, 0, 100, 100);
+            var oImg = oGC.getImageData(0, 0, 100, 100);
+            var oImg = oGC.createImageData(100, 100);
+
+            for (var i = 0; i < oImg.width * oImg.height; i++) {
+                oImg.data[4 * i] = 255;
+                oImg.data[4 * i + 1] = 0;
+                oImg.data[4 * i + 2] = 0;
+                oImg.data[4 * i + 3] = 100;
+            }
+            ;
+
+
+            oGC.putImageData(oImg, 100, 100);
+
+
+        };
+
+    </script>
+</head>
+<body>
+<canvas id="canvas1" width="400" height="400"></canvas>
+<ul style="float: left">
+    <li>妙</li>
+    <li>味</li>
+    <li>课</li>
+    <li>堂</li>
+</ul>
+
+</body>
+</html>

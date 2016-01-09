@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span {
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<input type="text"/>
+<input type="text"/>
+<input type="button" value="查找"/>
+
+
+<p>一在开历史事件仍釜给我饭我楉地伙是我方萨都剌基计分卡李开复人灯罩协粉肠</p>
+
+<script>
+    //        var arr = ['aa','bb','cc'];
+    //        alert(arr.join().length);//连接成字符串
+    var aInp = document.getElementsByTagName("input");
+    var oP = document.getElementsByTagName("p")[0];
+
+    aInp[2].onclick = function () {
+        var str = aInp[0].value;
+        var newStr = aInp[1].value;
+        if (!str) return;
+
+        oP.innerHTML = oP.innerHTML.split(str).join('<span>' + newStr + '</span>');
+    }
+
+
+</script>
+
+</body>
+</html>

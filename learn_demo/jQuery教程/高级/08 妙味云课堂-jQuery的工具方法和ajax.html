@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+
+    <script>
+        /*
+        $下的常用方法
+        --type()
+        --trim()
+        --inArray()==index，针对数组
+        --proxy():改变this指向
+        --noConflict()
+        --parseJSON():字符串(严格模式的json)解析成真正的json
+        --makeArray():
+        $==jQuery
+
+         --ajax():json形式的配置参数
+         --url  success
+         --error contentType
+         --data type
+         --dataType cache timeout
+
+         抽象出来的方法：
+         --get()
+         --post()
+         --getJSON()
+         ---支持jsonp的形式：指定?callback=?
+
+        */
+
+        var classplus = $.noConflict();
+
+
+        classplus(function(){
+        /*    var oDiv = document.getElementsByTagName("div");
+            //类数组
+            //转成真正的数组
+            miaov.makeArray(oDiv).push();
+            console.log(miaov('div'));
+            */
+
+            classplus.ajax({
+                url:"xxx.php",
+                data:"name=123",
+                type:'post',
+                success:function(data){
+                    alert(1);
+                },
+                error:function(){
+                    alert(2)
+                }
+            })
+
+            classplus.get('xxx.php',{name:2},function(){
+
+            })
+
+            $.get();
+            $().get();//对象转原生
+
+
+
+            //支持?，随机生成一个
+            classplus.getJSON('xxx.php?callback=?',function(){
+
+            })
+
+
+
+        })
+
+    </script>
+</head>
+<body>
+<div></div>
+</body>
+</html>

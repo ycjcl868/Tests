@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>diagnosite网站</title>
+  <script>
+  /**
+   * 需要用到的库
+   * jquery
+   * TweenMax :做动画，动画管理
+   */
+
+  </script>
+  <script src="./jquery-1.11.3.min.js"></script>
+  <script src="./TweenMax.min.js"></script>
+  <style>
+  #div1{width: 100px;height: 100px;background:red;position: absolute;left: 0;top: 0;border-radius:20%;}
+  .aaa{width: 100px;height: 100px;background:red;margin:1px 1px;}
+  </style>
+  <script>
+  $(function(){
+    var t = new TimelineMax();
+/*    t.to( "#div1",1,{
+      left:300,
+      width:300,
+      top:100
+    } );*/
+  //可以加个对象
+/*  t.to({},1,{
+    left:300,
+    width:300,
+    top:100
+  })
+*/
+
+
+
+
+//动画延迟时间，第4个参数，没有设置会依次执行
+/*  t.to("#div1",1,{width:300},1);
+  t.to("#div1",2,{top:300},"+=1");
+    //添加状态，方便指定到某个状态
+  t.add('state1');
+  t.to("#div1",2,{left:300},"+=1");
+  t.to("#div1",2,{rotationZ:360},"+=1");
+  t.add(function(){
+    $("#div1").css({
+      background: 'blue'
+    });
+  })
+  t.add('state2');
+  t.to("#div1",2,{opacity:0},"+=1");
+  t.add('state3');
+
+  t.stop()
+
+ //toweenTo，若后面跟时间，就执行到哪一个时间
+ t.tweenTo("state2");*/
+
+ //staggerTo依次增加
+ t.staggerTo(".aaa",1,{width:300},1)
+
+
+
+
+
+
+
+
+
+  })
+
+
+  </script>
+</head>
+<body>
+  <!-- <div id="div1"></div> -->
+
+
+  <div class="aaa"></div>
+  <div class="aaa"></div>
+  <div class="aaa"></div>
+
+</body>
+</html>

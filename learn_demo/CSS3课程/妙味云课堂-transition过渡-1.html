@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+        transition-property:要运动的样式（all || attr）
+        transition-duration 运动时间
+        transition-delay 延迟时间
+        transition-timing-function 运动形式
+        -ease:逐渐变慢 默认值
+        -linear:匀速
+        -ease-in:加速
+        -ease-out：减速
+        -ease-in-out:先加速后减速
+        -cubic-bezier：贝塞尔曲线(x1,y1,x2,y2);
+        生成代码：
+        http://matthewlein.com/ceaser
+
+        transition事件:
+        webkit内核：
+        obj.addEventListener('end',function(){},false);
+
+        */
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            -webkit-transition: width 1s ease-in-out, background 2s 1s cubic-bezier(1.000, 0.335, 0.000, 0.780);
+            -moz-transition: width 1s ease-in-out, background 2s 1s cubic-bezier(1.000, 0.335, 0.000, 0.780);
+            -ms-transition: width 1s ease-in-out, background 2s 1s cubic-bezier(1.000, 0.335, 0.000, 0.780);
+            -o-transition: width 1s ease-in-out, background 2s 1s cubic-bezier(1.000, 0.335, 0.000, 0.780);
+            transition: width 1s ease-in-out, background 2s 1s cubic-bezier(1.000, 0.335, 0.000, 0.780);
+        }
+
+        .box:hover {
+            width: 200px;
+            background: blue;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var oBox = document.getElementById("box");
+            oBox.onclick = function () {
+                this.style.width = this.offsetWidth + 100 + 'px';
+            };
+            addEnd(oBox,function(){
+                alert("1");
+            });
+            function addEnd(obj,fn){
+                obj.addEventListener("WebkitTransition",fn,false);
+                obj.addEventListener("transitionend",fn,false);
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+
+<div class="box" id="box"></div>
+
+
+</body>
+</html>

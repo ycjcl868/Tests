@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        /*
+        作用 域：
+        域：空间、范围、区域
+        作用：读、写
+
+
+        浏览器：
+        “JS解析器”
+        1）"找一些东西" :var function参数
+        a = 不会去读数，所有的变量，在正式运行代码之前，都提前赋值undefine
+        fn1  =
+        所有的函数，在正式运行代码之前，老师整个函数块
+         提前设置a = undefine
+
+         遇到重名的，只留一个
+         变量和函数重名了，只留下函数
+         函数和函数，保留最后一个函数
+
+
+
+        -----------函数的预解析
+
+        2）逐读代码
+        表达式：= + - * / % ++  -- ！
+
+
+
+
+
+
+         */
+//        alert(a);
+//        var a  = 1;
+//        //=>undefine
+//        alert(a);
+//        function fn1(){
+//        };
+        //面试题
+        alert(a);    //function a(){alert(4);}
+        var a = 1;
+        alert(a);   //->  1
+        function a(){alert(2);}
+        alert(a);   //->1
+        var a = 3;
+        alert(a);   //->3
+        function a(){alert(4);}
+        alert(a);   //->3
+
+        /*
+        1)预解析：var function
+        a = ...
+        =>最终
+        function a(){alert(4);}
+
+        2)逐行
+        表达式可以修改预加载的内容
+
+         */
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

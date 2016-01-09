@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oForm = document.getElementById("form");
+            /*
+             onsubmit:事件 当提交表单的时候触发
+             submit()方法，提交表单
+             onrest()事件：当表单重置的时候
+             */
+            oForm.onsubmit = function () {
+                if (this.text1.value == '') {
+                    alert("请输入内容");
+                    return false;
+                }
+            };
+
+            /*
+            setTimeout(function () {
+                if (oForm.text1.value == '') {
+                    alert("有输入内容");
+                    return false;
+                } else {
+                    oForm.submit();
+                }
+            }, 1000);
+            */
+            oForm.onreset = function(){
+                //alert("重置");
+                //选择对话框，还有返回值，true/false
+                var re = confirm('你确定要重置?');
+                //alert(re);
+                return re;
+            }
+
+
+
+        }
+    </script>
+</head>
+<body>
+<form action="http://www.baidu.com" id="form">
+    <input type="text" name="text1"/>
+    <input type="text" name="text2" value="111"/>
+    <input type="submit" name="dosubmit" value="提交"/>
+    <input type="reset" name="soreset" value="重置"/>
+
+
+</form>
+
+</body>
+</html>

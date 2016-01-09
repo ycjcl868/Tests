@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+        transform-style(preserve-3d)建立3d空间
+        perspective 景深
+        perspective-origin 景深基点
+        backface-visibility 隐藏背面
+        transform 新增函数
+        rotateX()
+        rotateY()
+        rotateZ()
+        translateZ()
+        scaleZ()
+        */
+        /*    .box{
+                width: 100px;
+                height: 100px;
+                padding: 100px;
+                border:5px solid #000;
+                margin: 30px auto;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                -ms-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+
+                /!*-webkit-perspective: 500px;*!/
+            }*/
+        /* .div{
+             width: 100px;
+             height: 100px;
+             background: blue;
+             transition: 1s;
+             -webkit-border-radius: 50%;
+             -moz-border-radius: 50%;
+             border-radius: 50%;
+         }*/
+        /*     .box:hover .div{
+                 -webkit-transform: rotateY(180deg);
+                 -moz-transform: rotateY(180deg);
+                 -ms-transform: rotateY(180deg);
+                 -o-transform: rotateY(180deg);
+                 transform: rotateY(180deg);
+             }
+     */
+        .wrap {
+            width: 100px;
+            height: 100px;
+            padding: 100px;
+            border: 5px solid #000;
+            margin:100px auto;
+            -webkit-perspective: 600px;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transition: 2s;
+        }
+        .box div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            color: #fff;
+            font-size: 50px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .box div:nth-of-type(1){
+            left: 0;
+            top: -100px;
+            background: #9c0;
+            -webkit-transform-origin: bottom;
+            -webkit-transform: rotateX(90deg);
+        }
+        .box div:nth-of-type(2){
+            left: -100px;
+            top: 0px;
+            background: #cf3;
+            -webkit-transform-origin: right;
+            -webkit-transform: rotateY(-90deg);
+        }
+        .box div:nth-of-type(3){
+            left: 0px;
+            top: 0px;
+            background: #ccf;
+        }
+        .box div:nth-of-type(4){
+            left: 100px;
+            top: 0px;
+            background: #0c9;
+            -webkit-transform-origin: left;
+            -webkit-transform: rotateY(90deg);
+        }
+        .box div:nth-of-type(5){
+            left: 0px;
+            top: 100px;
+            background: #ccf;
+            -webkit-transform-origin: top;
+            -webkit-transform: rotateX(-90deg);
+        }
+        .box div:nth-of-type(6){
+            left: 0px;
+            top: 0px;
+            background: #f0c;
+            -webkit-transform: rotateX(180deg);
+        }
+
+        .wrap:hover .box{
+            -webkit-transform: rotateX(180deg);
+        }
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</div>
+
+
+</body>
+</html>

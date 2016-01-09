@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //现在的时间点（在变）
+        //未来的时间点（不变）
+        //数字形式：new Date(2013,4,1,9,48,12);
+        //字符串形式：new Date(June 10,2013 12:12:12);
+
+        /*
+         天：Math.floor(t/86400);
+         时：Math.floor(t%86400/3600)
+         分：Math.floor(t%86400%3600/60)
+         秒：t%60
+         */
+
+
+        window.onload = function () {
+            var timer = null;
+
+            timer = setInterval(function () {
+                var iNow = new Date();
+                var iNew = new Date(2015, 7, 19, 15, 53, 30);//5月
+                var t = parseInt((iNew - iNow) / 1000);//毫秒
+                //Math.floor也可以转化为整数
+                if (t > 0) {
+                    document.body.innerHTML = Math.floor(t/86400)+'天'+Math.floor(t%86400/3600)+'时'+Math.floor(t%86400%3600/60)+'分'+t%60 + '秒';
+                } else {
+                    clearInterval(timer);
+                }
+            }, 1000)
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

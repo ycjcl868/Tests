@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li{
+            height: 24px;
+            margin-bottom: 3px;
+            list-style: none;
+        }
+
+    </style>
+    <script>
+        /*
+
+
+         */
+        window.onload = function () {
+
+            /*
+            //方法一：index
+            var aLi = document.getElementsByTagName("li");
+            var arr = ['red', 'yellow', 'blue']
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+
+                aLi[i].style.background = arr[i % arr.length];
+                aLi[i].onmouseover = function(){
+                    this.style.background = 'gray';
+                };
+                aLi[i].onmouseout= function(){
+                    this.style.background = arr[this.index%arr.length];
+                }
+            }
+
+
+
+            //方法二：str
+            var aLi = document.getElementsByTagName("li");
+            var arr = ['red', 'yellow', 'blue']
+            var str = '';
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].style.background = arr[i % arr.length];
+                aLi[i].onmouseover = function(){
+                    str = this.style.background;
+                    this.style.background = 'gray';
+                };
+                aLi[i].onmouseout= function(){
+                    this.style.background = str;
+                }
+            }
+
+            */
+
+            var oInp = document.getElementsByTagName("input");
+
+
+            //oInp[1].checked =false;
+            oInp[0].onclick = function(){
+                for(var i = 1;i<oInp.length;i++){
+//                    if(oInp[i].checked){
+//                        oInp[i].checked = false;
+//                    }else{
+//                        oInp[i].checked = true;
+//                    }
+
+                    oInp[i].checked = !oInp[i].checked;
+
+
+
+                }
+            }
+
+
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+<input type="button" value="反选"/>
+<ul>
+    <li><input type="checkbox" checked/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox" checked/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+    <li><input type="checkbox"/></li>
+</ul>
+
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <style>
+
+        div{
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+            color:#fff;
+        }
+    </style>
+
+
+    <script>
+        window.onload = function(){
+            var oDiv = document.getElementsByTagName("div");
+            for(var i = 0;i<30;i++){
+                document.body.innerHTML += '<div>'+i+'</div>';
+
+            }
+
+            for(var i = 0;i<oDiv.length;i++){
+                oDiv[i].style.left = i*60+10+'px';
+            }
+
+            //逢10往下一行
+
+
+
+        }
+
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+自带的发送邮箱功能不能完成，要被服务器拦截，要用一个插件
+Easy WP SMTP
+WP User Avatar更好的使用插件
+
+
+插件介绍：
+
+
+一些主题站点：www.themepark.com.cn

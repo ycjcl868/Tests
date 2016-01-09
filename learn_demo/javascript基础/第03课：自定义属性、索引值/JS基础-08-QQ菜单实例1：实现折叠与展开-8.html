@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul, h2 {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #list {
+            width: 240px;
+            border: 1px solid #333;
+        }
+
+        #list .lis {
+
+        }
+
+        #list h2 {
+            height: 30px;
+            line-height: 30px;
+            text-indent: 20px;
+            background: #6ff url("../img/icon1.png") no-repeat 5px center;
+            color: #000;
+            cursor: pointer;
+        }
+        #list .active{
+            background: #bbb url("../img/icon2.png") no-repeat 5px center;
+
+        }
+
+        #list ul {
+            display: none;
+        }
+
+        #list ul li {
+            line-height: 24px;
+            border-bottom: 1px solid #333;
+            text-indent: 24px;
+        }
+
+        #list ul .hover{
+            background: #6ff;
+        }
+
+
+    </style>
+
+    <script>
+        window.onload = function () {
+            var oUi = document.getElementById("list");
+            var aH2 = oUi.getElementsByTagName("h2");
+            var aUi = oUi.getElementsByTagName("ul");
+            var aLi = null;
+            var arrLi = [];
+            //获取li
+            for(var i =0;i<aUi.length;i++){
+                aLi = aUi[i].getElementsByTagName('li');
+                for(var j = 0;j<aLi.length;j++){
+                    arrLi.push(aLi[j]);
+                }
+            }
+
+            //若for和for之间有函数时，作用域发生了变化
+            for(var i = 0;i<arrLi.length;i++){
+                arrLi[i].onclick = function(){
+                    for(var i = 0;i<arrLi.length;i++){
+                        arrLi[i].className = '';
+
+                    }
+
+
+
+
+
+                    this.className = 'hover';
+
+
+
+
+
+                }
+
+            }
+
+
+
+
+
+
+            for (var i = 0; i < aH2.length; i++) {
+                aH2[i].onOff = true;
+                aH2[i].index = i;
+                aH2[i].onclick = function () {
+                    if (this.onOff) {
+                        this.className = 'active';
+                        aUi[this.index].style.display = 'block';
+                        this.onOff = false;
+                    } else {
+                        this.className = '';
+                        aUi[this.index].style.display = 'none';
+                        this.onOff = true;
+                    }
+
+                }
+            }
+        }
+    </script>
+
+
+</head>
+
+
+<body>
+
+<ul id="list">
+    <li class="lis">
+        <h2>我的好友</h2>
+        <ul>
+            <li>张三</li>
+            <li>张三</li>
+            <li>张三</li>
+        </ul>
+    </li>
+
+
+    <li class="lis">
+        <h2>企业好友</h2>
+        <ul>
+            <li>张三</li>
+            <li>张三</li>
+            <li>张三</li>
+        </ul>
+    </li>
+
+
+    <li class="lis">
+        <h2>黑名单</h2>
+        <ul>
+            <li>张三</li>
+            <li>张三</li>
+            <li>张三</li>
+        </ul>
+    </li>
+
+
+</ul>
+
+
+</body>
+</html>

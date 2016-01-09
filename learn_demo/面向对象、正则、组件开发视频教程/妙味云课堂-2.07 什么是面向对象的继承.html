@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        什么是继承？
+        --在原有对象的基础上，略作修改，得到一个新的对象
+        --不影响原有对象的功能
+
+        如何添加继承：
+        --属性：call
+        --方法：for in
+        盒子：继承的拖拽
+
+        属性的继承：调用父类的构造函数call
+        方法的继承
+         */
+
+        function CreatePerson(name,sex){
+            this.name=name;
+            this.sex=sex;
+        }
+
+        CreatePerson.prototype.showName = function(){
+            alert(this.name);
+        }
+
+        var p1 = new CreatePerson("小明","男");
+        p1.showName();
+
+        function CreateStar(name,sex,job){
+          /*  this.name=name;
+            this.sex=sex;*/
+
+            CreatePerson.call(this,name,sex);
+            this.jog =job;
+        }
+
+        //  引用会影响原有对象
+        // CreateStar.prototype = CreatePerson.prototype;
+
+        var p2 = new CreateStar("小红","女","star");
+
+        p2.showName();
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

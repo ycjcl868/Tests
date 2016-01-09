@@ -1,0 +1,61 @@
+﻿所有的东西都是文件
+管理员叫root
+/home/alex
+除/之外，所有的字符都合法
+最好不要用空格
+区分大小写，以.开头的文件为隐藏文件
+.当前目录
+root : /sbin   /usr/sbin
+all users:  /bin  /usr/bin
+
+rz插件直接选文件
+
+查看剩余空间  df
+
+
+常用命令：命令 -选项 参数
+chmod 777 Install 目录名  授权
+chmod -R 777 html 授权
+clear清屏
+vim编辑：
+sudo vi /var/www/html/info.php
+按下w开始编程
+按了ESC后，直接按shift+zz，退出保存
+查看：cat /var/www/html/info.php
+
+解压缩：
+把/home目录下面的mydata目录压缩为mydata.zip
+zip -r mydata.zip mydata #压缩mydata目录
+2、把/home目录下面的mydata.zip解压到mydatabak目录里面
+unzip mydata.zip -d mydatabak
+
+文件处理：ls -a(all 显示所有文件) -l(long 详细信息显示) -d(查看目录属性)
+          ls 当前目录下有哪些文件
+          ls /根目录下的文件
+          ls -a可以查看隐藏文件
+          蓝色是目录，红色是
+          dr-xr-xr-x每三个字符
+          文件类型：d目录   -二进制文件  l软链接文件
+          rwx   r-read读  w-write写   x-execute执行
+          所有者u(user)  所属组g(group) 其他人o(others)
+          2指硬链接数
+          数据块block  512字节,每个数据块只能存储一个文件
+
+显示当前 pwd
+创建目录 mkdir
+创建一个文件 touch
+复制文件     cp  或 cp -R 目录
+          cp file1 file2 dir1将文件file1、file2复制到dir1
+          cp -R dir1 dir2将dir1下的所有文件复制到dir2里
+移动文件、更名  mv
+mv   -f    ABC/*    /
+删除文件   rm   (rm -f强制删除)
+          rm -rf 目录名  全部删除
+删除目录   rmdir
+
+
+ctrl + c终止命令
+
+
+
+回到上一目录：cd ..

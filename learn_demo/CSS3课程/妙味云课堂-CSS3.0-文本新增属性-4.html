@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+        rgba
+        边框透明有点问题：会透出背景
+
+        文字阴影
+        text-shadow
+
+        文字描边
+        -webkit-text-stroke:宽度 颜色
+
+        direction:定义文字的排版
+        rtl:从右向左排列
+        ltr：从左各右排列
+        注意要配合unicode-bidi一块使用
+
+        超出使用省略号
+         white-space: nowrap;//不换行
+         overflow:hidden;
+         text-overflow: ;  ellipsis省略号  clip无省略号
+
+
+         自定义字体：
+         两个工具：asiafont studio4做字体
+                  illustrate矢量图
+         //字体转代码
+         http://www.fontsquirrel.com/tools/webfont-generator
+         @font-face{
+         font-family:'miaov';
+         src:url('111-webfont.eot');
+
+         }
+
+
+
+
+        */
+        .box {
+            width: 200px;
+            height: 200px;
+            background: url("img/2.jpg") no-repeat center;
+            color: #fff;
+            font: 80px/100px "微软雅黑";
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            font: bold 100px/200px "微软雅黑";
+            text-align: center;
+            text-shadow: 2px 2px 4px #000;
+            border: 1px solid #000;
+            -webkit-text-stroke: 2px red;
+
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -ms-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+        }
+
+        h1:hover {
+            color: rgba(0, 0, 0, 0);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            width: 300px;
+            border: 1px solid #000;
+            font: 14px/30px "宋体";
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @font-face {
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="box">
+    妙味课堂
+</div>
+
+<h1>妙味课堂</h1>
+
+<p>妙味课堂</p>
+
+<p>妙味课堂具有人性化的IT培训机构妙味课堂具有人性化的IT培训机构妙味课堂具有人性化的IT培训机构</p>
+
+</body>
+</html>

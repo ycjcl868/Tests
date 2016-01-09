@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #ul1 {
+            height: auto;
+            overflow: hidden;
+            margin: 20px auto;
+            border: 1px solid black;
+            border-bottom: none;
+            border-right: none;
+
+        }
+
+        #ul1 li {
+            list-style: none;
+            border: 1px solid black;
+            border-top: none;
+            border-left: none;
+            float: left;
+        }
+
+        #ul1 li.sty1 {
+            background: red;
+        }
+
+        #ul1 li.sty2 {
+            background: green;
+        }
+
+        #ul1 li.sty3 {
+            background: blue;
+        }
+
+        #input1 {
+            width: 100px;
+            position: absolute;
+            left: 50%;
+            margin-left: -50px;
+        }
+    </style>
+
+</head>
+<body>
+<ul id="ul1">
+</ul>
+<input type="button" value="开始寻路" id="input1"/>
+
+<script>
+    /*
+     寻路模式：
+     --深度优先搜索
+     --广度优先搜索
+     --启发式搜索
+     ---A*算法
+
+     A*估价函数
+     f(n)=g(n)+h(n)
+     --f(n)是n节点的估价函数
+     --g(n)是初始点到n节点的实际代价
+     --h(n)是n节点到目标点的实际代价
+
+     A*算法程序实现：
+     --open队列
+     ---排序估价函数
+     --close队列
+     ---排队干扰节点
+
+     --查询相邻位置
+     --封装估价函数f() g() h()
+     --设置父节点指针
+
+     */
+
+    var oUl = document.getElementById("ul1");
+    var aLi = oUl.getElementsByTagName("li");
+    var oInput = document.getElementById("input1");
+    var beginLi = oUl.getElementsByClassName("sty1");
+    var endLi = oUl.getElementsByClassName("sty2");
+    var map = [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,
+        0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ];
+    var cols = Math.sqrt(map.length);
+    var sizeGird = 20;
+    var openArr = [];//可能要走的路线
+    var closeArr = [];//已走的路线
+    init();
+    createMap();
+    function init() {
+        createMap();
+        oInput.onclick = function () {
+            openFn();
+        }
+    }
+
+    function createMap() {
+        oUl.style.width = cols * (sizeGird + 1) + 'px';
+        for (var i = 0; i < map.length; i++) {
+            var oLi = document.createElement("li");
+            oLi.style.width = sizeGird + 'px';
+            oLi.style.height = sizeGird + 'px';
+            oUl.appendChild(oLi);
+            if (map[i] == 1) {
+                oLi.className = 'sty1';
+                openArr.push(oLi);
+            } else if (map[i] == 2) {
+                oLi.className = 'sty2';
+            } else if (map[i] == 3) {
+                oLi.className = 'sty3';
+                closeArr.push(oLi);
+            }
+        }
+    }
+
+    function f(nodeLi) {
+        return g(nodeLi) + h(nodeLi);
+    }
+
+    function g(nodeLi) {
+        var a = beginLi[0].offsetLeft - nodeLi.offsetLeft;
+        var b = beginLi[0].offsetTop - nodeLi.offsetTop;
+        return Math.sqrt(a * a + b * b);
+    }
+
+    function h(nodeLi) {
+        var a = endLi[0].offsetLeft - nodeLi.offsetLeft;
+        var b = endLi[0].offsetTop - nodeLi.offsetTop;
+        return Math.sqrt(a * a + b * b);
+    }
+
+
+    function openFn() {
+        var nowLi = openArr.shift();
+        closeFn(nowLi);
+        findLi(nowLi);
+        console.log(findLi(nowLi));
+    }
+    function closeFn(nowLi) {
+        closeArr.push(nowLi);
+    }
+
+    function findLi(nowLi) {
+        var result = [];
+        for (var i = 0; i < aLi.length; i++) {
+            if (filter(aLi[i])) {
+                result.push(aLi[i]);
+            }
+        }
+        function filter(li) {
+            for (var i = 0; i < closeArr.length; i++) {
+                if (closeArr[i] == li) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        for (var j = 0; j < result.length; j++) {
+            if(Math.abs(nowLi.offsetLeft-result[j].offsetLeft)<=(sizeGird+1) && Math.abs(nowLi.offsetTop-result[j].offsetTop)<=(sizeGird+1)){
+                openArr.push(result[j]);
+            }
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>

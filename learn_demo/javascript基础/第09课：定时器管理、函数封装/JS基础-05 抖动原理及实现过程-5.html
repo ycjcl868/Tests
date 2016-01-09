@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img {
+            position: absolute;
+            top: 200px;
+            left: 300px;
+            width: 180px;
+        }
+    </style>
+    <script>
+        /*
+
+         */
+        window.onload = function () {
+            var oImg = document.getElementById("img1");
+            oImg.onclick = function () {
+                //图片原来的位置
+                var pos = parseInt(getStyle(oImg,'left'));
+                //获取抖动的频率
+                var arr = [];//20,-20,18,-18,....,0
+                var num = 0;
+                var timer = null;
+                for (var i = 20; i > 0; i -= 2) {
+                    arr.push(i, -i);
+                };
+                arr.push(0);
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    oImg.style.left = pos+arr[num]+'px';
+                    num++;
+                    if(num==arr.length){
+                        clearInterval(timer);
+                    }
+
+                },50);
+            }
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+
+<img id="img1" src="../img/1.jpg" alt=""/>
+<script src="../miaovi.js"></script>
+</body>
+</html>

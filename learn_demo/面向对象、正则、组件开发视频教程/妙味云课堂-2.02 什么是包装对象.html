@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        包装对象：基本类型都有自己对应的包装对象:string number boolean
+
+
+         */
+        //var str = 'hello';
+       // alert(typeof str);//string
+        //alert(str.charAt(0));
+        //alert(str.indexOf('e'));
+
+        //是如何设计的,基本类型会找到对应的包装对象类型，然后包装对象把所有的属性
+        //给了基本类型，然后包装对象消失
+        //String.prototype.charAt = function()
+        //var str = new String('hello');
+        //alert(typeof str);//obj
+
+    /*    var str = 'hello';
+        alert(str.lastValue());
+
+        String.prototype.lastValue = function () {
+            return this.charAt(this.length-1);
+        }*/
+
+
+        var str = 'hello';
+        str.number = 10;
+        alert(str.number);//新的对象
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

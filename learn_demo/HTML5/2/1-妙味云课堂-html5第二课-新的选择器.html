@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script>
+        /*
+        新的选择器
+        querySelector  = $
+        querySelectorAll
+         */
+        window.onload = function(){
+            //选择id
+//            var oDiv = document.querySelector("#div1");
+            //选择属性
+            var oDiv = document.querySelector("[title=hello]");
+            //选择class
+            var oDiv2 = document.querySelector(".box");
+            var oDiv3 = document.querySelectorAll(".box");
+            //alert(oDiv3.length);//只能选择一个元素
+            oDiv.style.background = 'red';
+            //获取class列表  classList
+            //add():添加class方法
+            //remove():删除class方法
+            //toggle():切换class方法
+
+            var oDiv4 = document.querySelector("#div3");
+            //alert(oDiv4.classList);
+
+            oDiv4.classList.add('box4');
+            alert(oDiv4.classList);
+
+
+
+        };
+
+    </script>
+</head>
+<body>
+<div id="div1" title="hello" class="box"></div>
+<div class="box">div2</div>
+<div class="box box1 box2" id="div3">div3</div>
+
+</body>
+</html>

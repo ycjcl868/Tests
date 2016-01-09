@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        /*
+
+
+        //return返回值
+        //数字、字符串、布尔、函数、对象、未定义
+
+        //fn1();  =>100  为return里的内容
+
+        //fn2()();   =>1
+
+        //fn2(20)(10);   =>30
+
+        function fn1(){
+            //return 100;
+            return 'miaovi';
+        }
+
+        function fn2(a){
+            return function(b){
+                alert(a+b);//嘿嘿，我是注释
+            }
+        }
+
+        fn3().onload = function(){
+
+
+        }
+
+        function fn3(){
+            return window;
+        }
+
+
+         */
+        window.onload = function(){
+            var oBtn = $("btn1");
+            var oDiv = $("div1");
+
+            oBtn.onclick = function(){
+                alert($("div1").innerHTML);
+            };
+
+            function $(id){
+                return document.getElementById(id);
+            }
+
+            //jQuery源码
+            $(function(){
+                $('#btn1').click(function(){
+                    $(this).css("background","red");
+                });
+            });
+
+
+            function $(v){
+                if(typeof v === 'function'){
+                    window.onload = v;
+                }else if(typeof v==='string'){
+                    return document.getElementById(v);
+                }else if(typeof v ==='object'){
+                    return v;
+                }
+            }
+
+
+            alert(fn3(5));  //=>1 2 3 4 5
+            alert(fn3(7));  //=>1 2 3 4 5 6 7
+
+            function fn3(n){
+                var arr = [];
+                for(var i = 1;i<=n;i++){
+                    arr.push(i);
+                }
+                return arr;
+            }
+
+            alert(fn4(2,5));// 2 3 4 5
+            alert(fn4(6,2));// 2 3 4 5 6
+
+            function fn5(){
+                //都隐藏了一个return，未定义
+                return;
+            }
+
+
+            /*
+            return 返回值，只是在函数
+            1）函数名+括号：fn1（）==>return 后面的值
+            2)所有函数默认返回值：未定义：
+            3）return后面任何代码都不执行了
+
+
+             */
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+<input type="button" id="btn1" value="按钮"/>
+<div id="div1"></div>
+
+
+</body>
+</html>

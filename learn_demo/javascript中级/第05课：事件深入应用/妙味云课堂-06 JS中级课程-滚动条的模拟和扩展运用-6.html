@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 30px;
+            height: 500px;
+            background: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        #div2 {
+            width: 30px;
+            height: 30px;
+            background: red;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #div3 {
+            width: 500px;
+            height: 500px;
+            background: green;
+            position: absolute;
+            left: 50px;
+            top: 10px;
+        }
+        #div4{
+            position: absolute;
+            left: 0px;
+            top: 0;
+        }
+    </style>
+    <script>
+        /*
+         模拟滚动条：
+
+         */
+        window.onload = function () {
+            var oDiv1 = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            var oDiv3 = document.getElementById("div3");
+            var oDiv4 = document.getElementById("div4");
+
+            var iMaxTop = oDiv1.offsetHeight - oDiv2.offsetHeight;
+
+            oDiv2.onmousedown = function (ev) {
+                var ev = ev || event;
+
+                var disY = ev.clientY - this.offsetTop;
+               // var oD3H = oDiv3.offsetHeight;
+               // var oD3W = oDiv3.offsetWidth;
+
+                document.onmousemove = function (ev) {
+                    var ev = ev || event;
+                    var T = ev.clientY - disY;
+                    if (T < 0) {
+                        T = 0;
+                    } else if (T > iMaxTop) {
+                        T = iMaxTop;
+                    }
+                    oDiv2.style.top = T + 'px';
+                    //0~470，比例T/iMaxTop
+                    //oDiv3.style.height = oD3H*(1+T/iMaxTop)+'px';
+                    //oDiv3.style.width = oD3W*(1+T/iMaxTop)+'px';
+                    var iScale = T/iMaxTop;
+                    document.title = iScale;
+                    oDiv4.style.top = (oDiv3.clientHeight-oDiv4.clientHeight)*iScale+'px';
+                }
+                document.onmouseup = function () {
+                    document.onmouseup = document.onmousemove = null;
+                }
+            }
+
+
+
+        };
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">
+
+    </div>
+</div>
+<div id="div3">
+    <div id="div4">
+        sdaflkmjasdfl;'asdkflaks;fkla;'s1
+        sdaflkmjasdfl;'asdkflaks;fkla;'s2
+        sdaflkmjasdfl;'asdkflaks;fkla;'s3
+        sdaflkmjasdfl;'asdkflaks;fkla;'s4
+        sdaflkmjasdfl;'asdkflaks;fkla;'s5
+        sdaflkmjasdfl;'asdkflaks;fkla;'s6
+        sdaflkmjasdfl;'asdkflaks;fkla;'s7
+        sdaflkmjasdfl;'asdkflaks;fkla;'s8
+        sdaflkmjasdfl;'asdkflaks;fkla;'s9
+        sdaflkmjasdfl;'asdkflaks;fkla;'s0
+        sdaflkmjasdfl;'asdkflaks;fkla;'s2
+        sdaflkmjasdfl;'asdkflaks;fkla;'s2
+        sdaflkmjasdfl;'asdkflaks;fkla;'s2
+        sdaflkmjasdfl;'asdkflaks;fkla;'s3
+        sdaflkmjasdfl;'asdkflaks;fkla;'s323
+        sdaflkmjasdfl;'asdkflaks;fkla;'s4
+        sdaflkmjasdfl;'asdkflaks;fkla;'s124
+        sdaflkmjasdfl;'asdkflaks;fkla;'s42
+        sdaflkmjasdfl;'asdkflaks;fkla;'s34
+        sdaflkmjasdfl;'asdkflaks;fkla;'s214
+        sdaflkmjasdfl;'asdkflaks;fkla;'s231
+        sdaflkmjasdfl;'asdkflaks;fkla;'s4
+        sdaflkmjasdfl;'asdkflaks;fkla;'s2134
+        sdaflkmjasdfl;'asdkflaks;fkla;'s21
+        sdaflkmjasdfl;'asdkflaks;fkla;'s42
+        sdaflkmjasdfl;'asdkflaks;fkla;'s314
+        sdaflkmjasdfl;'asdkflaks;fkla;'s214
+        sdaflkmjasdfl;'asdkflaks;fkla;'s213
+        sdaflkmjasdfl;'asdkflaks;fkla;'s41
+        sdaflkmjasdfl;'asdkflaks;fkla;'s4
+        sdaflkmjasdfl;'asdkflaks;fkla;'s124
+        sdaflkmjasdfl;'asdkflaks;fkla;'s21
+        sdaflkmjasdfl;'asdkflaks;fkla;'s421
+        sdaflkmjasdfl;'asdkflaks;fkla;'s41
+        sdaflkmjasdfl;'asdkflaks;fkla;'s24
+        sdaflkmjasdfl;'asdkflaks;fkla;'s124
+12
+4
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>第2集 JS Jquery核心对象函数</title>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script>
+  /*
+  jquery 对象访问：
+  each() 可以记录次数，括号里的i可以是哪个元素
+  size() 返回个数
+  get() 将jquery对象转成元素对象 obj => $(obj)
+  get(index)
+  index()
+
+  */
+  $(function(){
+    //隐式操作
+    /*$('h1').click(function(){
+      alert($(this).text());
+    })*/
+
+    //显式操作
+  /*  $('h1').each(function(i){
+      $(this).click(function(){
+        alert($(this).text());
+      })
+    })
+*/
+    //alert($('h1').size());
+
+    //循环
+   /* $('h1').each(function(i){
+      if( i == 4){
+        return false;
+      }
+      alert($(this).text());
+    })
+*/
+    //偶数
+   // $('h1:odd').css('background','red');
+
+   /*
+     queue
+     对于一个元素上执行animate方法加动画，jQuery内部也会将其加入名为 fx 的函数队列
+     dequeue()从队列最前端移除一个队列函数，并执行他
+      */
+ $("#start").click(function () {
+      $("div").animate({left:'+=200px'}, 2000);
+      $("div").animate({top:'0px'}, 600);
+      $("div").queue(function () {
+          $(this).toggleClass("red");
+          $(this).dequeue();
+      });
+      $("div").animate({left:'10px', top:'30px'}, 700);
+  });
+$("#end").click(function(){
+  $("div").clearQueue();
+  $("div").stop();
+
+})
+
+
+//扩展jquery函数
+jQuery.fn.extend({
+  check:function(){
+    return this.each(function(){this.checked = true;})
+  },
+  uncheck:function(){
+    return this.each(function(){this.checked = false;})
+  }
+})
+
+//扩展jquery对象
+jQuery.extend({
+  min:function(a,b){return a<b?a:b;},
+  max:function(a,b){return a>b?a:b;}
+})
+
+
+
+
+//delegate() 适合处理未来有的元素
+$( "#content" ).delegate( "*", "focus blur", function( event ) {
+    var elem = $( this );
+    setTimeout(function() {
+       elem.toggleClass( "focused", elem.is( ":focus" ) );
+    }, 0);
+});
+
+$('#div').delegate("p","click",function(){
+  alert(1);
+  console.log($(this).html());
+})
+
+//属性
+$('#div').attr('abc',function(){
+  return $('#div p').eq(1).html();
+});
+$('#removeattr').click(function(event) {
+  /* Act on the event */
+  //去除abc属性
+  $('#div').removeAttr('id');
+});
+
+//和attr的区别，attr在window和document时不能用，其它的使用attr
+//alert($("input[type='checkbox']").prop('checked'));
+
+$('#div').addClass('focused');
+$('#div').addClass('focused yellow');
+$('#div').addClass(function(){
+  return $(this).attr('id');
+})
+
+//css
+$('#div').click(function(event) {
+  /* Act on the event */
+  $('#div').css({
+    //value值为属性的值
+  width:function(index,value){
+    console.log(index+" "+value);
+    return parseFloat(value)*1.2;
+  }
+})
+});
+
+//offset()获取匹配元素在当前视口的相对偏移。
+//返回含有top和left的对象，获取和设置值，以左上角为准的
+// var offset = $('#div').offset();
+// console.log('top:'+offset.top+" left:"+offset.left);
+$('#div').offset({top:10,left:0});
+
+
+//position()获取匹配元素相对父元素的偏移。
+
+//scrollTop()
+var div = $('#div');
+$('#div').click(function(){
+  alert(div.scrollTop());
+})
+
+//height()和innerHeight()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  })
+
+  </script>
+  <style>
+  div { margin:3px; width:50px; position:absolute;
+        height:50px; left:10px; top:30px;
+        background-color:yellow; }
+  .red { background-color:red; }
+  #div{position:fixed;}
+
+  .focused {background: #abcdef;}
+  .yellow{color:yellow;}
+
+
+  </style>
+</head>
+<body style="height:2000px">
+  <div>
+    <h1>1</h1>
+    <h1>2</h1>
+    <h1>3</h1>
+    <h1>4</h1>
+    <h1>5</h1>
+  </div>
+
+  <div id="div">
+    <p>dsf4s6df</p>
+    <p>sadfwe465</p>
+  </div>
+
+  <button id="start">Start</button>
+  <button id="end">end</button>
+  <button id="removeattr">removeattr</button>
+  <div></div>
+
+
+  <div id="content">
+    <input tabIndex="1">
+    <input tabIndex="2">
+    <select tabIndex="3">
+        <option>select menu</option>
+    </select>
+    <div tabIndex="4">
+        a div
+    </div>
+</div>
+
+
+
+<input type="checkbox" name="hello" value="一">一
+<input type="checkbox" name="hello" value="二">二
+</body>
+</html>

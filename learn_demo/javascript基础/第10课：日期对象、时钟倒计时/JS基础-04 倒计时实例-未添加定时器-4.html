@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .t1 {
+            width: 400px;
+        }
+
+
+    </style>
+
+
+    <script>
+        //字符串形式：new Date('June 10,2013 12:12:12');
+        //January February March April May June July August September
+        //October November December
+
+
+
+
+
+
+        window.onload = function () {
+            //时间戳，标记，返回1970年1月1日到现在的毫秒籹
+            var t = Math.floor(new Date().getTime()/1000);
+            alert(Math.floor(t / 86400) + '天' + Math.floor(t % 86400 / 3600) + '时' + Math.floor(t % 86400 % 3600 / 60) + '分' + t % 60 + '秒');
+
+
+
+
+            var timer = null;
+            var set = document.getElementById("set");
+            var btn = document.getElementById('btn');
+
+
+            btn.onclick = function () {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    var iNow = new Date();
+                    var iNew = new Date(set.value);//5月
+                    var time = document.getElementById("time");
+                    var t = parseInt((iNew - iNow) / 1000);//毫秒
+                    //Math.floor也可以转化为整数
+                    if (t > 0) {
+                        time.value = Math.floor(t / 86400) + '天' + Math.floor(t % 86400 / 3600) + '时' + Math.floor(t % 86400 % 3600 / 60) + '分' + t % 60 + '秒';
+                    } else {
+                        clearInterval(timer);
+                    }
+                }, 1000)
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+距离：<input id="set" class="t1" type="text" value="August 19,2015 16:05:00"/><br/>
+还剩：<input id="time" class="t1" type="text"/>
+<input type="button" id="btn" value="开始倒计时吧"/>
+
+
+</body>
+</html>

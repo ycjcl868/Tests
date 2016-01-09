@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <style>
+        ul {
+            padding: 0px;
+            margin: 0px;
+
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            background: #333333;
+        }
+
+        #pic {
+            width: 400px;
+            height: 500px;
+            position: relative;
+            margin: 0px auto;
+            background: #fff url("../img/loading.gif") no-repeat center;
+        }
+
+        #pic img {
+            width: 400px;
+            height: 500px;
+        }
+
+        #pic ul {
+            width: 40px;
+            position: absolute;
+            top: 0px;
+            right: -50px;
+
+        }
+
+        #pic li {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 4px;
+            background: #666;
+        }
+
+        #pic .active {
+            background: #fc3
+        }
+
+        #pic p {
+            margin-bottom: 0px;
+
+            bottom: 0px;
+        }
+
+        #pic span {
+            top: 0px;
+        }
+
+        #pic p,
+        #pic span {
+            position: absolute;
+            width: 400px;
+            height: 30px;
+
+            left: 0px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+
+        }
+
+
+    </style>
+
+
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById("pic");
+            var oImg = oDiv.getElementsByTagName("img")[0];
+            var oSpan = oDiv.getElementsByTagName("span")[0];
+            var oP = oDiv.getElementsByTagName("p")[0];
+            var oUi = oDiv.getElementsByTagName("ul")[0];
+            var aLi = oUi.getElementsByTagName('li');
+
+            var arrUrl = ['../img/1.jpg', '../img/2.jpg', '../img/3.jpg', '../img/4.jpg'];
+            var arrText = ['小宠物', '图片二', '图片三', '面具'];
+            //有数组的地方，就有数字
+            var num = 0;
+            var oldLi = null;
+
+            for (var i = 0; i < arrUrl.length; i++) {
+                oUi.innerHTML += '<li></li>'
+            }
+
+            oldLi = aLi[num];
+
+            function init(){
+                //初始化
+                oImg.src = arrUrl[num];
+                oP.innerHTML = arrText[num];
+                oSpan.innerHTML = 1 + num + '/' + arrUrl.length;
+            }
+            init();
+            aLi[num].className = 'active';
+
+
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                aLi[i].onclick = function () {
+                    num = this.index;
+                    init();
+
+
+                    /*
+                     <li class="active"></li>
+                     <li></li>
+                     <li></li>
+                     <li></li>
+                     */
+                    //思路一：全部清空，当前添加
+                    for(var i =0;i<aLi.length;i++){
+                        aLi[i].className = '';
+                    }
+                    this.className = 'active';
+
+
+
+                    //思路二：清空上一个，当前添加
+
+
+
+//                    oldLi.className = '';
+//                    oldLi = this;
+//                    this.className = 'active';
+
+
+
+
+                }
+            }
+
+
+
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+<div id="pic">
+    <img src="" alt=""/>
+    <span>数量正在加载中...</span>
+
+    <p>正在加载中</p>
+    <ul></ul>
+
+</div>
+
+
+</body>
+</html>

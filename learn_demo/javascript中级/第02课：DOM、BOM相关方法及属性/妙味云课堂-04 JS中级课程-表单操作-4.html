@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oForm = document.getElementById("form1");
+            //获取name
+            //alert(oForm.text1.value);
+            //onchange:当值发生改变的 时候触发，离开时触发
+            /*
+             text:当光标离开的时候如果内容有变化就触发
+             radio/checkbox：标准下点击的时候只要值变了就会变化，
+             */
+            oForm.text1.onchange = function () {
+                alert(this.value);
+            }
+            //alert(oForm.sex)代表一组元素，数组
+            oForm.sex[0].onchange = function () {
+                //alert('男');
+            }
+
+            oForm.sex[1].onchange = function () {
+            }
+
+
+            oForm.city.onchange = function(){
+                alert(this.value);
+            }
+
+            oForm.btn.onclick = function(){
+                //radio
+                for(var i =0;i<oForm.sex.length;i++){
+                    if(oForm.sex[i].checked){
+                        alert(oForm.sex[i].value+'是选中的');
+                    }else{
+                        alert(oForm.sex[i].value+'是非选中的');
+                    }
+                };
+            }
+
+
+
+
+        }
+
+    </script>
+</head>
+<body>
+
+<form action="" id="form1">
+    <input type="text" name="text1" id="text1" value="内容"/>
+    <input type="radio" value="0" name="sex"/>男
+    <input type="radio" value="1" name="sex"/>女
+    <input type="checkbox" name="a" value="html"/>html
+    <input type="checkbox" name="a" value="java"/>java
+    <input type="checkbox" name="a" value="C"/>c
+    <select name="city" value="">
+        <option value="1">请选择城市</option>
+        <option value="2">北京</option>
+        <option value="3">上海</option>
+    </select>
+
+    <input type="button" value="按钮" name="btn"/>
+
+
+</form>
+
+</body>
+</html>

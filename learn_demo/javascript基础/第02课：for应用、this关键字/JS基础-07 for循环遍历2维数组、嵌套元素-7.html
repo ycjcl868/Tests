@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+
+        window.onload = function(){
+            var oUi = document.getElementById("list");
+            var aUi = oUi.getElementsByTagName("ul");
+            var aLi = null;
+            for(var i =0 ;i<len;i++){
+                aLi = aUi[i].getElementsByTagName("li");
+                for(var j = 0;j<aLi.length;j++){
+                    aLi[i].style.border = '1px solid red';
+                }
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+<ul id="list">
+    <li>
+        <h2>我的好友</h2>
+        <ul>
+            <li>莫涛</li>
+            <li>张森</li>
+        </ul>
+    </li>
+
+
+    <li>
+        <h2>我的黑名单</h2>
+        <ul>
+            <li>莫小涛</li>
+            <li>莫小涛</li>
+        </ul>
+
+    </li>
+
+
+    <li>
+        <h2>我的坏友</h2>
+        <ul>
+            <li>莫小涛</li>
+            <li>莫小涛</li>
+
+        </ul>
+
+    </li>
+
+
+</ul>
+
+</body>
+</html>

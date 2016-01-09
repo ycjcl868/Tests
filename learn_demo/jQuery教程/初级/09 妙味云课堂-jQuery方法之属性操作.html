@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script>
+        /*
+        addClass()
+        removeClass()
+        width()
+        innerWidth()  width+padding
+        outerWidth()  width+padding+border
+        如果在outerWidth(true)  则width+padding+border+margin
+
+        insertBefore()  before()
+        insertAfter()  after()
+        appendTo()    append()
+        prependTo()   prepend()
+        remove()
+        on()  off()
+        scrollTop()
+         */
+        $(function(){
+            $('div').addClass('box2 box4');
+            $('div').removeClass('box1');
+            alert($('div').width());
+        })
+    </script>
+</head>
+<body>
+
+<div class="box1 box2">div1</div>
+
+
+
+</body>
+</html>

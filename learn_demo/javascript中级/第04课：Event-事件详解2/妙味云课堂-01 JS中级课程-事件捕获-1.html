@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            padding: 40px;
+        }
+
+        #div1 {
+            background: red;
+        }
+
+        #div2 {
+            background: green;
+        }
+
+        #div3 {
+            background: blue;
+            position: absolute;
+            top: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+            var oDiv1 = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            var oDiv3 = document.getElementById("div3");
+
+            function fn1() {
+                alert(this.id);
+            }
+
+            //事件等同于力，作用力和反作用力，捕获是相当于作用力，冒泡是反作用力
+            //告诉div1，如果有一个进去的事件触发了你，你就去执行fn1这个函数  true
+            //告诉div1，如果有一个出去的事件触发了你，你就去执行fn1这个函数  false
+            //true和false完全监控的是，进来的一下，还是出来的一下
+
+            //oDiv1.addEventListener('click', fn1, false);
+            //oDiv2.addEventListener('click', fn1, false);
+           // oDiv3.addEventListener('click', fn1, false);
+
+            oDiv1.addEventListener('click',function(){
+                alert(1);
+            },false);
+            oDiv2.addEventListener('click',function(){
+                alert(3);
+            },true);
+            oDiv3.addEventListener('click',function(){
+                alert(2);
+            },false);
+
+            //3 2 1
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+<div id="div1">
+    <div id="div2">
+        <div id="div3">
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

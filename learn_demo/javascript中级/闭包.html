@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        函数 嵌套函数，内部函数可以引用外部函数的参数和变量
+        垃圾回收机制，a,b不会被收回，参数和变量不会被收回
+        JS中的垃圾回收机制,
+        闭包的好处，
+        1、希望一个变量长期驻扎在内存之中
+        2、避免全局变量的污染
+
+        改写函数声明和函数表达式：
+
+
+        实例;
+        1、模块化代码
+        2、在循环中找到索引
+
+        注意：
+        在IE下可能引发内存泄漏，页面跳转时变量一直存在，占用CPU
+        条件：DOM节点引用一个内部函数，而函数又会引用外部DOM节点的属性
+        window.onload = function(){
+            var oDiv = document.getElementById("div1");
+            oDiv.onclick = function(){
+                alert(oDiv.id);
+            }
+        }
+
+        解决方法：
+        window.onunload = function(){
+            oDiv.onclick = null;
+        }
+
+
+        window.onload = function(){
+            var oDiv = document.getElementById("div1");
+            var id = oDiv.id;
+            oDiv.onclick = function(){
+                alert(id);
+            }
+            //引用完后，释放掉
+            oDiv = null;
+
+
+        }
+
+
+         */
+
+ /*       function abc(){
+
+        }
+        //匿名执行
+        (function(){
+            alert(1);
+        })();
+
+        //代码模块化，减少全局变量的污染
+        var aaa = (function () {
+            var a = 1;
+            return function(){
+                a++;
+                alert(a);
+            }
+        })();
+
+        aaa();//2
+        aaa();//3*/
+
+      /*  var aaa2 = (function(){
+            var a = 1;
+            function bbb(){
+                a++;
+                alert(a);
+            }
+
+
+            function ccc(){
+                a++;
+                alert(a);
+            }
+
+            return {
+                b:bbb,
+                c:ccc
+            }
+        })();
+
+        aaa2.b();//2
+        aaa2.c();//3
+*/
+
+
+
+     /*   var a = 1;
+
+        function ccc(){
+            a++;
+            alert(a);
+        }
+        ccc();//2
+        ccc();//3
+        alert(a);//外部可以调用a
+
+        //变成局部变量
+        function ddd(){
+            var a = 1;
+            a++;
+            alert(a);
+        }
+
+        ddd();//2
+        ddd();//2
+
+        function eee(){
+            var a = 1;
+            return function(){
+                a++;
+                alert(a);
+            }
+        }
+
+        eee()();
+        eee()();
+
+
+
+        function aaa(a) {
+            var b = 5;
+            function bbb() {
+                alert(b);
+            }
+            return bbb;
+        }
+
+        var c = aaa();
+        c();
+        aaa(1);//a，b不会被收回
+
+
+
+        function aaa1(){
+            var a = 1;
+        }
+        alert(aaa1());//a会被收会
+
+*/
+
+        window.onload = function(){
+            var oLi = document.getElementsByTagName("li");
+            for(var i =0;i<oLi.length;i++){
+               /* (function(i){
+                    oLi[i].onclick = function(){
+                        alert(i);//4
+                    }
+                })(i);*/
+
+                oLi[i].onclick = (function(i){
+                    return function(){
+
+                    }
+                })(i);
+
+            }
+
+        };
+
+
+
+    </script>
+</head>
+<body>
+<ul>
+    <li>111111</li>
+    <li>111111</li>
+    <li>111111</li>
+    <li>111111</li>
+</ul>
+
+</body>
+</html>

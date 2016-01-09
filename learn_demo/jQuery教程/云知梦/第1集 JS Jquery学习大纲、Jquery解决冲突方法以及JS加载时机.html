@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  #divid{width: 500px;height: 300px;background:#00f;}
+  </style>
+    <script src="jquery-1.11.3.min.js
+"></script>
+  <script>
+  /*
+  复习:
+  window.frames
+  document.forms
+  document.elements
+  document.elements[0].options
+  document.images
+  document.links
+  document.anchors
+  tabobj.rows
+  tabobj.rows[0].cells
+  eleobj.innerHTML
+  eleobj.outerHTML
+  eleobj.textContent
+  eleobj.getAttribute()
+  eleobj.setAttribute()
+  document.head
+  document.title
+  document.body
+  document.getElementById
+  document.getElementsByTagName()
+  document.getElementsByClassName()
+  document.createElement("")
+
+
+
+  js对象
+  1.js内置对象
+  2.js元素对象
+  3.jquery对象
+
+
+
+
+
+
+
+  */
+ /*   $('#divid').click(function(){
+      $(this).css({'background':'#f00'})
+    })*/
+  </script>
+</head>
+<body>
+
+<div id="divid">
+
+</div>
+
+<h1>1</h1>
+<h1>2</h1>
+<h1>3</h1>
+<h1>4</h1>
+<h1>5</h1>
+<h1>6</h1>
+
+
+<script>
+  var JD = $.noConflict();
+
+  JD('#divid').click(function(){
+      JD(this).toggle();
+  })
+  JD('h1').click(function(){
+    alert(JD(this).html());
+  })
+
+</script>
+</body>
+</html>

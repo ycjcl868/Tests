@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            var oUl1 = document.getElementById("ul1");
+            var oUl2 = document.getElementById("ul2");
+
+            var aLi = getElementsByClassName(document,'li',"box");
+            //但这样有个问题，若class = 'box box1'时，就取不到了
+            console.log(aLi);
+            for(var i =0;i<aLi.length;i++){
+                aLi[i].style.background = 'red';
+            };
+
+
+            function getElementsByClassName(parent,Tagnames,className){
+                //获取所有元素
+                var oEl = parent.getElementsByTagName(Tagnames);
+                var arr = [];
+                for(var i =0;i<oEl.length;i++){
+                    var aClassName = oEl[i].className.split(' ');
+                    for(var j = 0;j<aClassName.length;j++){
+                        if(aClassName[j] == className){
+                            arr.push(oEl[i]);
+                            break;
+                        }
+                    }
+                }
+                return arr;
+            };
+        }
+
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li>11111</li>
+    <li class="box">22222</li>
+    <li>33333</li>
+    <li class="box box3">44444</li>
+</ul>
+<ul id="ul2">
+    <li>11111</li>
+    <li class="box">22222</li>
+    <li>33333</li>
+    <li class="box box3">44444</li>
+</ul>
+
+
+<div id="div1">
+    <p class="box">pppp</p>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+        $
+        --$.extend：扩展工具方法下的插件形式，用$.xxx  $.yyy
+
+        $.fn
+        --$.fn.extend:扩展到jquery对象下的,$().xxx()
+         */
+//        var classplus = $.noConflict();
+        //$.trim();没有左空格
+        //提供了一个插件的形式
+
+        //$.lefttrim()
+
+//        $.fn.extend()
+
+        $.extend({
+            leftTrim:function(str){
+                return str.replace(/^\s+/,'');
+            }
+        });
+
+
+        $.fn.extend({
+            //this指调用对象前面的
+            drag:function(){
+                var disX = 0;
+                var disY = 0;
+                var This  = this;
+                this.mousedown(function(ev){
+                    disX=ev.pageX-$(this).offset().left;
+                    disY= ev.pageY-$(this).offset().top;
+
+
+                    $(document).mousemove(function(ev){
+                        This.css({
+                            left:ev.pageX-disX,
+                            top:ev.pageY-disY
+                        });
+                    });
+
+                    $(document).mouseup(function(){
+                        $(this).off();
+                    });
+                    return false;
+
+                })
+            }
+
+        });
+
+        $(function(){
+            $('#div1').drag();
+
+        });
+
+    /*    var str = '  hello  ';
+        alert('{'+ $.leftTrim(str)+'}');*/
+
+
+
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        document.createElement("leo");//IE下的自定义标签
+        document.createElement("header");//IE下的自定义标签
+        document.createElement("article");//IE下的自定义标签
+        document.createElement("aside");//IE下的自定义标签
+        document.createElement("section");//IE下的自定义标签
+        document.createElement("footer");//IE下的自定义标签
+        //有一个框架：html5shiv.js
+
+    </script>
+    <style>
+        body{
+            margin: 0px;
+        }
+        header{
+            height: 100px;
+            background: #9f3;
+
+        }
+        article{
+            padding: 10px;
+            background: #cf6;
+        }
+        aside {
+            width: 200px;
+            height: 300px;
+            background: #f06;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        section{
+            margin-left: 210px;
+            background: #f90;
+            height: 300px;
+        }
+        footer{
+            height: 100px;
+            background: #c6c;
+        }
+        leo{
+            background: #f03;
+            height: 100px;
+            display: block;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<header>页面头部</header>
+<article>
+    <aside>侧边栏</aside>
+    <section>内容区域</section>
+</article>
+
+<leo>刘伟是个胖子</leo>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+        border-radius:1-4个数字/1-4个数字
+        --前面是水平，后面是垂直
+        --不给"/"则水平和垂直一样
+        --border-radius:10px/5px
+
+        参数：
+        --各种长度单位都可以：px,%
+        %有时很方便，
+        --但宽高不一致时不太好
+
+
+
+        边框图片border-image:
+        --border-image-sourceg 引入图片
+        --border-image-slice 切割图片
+        --border-image-width 边框宽度
+        --border-image-repeat 图片的排列方式
+
+        线性渐变
+        linear-gradient(起点,点,点)
+        --只能用在背景上
+        --IE:filter:progid
+
+
+        --参数：
+        --起点：从什么方向开始渐变，默认top
+        --角度：从什么角度开始渐变（xxx deg）
+        --点：渐变点的颜色和位置
+        ----black 50%，位置可选
+        repeating-linear-gradient
+
+
+        径向渐变：
+        -webkit-radial-gradient:100px 50px,red 10px,blue 10px
+        起点：可以是关键字，具体数值或百分比
+        形状：ellipse、circle
+        大小：具体数值或百分比，也可以是关键字（最近端，最近角，最远端，最远角，包含或覆盖(closest-side,closest-corner,farthest-side,farthest-corner,contain or cover)）
+
+        多背景
+        逗号分开
+        background: url(a.jpg) 0 0, url(b.jpg) 0 100%;
+
+        背景尺寸
+        background-size:x y
+        background-size:100% 100%
+        Cover 放大
+        Contain 缩小
+
+        background-origin ： border | padding | content
+        border-box： 从border区域开始显示背景。
+        padding-box： 从padding区域开始显示背景。
+        content-box： 从content区域开始显示背景。
+        background-clip:text
+
+        border： 从border区域向外裁剪背景。
+        padding： 从padding区域向外裁剪背景。
+        content： 从content区域向外裁剪背景。
+        no-clip： 从border区域向外裁剪背景。
+        实例：iphone开机动画
+
+        Mask-image
+        Mask-position
+        Mask-repeat
+
+
+
+        */
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            -moz-border-radius: 20px;
+            /*  x轴半径  y轴半径*/
+            border-radius: 20px 50px;
+            transition: 0.5s;
+        }
+
+        .box:hover {
+            -webkit-transform: rotate(72deg);
+        }
+
+        .box1 {
+            width: 200px;
+            height: 30px;
+            border: 1px solid #000;
+            /*background: -webkit-linear-gradient(left,green 0,green 10px,#ffffff 10px,#fff 20px);*/
+            -webkit-transition: all 1s;
+            -moz-transition: all 1s;
+            -o-transition: all 1s;
+            transition: all 1s;
+        }
+
+        .box1:hover {
+            background: green;
+        }
+
+        body {
+            background: #000;
+            text-align: center;
+            font: 50px/200px "微软雅黑";
+        }
+
+        h1 {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.3);
+            background: -webkit-linear-gradient(-30deg, rgba(255, 255, 255, 0) 100px, rgba(255, 255, 255, 1) 180px, rgba(255, 255, 255, 1) 240px, rgba(255, 255, 255, 0) 300px) -300px 0 no-repeat;
+            -webkit-background-clip: text;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+
+            var oH1 = document.getElementById("h1");
+            var oTimer = null;
+            var iLeft = -300;
+            document.title = 0;
+            function toMove() {
+                oTimer = setInterval(function () {
+                    iLeft += 10;
+                    if (iLeft == 1000) {
+                        iLeft = -300;
+                        clearInterval(oTimer);
+                    }
+                    oH1.style.backgroundPosition = iLeft + 'px';
+                    console.log(1);
+                }, 20);
+            }
+
+            toMove();
+            setInterval(function () {
+                toMove();
+            }, 5000);
+
+
+        };
+    </script>
+</head>
+<body>
+
+<!--<div class="box"></div>-->
+
+<!--<div class="box1"></div>-->
+
+<h1 id="h1">信鑫</h1>
+
+</body>
+</html>

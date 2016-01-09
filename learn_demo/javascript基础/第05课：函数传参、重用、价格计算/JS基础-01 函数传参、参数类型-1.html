@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        函数传参
+        参数=JS的数据类型
+        数字、字符串、布尔、函数、对象、未定义
+         */
+
+//        function fn1(a){
+//            alert(a);
+//        }
+//        fn1(100);
+
+//        function fn2(a){
+//            alert(a.charAt(2));
+//        }
+//        fn2("miaov");
+
+//        function fn3(fn){
+//            fn();
+//        };
+//        fn3(function (){
+//            alert(1);
+//        })
+
+
+//        function fn4(){
+//            alert(4);
+//        }
+//
+//        function fn3(fu){
+//            fn();
+//        }
+//        fn3(fn4);
+
+        function fn5(w,d){
+            w.onload = function(){
+                d.body.innerHTML = 123;
+            }
+        };
+
+        fn5(window,document);
+
+
+
+
+
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

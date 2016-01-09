@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li {
+            width: 100px;
+            height: 30px;
+            background: yellow;
+            margin: 10px;
+            list-style: none;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 200px;
+        }
+    </style>
+    <script>
+        /*
+        拖放事件：
+        dragstart:拖拽前触发
+        drag：拖拽前、拖拽结束之间，连接触发
+        dragend，拖拽结束触发
+
+        目标元素事件：事件对象为目标元素
+        dragenter:进入目标元素触发，相当于mouseover
+        dragover:进入目标，离开目标之间，连接触发
+        dragleave：离开目标元素触发，相当于mouseout
+        drop：在目标元素上释放鼠标触发
+
+
+        事件执行顺序：drop不触发时
+        - dragstart>drag>dragenter>dragover>dragleave>dragend
+
+        事件的执行顺序：drop触发时(drapover的时候阻止默认事件)
+        - dragstart>drag>dragenter>dragover>drop>dragend
+
+
+
+
+
+
+         */
+        window.onload = function(){
+            var aLi = document.getElementsByTagName("li");
+            var oDiv = document.getElementById("div1");
+            var i = 0;
+            for(var i =0;i<aLi.length;i++){
+                //拖拽的一瞬间
+                aLi[i].ondragstart = function(){
+                    this.style.background = 'blue';
+                }
+                //只要点下，就一直触发
+                aLi[i].ondrag = function(){
+                    document.title = i++;
+                }
+
+                //拖拽结束时
+                aLi[i].ondragend = function(){
+                    this.style.background = 'red';
+                }
+            };
+
+            oDiv.ondragenter = function(){
+                this.style.background = 'blue';
+            }
+            oDiv.ondragover = function(ev){
+                document.title = i++;
+                //要想触发drop事件，就必须在dragover当中阻止默认事件
+                ev.preventDefault();
+
+
+            }
+            oDiv.ondragleave = function(){
+                this.style.background = 'black';
+            }
+            oDiv.ondrop = function(){
+                alert(123);
+            }
+        };
+    </script>
+</head>
+<body>
+<ul>
+    <li draggable="true">a</li>
+    <li draggable="true">b</li>
+    <li draggable="true">c</li>
+</ul>
+<div draggable="true" id="div1">
+
+</div>1
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            /*
+             document.body.innerHTML = String.fromCharCode(22937);
+             document.body.innerHTML += String.fromCharCode(21619);
+
+             var str = '';
+             for (var i = 0; i < 1000; i++) {
+             str += String.fromCharCode(i) + '';
+             document.body.innerHTML = str;
+             };
+             */
+            //进行加密
+
+        }
+
+    </script>
+
+</head>
+<body>
+<input type="text"/>
+<input type="button" value="加密"/>
+
+<div id="div1">加密...</div>
+<script>
+    var aInp = document.getElementsByTagName("input");
+    var oDiv = document.getElementById("div1");
+    var str1 = '';
+    aInp[1].onclick = function () {
+        var str = aInp[0].value;
+        for (var i = 0; i < str.length; i++) {
+            str1 += String.fromCharCode(str.charCodeAt(i)-1000);
+        }
+        oDiv.innerHTML = str1;
+    };
+
+
+    alert('miaov'.charAt(2));  //--->a
+    alert('miaov'.charCodeAt(2));  //-->ASCII编码
+    alert(String.fromCharCode(22937,216));   //-->将编码对应的字符取出
+
+</script>
+
+
+</body>
+</html>

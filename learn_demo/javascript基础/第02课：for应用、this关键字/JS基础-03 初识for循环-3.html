@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //循环
+
+
+        window.onload = function () {
+            var oUi =  document.getElementById("list");
+            var aLi = document.getElementsByTagName("li");
+            var arr = ['今天','明天','后天'];
+            for(var i = 0;i<aLi.length;i++){
+                aLi[i].innerHTML = arr[i];
+                aLi[i].onclick=  function(){
+                    alert(1);
+                }
+            }
+
+            innerHTML是=替换和修改
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+<ul id="list">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+
+</body>
+</html>

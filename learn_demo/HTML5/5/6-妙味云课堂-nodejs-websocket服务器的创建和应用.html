@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
+    <script src="client.socket.js"></script>
+    <style>
+        *{padding: 0px;margin: 0px;font-size: 12px;font-weight: 500;background: #eeeeee}
+        .container {padding-top: 85px;padding-bottom: 90px;}
+        .heading {text-align: center;padding-bottom: 45px;}
+        .heading h2{font-size: 25px;font-family: "arial", "华文中宋";font-weight: 700;}
+        .heading h2 a{font-size: 14px;font-family: "黑体";}
+        .portfolioFilter {display: block;margin: 0 auto;text-align: center;}
+        .portfolioFilter ul {margin: 0 auto;text-align: center;display: block;margin-bottom: 30px;}
+        .portfolioFilter ul li {display: inline-block;margin: 5px 15px;}
+        .portfolioFilter ul li a {background: #15596e;border: solid 1px #15596e;color: #fff;padding: 16px 18px;font-size: 13px;line-height: 15px;color: #ffffff;text-transform: uppercase;display: block;text-decoration: none;border: solid 1px #95d9ee;transition-duration: 0.2s;-webkit-transition-duration: 0.2s;-moz-transition-duration: 0.2s;-o-transition-duration: 0.2s;}
+        .portfolioFilter ul li a:hover {background: #0067CD;border: solid 1px #CFCFCF;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementById("btn");
+            var socket = null;
+            oBtn.onclick = function(){
+                socket = io.connect('http://localhost:8888');
+                socket.on('hello',function(data){
+                    alert(data);
+
+                    this.emit('hellotoo','欢迎欢迎');
+                })
+            }
+        };
+
+
+    </script>
+</head>
+<body>
+<!--备注：#为链接地址-->
+<div class="container">
+    <div class="heading">
+        <h2>员工考勤管理系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">&nbsp;首页</a>
+            <a href="#">&nbsp;退出系统</a>
+        </h2>
+    </div>
+    <!--备注：#为链接地址-->
+    <div class="portfolioFilter">
+        <ul>
+            <li><a href="#">用户管理</a></li>
+            <li><a href="#">员工资料</a></li>
+            <li><a href="#">实时签到</a></li>
+            <li><a href="#">考勤明细统计</a></li>
+            <li><a href="#">公告</a></li>
+        </ul>
+    </div>
+</div>
+<input type="button" id="btn" value="按钮"/>
+</body>
+</html>
+<!--备注：#为链接地址-->

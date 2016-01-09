@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         定时器：时间概念‘
+         var timer = setInterval(函数，毫秒);设置定时器
+         clearInterval(timer);清除定时器
+         原则：
+         1、添加事件定时器时，要先关后开
+
+
+
+
+        //        for(var i =0;i<3;i++){
+        //            document.title = i;
+        //        }
+
+        i = 0;
+        function fn1() {
+            i++;
+            document.title = i;
+            if(i===10){
+                clearInterval(timer);
+            }
+        }
+
+        //1秒后开始执行，重复执行，至少写个14以上
+        var timer = setInterval(fn1, 1000);
+
+         */
+
+
+
+    </script>
+
+</head>
+<body>
+<input type="button" value='换背景吧'/>
+<input type="button" value='停'/>
+
+<script>
+    var aBtn = document.getElementsByTagName('input');
+    var arrUrl = ['../img/1.jpg','../img/2.jpg','../img/3.jpg','../img/4.jpg'];
+    var oBody = document.body;
+    var change = null;
+    oBody.style.background = 'url('+arrUrl[0]+')';
+    aBtn[0].onclick = function(){
+        //有一个小bug，每点一次，开一个定时器
+        clearInterval(change);//null 、未定义
+
+       change  = setInterval(random,1000);
+
+
+    }
+    aBtn[1].onclick = function(){
+        clearInterval(change);
+    }
+
+    function random(){
+        var num = Math.floor(Math.random()*4);
+        oBody.style.background = 'url('+arrUrl[num]+')'
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            position: absolute;
+            left: 200px;
+        }
+    </style>
+    <script>
+        /*
+         对象的多种表现形式：
+         --提高对象的复用性
+         --如何配置参数和默认参数
+         --例子：拖拽
+         --例子：弹窗
+
+         组件开发：多组对象，像兄弟之间的关系（代码复用的一种形式）
+
+         用json，json其实代表一个参数
+
+         */
+
+        window.onload = function () {
+            var drag = new Drag();
+            drag.init({ //配置参数
+                id: "div1"
+            });
+            var drag1 = new Drag();
+            drag1.init({
+                id: "div2",
+                toDown: function () {
+                    document.title = 'hello';
+                }
+            });
+        };
+
+        function Drag() {
+            this.oDiv = null;
+            this.disX = 0;
+            this.disY = 0;
+
+            this.settings = {
+                toDown:function(){},
+                toUp:function(){}
+            }
+        }
+
+
+        Drag.prototype.init = function (opt) {
+            var This = this;
+            this.oDiv = document.getElementById(opt.id);
+            extend(this.settings,opt);
+            this.oDiv.onmousedown = function (ev) {
+                var ev=ev||event;
+                This.drag(ev);
+                This.settings.toDown();
+                 };
+
+        Drag.prototype.drag = function (ev) {
+            var This = this;
+            var ev = ev || event;
+            this.disX = ev.clientX - this.oDiv.offsetLeft;
+            this.disY = ev.clientY - this.oDiv.offsetTop;
+            document.onmousemove = function () {
+                var ev = ev || event;
+                This.drag2(ev);
+            };
+            document.onmouseup = function () {
+                This.drag3();
+            };
+        };
+
+        Drag.prototype.drag2 = function (ev) {
+            this.oDiv.style.left = ev.clientX - this.disX + 'px';
+            this.oDiv.style.top = ev.clientY - this.disY + 'px';
+        };
+
+        Drag.prototype.drag3 = function (ev) {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+
+
+        function extend(obj1, obj2) {
+            for (var attr in obj2) {
+                obj1[attr] = obj2[attr];
+            }
+        }
+
+
+        ///////////////////////////////////
+
+        /* function show(opt){
+
+         }
+
+         show({
+         id:'div1',
+         toDown:function(){},
+         toUp:function(){}
+         })
+
+         var a ={    //配置参数
+         name:"小明"
+         };
+
+         var b = {    //默认参数
+         name:"小强"
+         };
+
+         extend(b,a);
+         alert(b.name);//小明*/
+
+
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+
+</body>
+</html>

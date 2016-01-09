@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--
+    兴趣+课后练习
+    明白JS实现原理
+    几乎没有不用js的地方
+    1、用html+css布局
+    2、实现原理
+    3、
+    -->
+    <style>
+        ul ul {
+            padding: 0px;
+            margin: 0px;
+            width: 140px;
+            border: 1px solid #333;
+            position: absolute;
+            top: 30px;
+            left: -1px;
+            background: #fff1f0;
+            display: none;
+        }
+
+        ul ul li {
+            text-align: center;
+            line-height: 30px;
+        }
+
+        li {
+            list-style: none
+        }
+
+        .list {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .list a {
+            display: block;
+            line-height: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            background: #f1f1f1;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li id="lis" class="list">
+        <a id="link" href="#">微博</a>
+        <ul id="ul1">
+            <li>私信</li>
+            <li>评论</li>
+            <li>@我</li>
+        </ul>
+    </li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+</ul>
+
+<input id="show" type="button" value="显示"/>
+<input id="hidden" type="button" value="隐藏"/>
+<strong id="oStrong">我也要他隐藏</strong>
+<div id="div1"></div>
+
+<!--
+希望把某个元素移除你的视线：
+1、display:none;(显示为无，彻底消失，根本就没有，js中获取不了高)
+2、opacity:0
+3、visibility:hidden;(看不见，让元素隐藏，占地了还存在，能获取)
+4、改 width和height
+5、定位移动left/top
+6、拿一个白色的div盖住它
+
+
+
+-->
+
+<script>
+    /*
+     如何获取元素
+     1、通过ID名称获取元素(非常注重大小写)
+     document get element ID
+     =>document.getElementById('')
+     2、
+     3、
+     4、
+
+     事件：鼠标事件、键盘事件、窗口系统事件、表单事件、自定义事件
+     onclick
+     onmouseover鼠标移上
+     onmouseover移出
+     onmousedown
+     onmouseup
+     onmousemove抚摸事件（）
+     ……
+
+     onload()加载完以后执行
+     window是顶级对象
+     window.onload = 事件
+     img.onload = 事件
+
+
+
+
+
+     如何添加事件：
+     元素.事件    .可以理解为“的”
+
+     函数：可以理解为->命令，做一些事
+     function 名子(){
+     ....
+     }
+     一旦包上函数里，一定不会主动执行
+     执行方法：
+     1、直接调用：名子();
+     2、事件调用：元素.事件 = 名子;
+     oDiv.onclick = abc;(若加上()则直接执行了)
+     3、function(){}匿名函数,
+     元素.事件 = 匿名函数
+     window.onload = function(){
+
+
+     };
+
+
+
+
+     学会测试：
+     alert();带了一个确定按钮的警告框
+     ''带引号的是字符串
+     用alert(1)；看执行到哪一行
+     初学者：最好保持一种随时写，随时测
+
+
+     缓存清除：浏览器关了再开
+
+
+     */
+    window.onload = function () {
+        var li = document.getElementById("lis");
+        var ul1 = document.getElementById("ul1");
+        var link = document.getElementById("link");
+        var oBtn1 = document.getElementById("show");
+        var oBtn2 = document.getElementById("hidden");
+        var oDiv = document.getElementById("div1");
+        var oStrong = document.getElementById("oStrong");
+
+        function show1(){
+            oDiv.style.display = "block";
+        }
+        oBtn1.onclick = show1;
+        oBtn2.onclick = function(){
+            oDiv.style.display = "none";
+        }
+        oStrong.onclick = show1;
+
+        li.onmouseover = show;
+        li.onmouseout = hide;
+        function show() {
+            ul1.style.display = "block";
+            link.style.background = "yellow";
+        }
+
+        function hide() {
+            ul1.style.display = "none";
+            link.style.background = "#fff";
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

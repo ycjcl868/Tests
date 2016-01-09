@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*div{*/
+            /*padding: 40px;*/
+        /*}*/
+        /*#div1{*/
+            /*background: red;*/
+        /*}*/
+        /*#div2{*/
+            /*background: green;*/
+        /*}*/
+        /*#div3{*/
+            /*background: blue;*/
+            /*position: absolute;*/
+            /*top: 300px;*/
+        /*}*/
+        #div1{
+            width: 100px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left: 0px;
+            top: 100px;
+            left: -100px;
+        }
+        #div2{
+            width: 30px;
+            height: 60px;
+            position: absolute;
+            right: -30px;
+            top: 70px;
+            background: black;
+            color: white;
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        /*
+        事件流，根样式无关，与文档物理结构有关
+        事件冒泡：当一个元素接收到事件以后，会把它接收到的所有事件传播给他的父级，
+                从里到外
+
+         */
+        window.onload = function(){
+            /*
+            var oDiv1 = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            var oDiv3 = document.getElementById("div3");
+
+            function fn1(){
+                alert(this.id);
+            }
+            //给**加事件，给**元素加事件处理函数
+            //事件函数绑定
+            oDiv1.ondblclick = fn1;//告诉div1,如果他接收到了一个点击事件，那么他就去执行fn1
+            oDiv2.ondblclick = fn1;
+            oDiv3.onclick = fn1;
+
+            //我在马路边捡到一分钱，把他交给警察叔叔。事件
+
+            */
+
+
+            /*
+            var oBtn = document.getElementById("btn");
+              var oDiv = document.getElementById("div1");
+            var oP = document.getElementsByTagName("p");
+            oBtn.onclick = function(ev){
+                var ev = ev||event;
+                oDiv.style.display = 'block';
+                ev.cancelBubble = true;//阻止当前现象的冒泡
+            };
+
+
+            oBtn.onmouseover = function(ev){
+                var ev =ev||event;
+                ev.cancelBubble = true;
+            };
+
+
+            for(var i =0;i<oP.length;i++){
+                oP[i].onclick = function(){
+                    oDiv.style.display = 'none';
+                }
+            };
+            */
+
+
+
+
+
+            //事件冒泡
+            /*
+            阻止冒泡：当前要阻止冒泡的事件函数中调用一句话，event.cancelBubble = true;
+             */
+//            document.onclick = function(){
+//                setTimeout(function(){
+//                    oDiv.style.display = 'none';
+//                },1000);
+//            }
+            //为什么要默认事件冒泡
+            var oDiv1 = document.getElementById("div1");
+            oDiv1.onmouseover = function(){
+                this.style.left = '0px';
+            }
+            oDiv1.onmouseout = function(){
+                this.style.left = '-100px';
+            }
+
+
+
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+<!--<div id="div1">-->
+    <!--<div id="div2">-->
+        <!--<div id="div3">-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<input id="btn" type="button" value="按钮"/>-->
+<!--<div id="div1"></div>-->
+<!--<p>ppppp</p>-->
+<!--<p>ppppp</p>-->
+<!--<p>ppppp</p>-->
+<!--<p>ppppp</p>-->
+
+
+<div id="div1">
+    <div id="div2">
+        分享到
+    </div>
+</div>
+
+
+</body>
+</html>

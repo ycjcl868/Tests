@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        window.onload = function () {
+            setInterval(getTime,1000);
+            getTime();
+
+
+            function toTwo(num){
+                if(num<10){
+                    return '0'+num;
+                }else{
+                    return ''+num;
+                }
+            }
+
+
+
+            function getTime(){
+                /*
+                 系统时间对象
+                 数据类型是数字
+                 */
+                //alert(new Date());//当前系统的时间对象
+
+                //object
+                var myTime = new Date();
+
+                //number
+                var iYear = myTime.getFullYear();
+                var iMonth = myTime.getMonth() + 1;
+                //月份比较特殊，需要+1
+                var iDate = myTime.getDate();
+                var iWeek = myTime.getDay();
+                var iHours = myTime.getHours();
+                var iMin = myTime.getMinutes();
+                var iSec = myTime.getSeconds();
+
+                var str = '';
+
+                switch (iWeek) {
+                    case 0:
+                        iWeek = '星期日';
+                        break;
+                    case 1:
+                        iWeek = '星期一';
+                        break;
+                    case 2:
+                        iWeek = '星期二';
+                        break;
+                    case 3:
+                        iWeek = '星期三';
+                        break;
+                    case 4:
+                        iWeek = '星期四';
+                        break;
+                    case 5:
+                        iWeek = '星期五';
+                        break;
+                    case 6:
+                        iWeek = '星期六';
+                        break;
+                }
+
+                str = iYear + '年' + iMonth + '月' + iDate + '日' + iWeek + toTwo(iHours) + ':' + toTwo(iMin) + ':' + toTwo(iSec);
+                document.body.innerHTML = str;
+            }
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+
+        $(function () {
+            $('#div1').click(function(){
+                alert(123);
+            });
+
+
+            //remove会把之前所有事件都删除掉
+            //detach()：跟remove方法一样，只不过会保留删除这个元素的操作行为
+
+            var oDiv = $('#div1').detach();
+
+            $('body').append(oDiv);
+
+            $(function(){//等DOM加载完后，再运行。性能要更好
+
+
+            });
+
+            //原生中出可以写DOMContentLoaded
+            window.onload = function(){//所有加载完了
+
+            };
+
+
+        })
+
+
+
+    </script>
+</head>
+<body>
+<div id="div1">123</div>
+
+
+
+
+</body>
+</html>

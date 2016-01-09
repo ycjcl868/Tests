@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<style>
+
+    li {
+        list-style: none;
+        width: 114px;
+        height: 140px;
+        background: url("../img/before.png");
+        float: left;
+        margin-right: 20px;
+    }
+
+
+</style>
+
+<script>
+    /*
+     自定义属性
+
+     */
+
+    window.onload = function () {
+//        var aBtn = document.getElementsByTagName("input");
+//        //自定义属性
+//        //aBtn[0].abc = 123;
+//        //alert(aBtn[0].abc);
+//
+//        for(var i =0;i< aBtn.length;i++){
+//            aBtn[i].abc = 123;
+//            aBtn[i].xyz = true;
+//        }
+        var aLi = document.getElementsByTagName("li");
+
+        //背景不能判断，color不能判断，相对路径2
+        //用一个开关，用自定义属性去做，这样就不用数组
+
+
+
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].onOff = true;
+
+            aLi[i].onclick = function () {
+                if (this.onOff) {
+                    this.style.background = 'url("../img/after.png")'
+                    this.onOff = false;
+                } else {
+                    this.style.background = 'url("../img/before.png")'
+                    this.onOff = true;
+                }
+            }
+        }
+
+
+    }
+
+
+</script>
+
+
+<body>
+
+<!--<input type="button" abc = "abc" value="按钮"/>-->
+<!--<input type="button" abc = "abc" value="按钮"/>-->
+<!--<input type="button" abc = "abc" value="按钮"/>-->
+<ul>
+    <li onOff=true></li>
+    <li onOff=true></li>
+    <li onOff=true></li>
+</ul>
+
+</body>
+</html>

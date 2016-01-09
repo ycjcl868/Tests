@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementById("list");
+            var aLi = oUl.getElementsByTagName("li");
+
+
+            fn1(aLi[0]);
+            fn1(aLi[1]);
+            fn1(aLi[2]);
+            function fn1(oLi){
+                var aBtn = oLi.getElementsByTagName("input");
+                var oStrong = oLi.getElementsByTagName("strong")[0];
+                var oEm = oLi.getElementsByTagName("em")[0];
+                var oSpan = oLi.getElementsByTagName("span")[0];
+                var n1 = oStrong.innerHTML;//'0'字符串的类型
+                //var n1 = Number(oStrong.innerHTML);
+                var n2 = parseFloat(oEm.innerHTML);//'12.5'
+                aBtn[0].onclick = function(){
+                    n1 --;//有一个隐式类型转换
+                    if(n1<0){
+                        n1=0;
+                    }
+                    oStrong.innerHTML = n1;
+                    oSpan.innerHTML = n1*n2 + '元';
+                };
+                aBtn[1].onclick = function(){
+                    n1 ++;//有一个隐式类型转换
+                    oStrong.innerHTML = n1;
+                    oSpan.innerHTML = n1*n2 + '元';
+                };
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+<ul id="list">
+    <li>
+        <input id="add" type="button" value="-"/>
+        <strong id="number">1</strong>
+        <input id="cut" type="button" value="+"/>
+        单价：<em id="price">12.5</em>
+        小计：<span id="total">0</span>
+    </li>
+    <li>
+        <input type="button" value="-"/>
+        <strong>0</strong>
+        <input type="button" value="+"/>
+        单价：<em>8.5元</em>
+        小计：<span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-"/>
+        <strong>0</strong>
+        <input type="button" value="+"/>
+        单价：<em>10.5元</em>
+        小计：<span>0元</span>
+    </li>
+</ul>
+
+<p>
+    商品合计共：0件，共花费了：0元<br />
+    其中最贵的商品单价是：0元
+</p>
+
+
+</body>
+</html>

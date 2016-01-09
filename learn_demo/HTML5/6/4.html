@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         storage API:
+         存储事件：
+         --当数据有修改或删除的情况下，会触发storage事件
+         --在对数据进行改变的窗口对象上是不会触发的,其它页面
+         --key:修改或删除的key值，如果调用clear(),key为null
+         --newValue：新设置的值，如果调用removeStorage(),key为null
+         --oldValue:调用改变前的value
+         --storageArea：当前的storage对象
+         --url：触发该脚本变化的文档的url
+         --注：session同窗口才可以，iframe操作
+
+         同步购物车
+         */
+          /*  window.addEventListener('storage',function(ev){
+                console.log(ev.key);
+                console.log(ev.newValue);
+                console.log(ev.oldValue);
+                console.log(ev.storageArea);
+                console.log(ev.url);
+            },false)*/
+
+            //同步购物
+            window.onload = function(){
+                var aInput = document.getElementsByTagName("input");
+                for(var i =0;i<aInput.length;i++){
+                    aInput[i].onclick = function(){
+                        if(this.checked){
+                            window.localStorage.setItem("sel",this.value);
+                        }else{
+                            window.localStorage.setItem("onsel",this.value);
+                        }
+                    }
+                }
+
+                window.addEventListener('storage',function(ev){
+                    if(ev.key=='sel'){
+                        for(var i =0;i<aInput.length;i++){
+                            if(ev.newValue==aInput[i].value){
+                                aInput[i].checked = true;
+                            }
+                        }
+                    }else if(ev.key=='onsel'){
+                        for(var i =0;i<aInput.length;i++){
+                            if(ev.newValue==aInput[i].value){
+                                aInput[i].checked = false;
+                            }
+                        }
+                    }
+                })
+            };
+
+    </script>
+</head>
+<body>
+<input type="checkbox" value="香蕉"/>香蕉
+<input type="checkbox" value="苹果"/>苹果
+<input type="checkbox" value="西瓜"/>西瓜
+<input type="checkbox" value="哈密瓜"/>哈密瓜
+
+
+</body>
+</html>

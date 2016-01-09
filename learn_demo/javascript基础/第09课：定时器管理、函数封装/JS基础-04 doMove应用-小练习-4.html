@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var str = '';
+            var len = 10;
+            var timer = null;
+            var num = 0;
+            var num2 = 10;
+            var onOff = true;
+            var aDiv = document.getElementsByTagName("div");
+            for (var i = 0; i < len; i++) {
+                str += '<div style="width: 50px;height: 50px;background: red;position: absolute;top: 0px;left:' + i * 60 + 'px;"></div>'
+            }
+            document.body.innerHTML = str;
+
+
+            //点击页面任何一个位置
+            document.onclick = function () {
+                if (onOff) {
+                    timer = setInterval(function () {
+                        doMove(aDiv[num], 'top', 23, 500);
+                        num++;
+                        if (num === len) {
+                            clearInterval(timer);
+                            onOff = false;
+                        }
+                    }, 100)
+                } else {
+                    timer = setInterval(function () {
+                        doMove(aDiv[num2 - 1], 'top', 23, 0);
+                        num2--;
+                        if (num2 === 0) {
+                            clearInterval(timer);
+                            onOff = true;
+                        }
+                    }, 100)
+                }
+
+
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+
+
+<script src="../miaovi.js"></script>
+</body>
+</html>

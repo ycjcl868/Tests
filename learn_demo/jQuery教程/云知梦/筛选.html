@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>筛选</title>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script>
+  $(function(){
+    //eq()从0开始,jquery对象
+    //first()第一个元素
+    //last()最后一个元素
+
+    //hasClass()有无该类，只返回true和false
+    var a = $('div').hasClass('abc');//true
+
+    //filter()过滤，对集合进行过滤
+    console.log($('div').filter('.abc'));
+
+    //is()
+    console.log($('input').parent().is('.abcd'));
+
+    //map()将值转换为数组，用一下get() 能转成数组的值，中间用 ，隔开的
+    console.log($('input').map(function(){
+      return $(this).val();
+    }).get());
+
+    //has() 方法 匹配有标签的元素
+    console.log($('div').has('p'));
+
+    //not()方法 ：除了这个之外的元素
+     $("p").not( $("#selected")[0] );
+
+     //find()是对元素内部进行操作
+     console.log($('ul').find('.abc').html());
+
+
+
+
+
+
+
+
+
+  })
+
+
+
+  </script>
+</head>
+<body>
+<p class="abc">abd</p>
+<div class="container">
+  <p>abc</p>
+  <div class="abc">
+    <p>sdaf</p>
+  </div>
+  <div class="abc">wefijojio</div>
+
+</div>
+
+<form class="abcd">
+  <input type="checkbox" value="abc" />
+  <input type="checkbox" value="abcd" />
+  <input type="checkbox" value="abce" />
+</form>
+
+
+<p>Hello</p><p id="selected">Hello Again</p>
+
+<ul>
+  <li>1</li>
+  <li class="abc">2</li>
+  <li>3</li>
+  <li>4</li>
+</ul>
+
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script>
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)return unescape(r[2]);
+            return null;
+        };
+
+        function EncodeUtf8(s1)
+        {
+            var s = escape(s1);
+            var sa = s.split("%");
+            var retV ="";
+            if(sa[0] != "")
+            {
+                retV = sa[0];
+            }
+            for(var i = 1; i < sa.length; i ++)
+            {
+                if(sa[i].substring(0,1) == "u")
+                {
+                    retV += Hex2Utf8(Str2Hex(sa[i].substring(1,5)));
+
+                }
+                else retV += "%" + sa[i];
+            }
+
+            return retV;
+        }
+
+        var question = EncodeUtf8(GetQueryString("q"));
+        var region = EncodeUtf8(GetQueryString("region"));
+
+        $.ajax({
+            type: 'get',
+            url: 'http://api.map.baidu.com/place/v2/search?ak=PvGhSZuS43N79LAeAhPuanTw&output=json&query='+question+'&page_size=10&page_num=0&scope=1&region='+region,//请求数据的地址
+            dataType: 'jsonp',
+            timeout: 5000,
+            success: function (data) {
+                //for(var i = 0;i<10;i++){
+                document.write(JSON.stringify(data));
+                //    }
+
+            },
+            error: function (e) {
+                alert("请求失败");
+            },
+            complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                if (status == 'timeout') {//超时,status还有success,error等值的情况
+                    ajaxTimeoutTest.abort();
+                    alert("超时，请重试");
+                }
+            }
+        });
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

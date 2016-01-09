@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        原型：去改写对象下面公用的方法或者属性，
+        让公用的方法或者属性在内存中存在一份（提高性能）
+
+        原型：CSS中的class
+        普通方法：css中的style
+
+        原型：prototype：要写在构造函数的下面
+         */
+
+        var arr = [1,2,3,4,5];
+        var arr2 = [2,3,3,4,5];
+
+  /*      arr.sum = function(){
+            var result = 0;
+            for(var i =0;i<this.length;i++){
+                result +=this[i];
+            }
+            return result;
+        };*/
+
+        //alert(arr.sum());
+
+        //要给arr2加
+
+        Array.prototype.sum = function(){
+            var result = 0;
+            for(var i =0;i<this.length;i++){
+                result +=this[i];
+            }
+            return result;
+        }
+
+        alert(arr.sum());
+        alert(arr2.sum());
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

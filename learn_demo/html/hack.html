@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>hack及条件注释</title>
+  <script>
+  /*
+  css hack：针对不同的浏览器写不同的css code
+  各IE的hack写法：
+  _针对IE6
+  *针对IE67
+  \9针对IE6789写在最后
+
+  条件注释:一种安全的区分IE浏览器版本
+  */
+  </script>
+  <style>
+  div{color:red\9;}
+
+
+  </style>
+</head>
+<body>
+<!--[if !IE]><!--> 非ie浏览器  <!--<![endif]-->
+<!--[if IE]>所有的ie可识别<![endif]-->
+<!--[if IE 6]>仅ie6可识别<![endif]-->
+<!--[if lt IE 6] >ie6及ie6以下版本可识别<![endif]-->
+<!--[if gte ie 6]>ie6以及ie6以上版本可识别<![endif]-->
+<!--[if IE 7]>仅ie7可识别<![endif]-->
+  <div>大家好</div>
+
+
+</body>
+</html>

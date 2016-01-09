@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        当本页面和被包含页面不在同一个域名下的时候，这样操作就会有跨域操作安全限制问题
+
+         */
+        window.onload = function(){
+            var oBtn = document.getElementById("btn");
+            var oMyIframe = document.getElementById("myframe");
+            /*
+            postMessage:用于通过这个对象下的一些方法，给另外一个窗口发送信息
+            接收消息的窗口的window对象.postMessage();
+            第一个参数：发送的数据
+            第二个参数：接收域名的地址（带协议）
+
+             */
+            oBtn.onclick = function(){
+                //oMyIframe.contentWindow.document.body.style.background = 'red';
+                oMyIframe.contentWindow.postMessage('abc',"http://localhost/html5/b/index.html");S
+                //window.opener:通过window.open方法打开当前页面的窗口
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+        };
+    </script>
+</head>
+<body>
+<input type="button" value="点击我，改变2.iframe.html的背景色" id="btn"/>
+<iframe id="myframe" src="http://localhost/html5/b/index.html" frameborder="0"></iframe>
+
+</body>
+</html>

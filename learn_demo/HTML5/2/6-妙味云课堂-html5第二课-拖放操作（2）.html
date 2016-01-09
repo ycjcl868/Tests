@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li {
+            width: 100px;
+            height: 30px;
+            background: yellow;
+            margin: 10px;
+            list-style: none;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 200px;
+        }
+    </style>
+    <script>
+
+        /*
+         解决FF下的问题
+         --必须设置dataTransfer对象的setData方法才可以拖拽图片外的其他标签
+
+         dataTransfer对象
+         setData():设置数据key和value  必须是字符串
+         getData():获取数据，根据key值，获取对应的value
+         effectAllowed
+         --effectAllowed:设置光标样式（none，copy，copyLink,copyMove
+         link linkMove move all uninitialized）
+         setDragImage
+         --三个参数：指定的元素，光标X，光标Y
+
+         files
+         --获取外部拖拽的文件，返回一个filesList列表
+         --filesList下有个type属性，返回文件的类型
+
+         */
+
+        window.onload = function () {
+            var aLi = document.getElementsByTagName("li");
+            var oDiv = document.getElementById("div1");
+            var oUl = document.getElementById("ul1");
+            var i = 0;
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                //拖拽的一瞬间
+                aLi[i].ondragstart = function (ev) {
+                    var ev = ev || event;
+                    ev.dataTransfer.setData('name',this.index);
+                    //设置鼠标样式
+                   // ev.dataTransfer.effectAllowed = 'copy';
+                    //可以利用这个，加个图片
+                    ev.dataTransfer.setDragImage(oDiv,50,50);
+                    this.style.background = 'blue';
+                }
+                //只要点下，就一直触发
+                aLi[i].ondrag = function () {
+                    document.title = i++;
+                }
+
+                //拖拽结束时
+                aLi[i].ondragend = function () {
+                    this.style.background = 'red';
+                }
+            }
+            ;
+
+            oDiv.ondragenter = function () {
+                this.style.background = 'blue';
+            }
+            oDiv.ondragover = function (ev) {
+                document.title = i++;
+                //要想触发drop事件，就必须在dragover当中阻止默认事件
+                ev.preventDefault();
+
+
+            }
+            oDiv.ondragleave = function () {
+                this.style.background = 'black';
+            }
+            oDiv.ondrop = function (ev) {
+                oUl.removeChild(aLi[ev.dataTransfer.getData("name")]);
+                //删掉之后，位置发生变化，再重新对应一下索引
+                for(var i =0;i<aLi.length;i++){
+                    aLi[i].index = i;
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li draggable="true">a</li>
+    <li draggable="true">b</li>
+    <li draggable="true">c</li>
+</ul>
+<div draggable="true" id="div1">
+
+</div>
+1
+
+</body>
+</html>

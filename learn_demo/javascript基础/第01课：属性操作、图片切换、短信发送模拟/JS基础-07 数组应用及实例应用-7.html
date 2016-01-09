@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #content{
+            position: relative;
+            display: inline-block;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+            font-size: 2.5em;
+            background-color: #ddd;
+            top: 50%;
+            -webkit-transition: background-color .5s;
+            -moz-transition: background-color .5s;
+            -ms-transition: background-color .5s;
+            -o-transition: background-color .5s;
+            transition: background-color .5s;
+            position:absolute;
+        }
+        #prev{
+            left: 0px;
+        }
+        #next{
+            right: 0px;
+        }
+        img{
+            width: 100%;
+        }
+        a:hover{
+            background-color:#fff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="content">
+    <a id="prev" href="javascript:;"><</a>
+
+
+    <img src="../img/1.jpg" id="img" alt=""/>
+    <a id="next" href="javascript:;">></a>
+    
+</div>
+
+
+
+<script>
+//    var num = 1;
+//    var str = '这是一句话';
+//    var arr = ['这是一句话', '这是第二句话', '这是第三句话'];//放数据的仓库
+//    //找最后一句话
+//    alert(arr[arr.length - 1]);
+//    arr.push('我是最后一位');//往数组的最后一位添加数据
+//    alert(arr[arr.length - 1]);
+window.onload = function(){
+
+    var oPrev = document.getElementById("prev");
+    var oNext = document.getElementById("next");
+    var oImg = document.getElementById("img");
+    var imgs = ['../img/1.jpg','../img/2.jpg','../img/3.jpg','../img/4.jpg','../img/5.jpg','../img/6.jpg']
+    var index = 3;
+    if(index == 0){
+        oPrev.style.visibility = 'hidden';
+    }else if(index!=0){
+        oPrev.style.visibility = 'visible';
+    }
+    oPrev.onclick = function(){
+
+        if(index){
+            oImg.src = imgs[index--];
+        }
+    };
+    oNext.onclick = function(){
+        if(index<imgs.length){
+            oImg.src = imgs[index++];
+
+        }
+
+
+    };
+
+}
+
+
+
+</script>
+</body>
+</html>

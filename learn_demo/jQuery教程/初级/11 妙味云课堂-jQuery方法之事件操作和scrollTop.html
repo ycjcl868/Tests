@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+
+         /*   //支持自定义事件
+            $('div').on({
+                'click': function(){
+                    alert(123);
+                },
+                'mouseover':function(){
+                    alert(456);
+                }
+            });*/
+
+
+            $(document).click(function(){
+                alert($(window).scrollTop());
+            })
+
+
+
+
+
+        })
+
+    </script>
+</head>
+<body style="height: 2000px">
+<div>div</div>
+<span>span</span>
+
+
+</body>
+</html>

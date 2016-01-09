@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        方法的继承：for in
+
+         */
+
+        var a ={
+            name:"小明"
+        };
+
+        //var b =a;
+        b.name= "xiaohong";
+        alert(a.name);
+
+
+
+        //error modify
+        var b ={};
+    /*    for(var attr in a){
+            b[attr]=a[attr];
+        }*/
+
+
+        extend(b,a);
+        //var b =a;
+        b.name= "xiaohong";
+        alert(a.name);
+
+
+        //packing a function
+        function extend(obj1,obj2){
+            for(var attr in obj2){
+                obj1[attr]=obj2[attr];
+            }
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

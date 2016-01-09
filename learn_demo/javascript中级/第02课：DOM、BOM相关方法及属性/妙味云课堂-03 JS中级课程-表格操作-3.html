@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+
+            //不利于后期维护 alert(oTab.children[0].children[1].children[1].innerHTML);
+            /*
+            提供操作表格的方法：
+            tHead：表格头(only)
+            tBodies：表格正文
+            tFoot：表格尾(only)
+                rows：行
+                cells：列
+             */
+           // alert(oTab.tBodies[0].rows[1].cells[1].innerHTML);
+
+            var data = [
+                {id:1,username:'leo',sex:'男'},
+                {id:2,username:'小美',sex:'女'},
+                {id:3,username:'王亮',sex:'男'},
+                {id:4,username:'杜鹏',sex:'男'},
+            ];
+            var oTab = document.getElementById("tab1");
+            var oTbody = oTab.tBodies[0];
+            var str = '';
+            for(var i =0;i<data.length;i++){
+                var oTr = document.createElement("tr");
+
+                var oTd = document.createElement("td");
+                oTd.innerHTML = data[i].id;
+                oTr.appendChild(oTd);
+                oTbody.appendChild(oTr);
+
+
+
+                oTd = document.createElement("td");
+                oTd.innerHTML = data[i].username;
+                oTr.appendChild(oTd);
+                oTbody.appendChild(oTr);
+
+                oTd = document.createElement("td");
+                oTd.innerHTML = data[i].sex;
+                oTr.appendChild(oTd);
+                oTbody.appendChild(oTr);
+
+                oTd = document.createElement("td");
+                //oTd.innerHTML = '&nbsp;';//IE7有问题
+                oTr.appendChild(oTd);
+
+                var oA = document.createElement("a");
+                oA.innerHTML = '删除';
+                oA.href = 'javascript:;';
+                oA.onclick = function(){
+                    oTbody.removeChild(this.parentNode.parentNode);
+
+                }
+
+
+                oTd.appendChild(oA);
+            };
+
+
+            for(var i =0;i<oTbody.rows.length;i++){
+                if(i%2 == 0){
+                    oTbody.rows[i].style.background = 'white';
+                }else{
+                    oTbody.rows[i].style.background = 'gray';
+                }
+            };
+
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+
+<table id="tab1" width="100%" border="1px">
+
+    <tr id="tr">
+        <td>编号</td>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>操作</td>
+    </tr>
+
+
+    <tbody>
+    </tbody>
+
+</table>
+
+
+
+
+</body>
+</html>

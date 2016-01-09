@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>scrollTop</title>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script>
+  $(function(){
+    $("button").click(function(){
+      //alert($("div").scrollTop()+"px");
+    })
+    $("#btn").click(function(event) {
+    //回到哪一个
+        $("div").scrollTop(60);
+        alert($(document).scrollTop());
+    });
+
+
+    //scrollTop() 和 animate()结合回到头部
+    $("#totop").click(function(event) {
+        //$(document).scrollTop(0);
+        $('html,body').animate({
+          scrollTop: 0,
+      },1000,function(){
+        $("#totop").animate({
+          'opacity':0
+        });;
+      });
+  })
+
+})
+
+
+
+  </script>
+  <style>
+  html,body{background:#ffa;}
+
+  </style>
+</head>
+<body style="height:1000px;width:500px">
+
+<div style="border:1px solid black;width:100px;height:150px;overflow:auto">
+This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div><br>
+
+<button>Return the vertical position of the scrollbar</button>
+
+<button id="btn">Return the vertical position of the scrollbar</button>
+<p>Move the scrollbar down and click the button again.</p>
+
+<button id="totop" style="position:fixed;">回到上面</button>
+
+</body>
+</html>

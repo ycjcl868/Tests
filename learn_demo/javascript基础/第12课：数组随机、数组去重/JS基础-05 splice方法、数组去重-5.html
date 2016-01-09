@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var ar = ['1','2','3','3','4','5','6','7'];
+        //删除，替换，添加
+        //删除 ar.splice(0,1);//从第一位开始干掉几个
+        //替换 ar.splice(0,1,'莫涛');
+        //添加 ar.splice(1,0,"钟");
+
+        //数组去重
+        for(var i=0;i<ar.length;i++){
+            for(var j = i+1;j<ar.length;j++){
+                if(ar[i]==ar[j]){
+                    ar.splice(j,1);
+                    j--;
+                }
+            }
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

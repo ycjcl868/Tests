@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /**{*/
+            /*margin: 0px;*/
+            /*padding: 0px;*/
+        /*}*/
+        /*body{*/
+            /*border: 1px solid black;*/
+        /*}*/
+        /*div{*/
+            /*padding: 40px 50px;*/
+        /*}*/
+        /*#div1{*/
+            /*background: red;*/
+        /*}*/
+        /*#div2{*/
+            /*background: green;*/
+            /*/!*position: relative;*!/*/
+        /*}*/
+        /*#div3{*/
+            /*background: orange;*/
+        /*}*/
+    </style>
+
+    <script>
+        window.onload = function(){
+          //  var oDiv3  = document.getElementById("div3");
+            /*
+            offsetLeft[Top]：只读  属性 当前元素到定位父级的偏移值
+            到当前元素的offsetParent的距离
+            如果没有定位父级，，
+            标准：offsetParent -> body
+            offsetLeft -> html
+
+            ie7:如果自己没有定位，那么offsetLeft{top]是到body的距离
+            其他：到定位父级的距离
+
+             */
+            //alert(oDiv3.offsetLeft);//是html到oDiv3的距离
+
+
+
+
+            var oDiv = document.getElementById("div1");
+            /*
+            style.width：样式宽
+            clientWidth:样式宽+padding，可视区宽
+            offsetWidth:占位宽:样式宽+padding+border
+
+             */
+            alert(oDiv.offsetWidth);
+
+
+
+
+            
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+<!--<div id="div1">-->
+    <!--<div id="div2">-->
+        <!--<div id="div3">-->
+            <!--<div id="div4">-->
+
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div id="div1" style="width: 100px;height: 100px;border:1px solid red ;padding: 10px;margin: 10px">
+
+    
+</div>
+
+
+
+
+</body>
+</html>

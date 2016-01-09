@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+
+        p:nth-child(2) 找p标签下的第二个子元素，并且这个元素还的是p标签
+
+        p:nth-of-type(2) 找p标签父级下的第二个p元素
+
+
+        E:nth-child(n)  表示E父元素中的第n个字节点
+        p:nth-child(odd){background:red}/匹配奇数行/
+        p:nth-child(even){background:red}/匹配偶数行/
+        p:nth-child(2n){background:red}
+        E:nth-last-child(n) 表示E父元素中的第n个字节点，从后向前计算
+        E:nth-of-type(n)  表示E父元素中的第n个字节点，且类型为E
+        E:nth-last-of-type(n)表示E父元素中的第n个字节点，且类型为E,从后向前计算
+        E:empty 表示E元素中没有子节点。注意：子节点包含文本节点
+
+
+        E:first-child 表示E元素中的第一个子节点
+        E:last-child 表示E元素中的最后一个子节点
+        E:first-of-type 表示E父元素中的第一个子节点且节点类型是E的
+        E:last-of-type 表示E父元素中的最后一个子节点且节点类型是E的
+        E:only-child表示E元素中只有一个子节点。注意：子节点不包含文本节点
+        E:only-of-type 表示E的父元素中只有一个子节点，且这个唯一的子节点的类型必须是E。注意：子节点不包含文本节点
+
+
+        */
+        p:nth-child(3) {
+            background: green;
+        }
+
+        p:nth-of-type(2) {
+            background: red;
+        }
+
+    </style>
+</head>
+<body>
+<p>p1</p>
+
+<h1>h1</h1>
+
+<p>p2</p>
+
+<h1>h2</h1>
+
+<p>p3</p>
+
+<h1>h3</h1>
+
+
+</body>
+</html>

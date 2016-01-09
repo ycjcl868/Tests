@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        json字符串转成json语句
+         */
+        //var str = 'function show(){alert(123)}';
+        //eval(str); 弹出123，可以解析任何字符串变成JS
+        //JSON.parse(str);只能解析JSON形式的字符串变成JS,(推荐,安全性高)
+        //show();
+        //eval("("+data+")")，因为只有({})才能用
+
+        //var str = '{name:"hello"}';
+        //var json = JSON.parse(str);//字符串转js，json必须是一个严格的json
+        //alert(json.name);
+
+        //var json = {name:"hello"};
+        //var str = JSON.stringify(json);
+        //alert(str);//转成严格的字符串
+
+        /*
+        var a = {name:'hello'};
+        var b = a;
+        b.name = 'h1';
+        alert(a.name);
+        //=>hi，说明b.name的修改影响了a
+        //通过循环赋值对象
+        for(var attr  in a){
+            b[attr] = a[attr];
+        }
+        */
+
+        //严格的转成json，对象引用
+        var a ={name:{age:100}};
+        var str = JSON.stringify(a);
+        var b = JSON.parse(str);
+        b.name.age = 200;
+        alert(a.name.age);//=>100   //视频：对象的引用
+        //json2.js兼容IE
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

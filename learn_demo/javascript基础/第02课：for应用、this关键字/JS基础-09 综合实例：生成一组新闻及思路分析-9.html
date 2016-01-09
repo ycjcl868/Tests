@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById("btn1");
+            var oUl = document.getElementById("list");
+
+            var arr = [
+                '习近平李克强就天津滨海新区爆炸事故作指示',
+                '天津塘沽开发区深夜突发爆炸  17人遇难  专题',
+                '目击者：停车场着火引燃货物 之后引发爆炸',
+                '山东常委颜世元神秘"消失" 被曝因会所视频所致',
+                '三峡专家退休后被查 涉嫌招标过程中索贿394万'
+            ];
+
+            /*
+             解决思路：
+             1、找按钮麻烦disabled
+             2、点完后先清空，再生成(性能会差点)
+             3、判断
+
+             */
+
+            var onOff = true;
+
+            oBtn.onclick = function () {
+                //oUl.innerHTML = '';
+                //oBtn.disabled = true;
+                if (onOff) {
+                    for (var i = 0; i < arr.length; i++) {
+                        oUl.innerHTML += '<li>' + arr[i] + '</li>';
+                    }
+                    onOff =false;
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+<input type="button" id="btn1" value="自动生成5条新闻"/>
+<ul id="list">
+
+
+</ul>
+
+</body>
+</html>

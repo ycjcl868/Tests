@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //        //遍历jsom
+        //        var json4 = {
+        //            name:'miaov',
+        //            age:3,
+        //            fun:'前端开发'
+        //        };
+        //        //json4中的name可变'name'
+        //        for(var attr in json4){
+        //            //alert(attr);属性名
+        //            alert(json4[attr]);
+        //        };
+        /*
+         var json5 = {
+         url:['img/1.png','img/2.png'],
+         text:['小宠物','图片二','图片三']
+         }
+         for(var attr in json5){
+
+         for(var i =0;i<json5[attr].length;i++){
+         alert(json5[attr][i]);
+         }
+         }
+         */
+        window.onload = function () {
+            var str = '';
+            var num = 0;
+            for (var attr in window) {
+                str += num + '. ' + attr + ':' + window[attr] + '<br />';
+                num++;
+            }
+            //json.length，json中无长度属性
+            document.body.innerHTML = str;
+
+            for(var i in arr){
+                alert(arr[i]);//数组也能用for-in
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

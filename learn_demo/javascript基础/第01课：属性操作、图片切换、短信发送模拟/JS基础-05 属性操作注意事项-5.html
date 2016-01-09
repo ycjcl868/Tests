@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border:1px solid red;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oAttr = document.getElementById("attr");
+            var oVal = document.getElementById("val");
+            var oBtn = document.getElementById("btn");
+            var oDiv = document.getElementById("div1");
+            //JS中允许"."替换成"[]"
+            oBtn.onclick = function(){
+                //oDiv.style.//.后面的值无法修改
+                oDiv.style[oAttr.value] = oVal.value;
+
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+
+
+请输入属性名称：<input id="attr" type="text"/>
+请输入属性的值：<input id="val" type="text"/>
+<input type="button" id="btn" value="确定"/>
+
+<div id="div1"></div>
+
+
+
+
+
+<script>
+    //    alert(oImg.src);//->http://localhost:63342/htdocs/test/iphone.png
+    //    if(oImg.src = 'http://localhost:63342/htdocs/test/iphone.png'){
+    //        oImg.onclick = function(){
+    //            this.src = '../../background_image_jobs.jpg';
+    //        }
+    //    }
+    //
+    //
+    var oImg = document.getElementById("img");
+    //所有的相对路径 都别拿来做判断
+    //img src
+    //href = ''
+    //绝对路径 img src = ''
+    //颜色值不要拿来做判断！！！
+    //浏览器返回color:red  #f00 rgb()
+    //innerHTML值别拿来做判断
+    var oInp = document.getElementById("inp1");
+    oInp.onclick = function(){
+        this.type = 'checkbox';
+        //IE6 IE7 IE8三大祖宗，不支持
+        //有一种思路，障眼法
+    }
+    oDiv.style.float = 'left';
+    //不支持
+    //IE下
+    oDiv.style.styleFloat = 'left';
+    oDiv.style.cssFloat = 'left';
+    //有一种好的方法，改className
+
+    //技术上：必须能做到掌握兼容性(兼容性问题的解决方案)
+    //需求上：商量着来（提供最准确的呈现方案）
+
+</script>
+
+</body>
+</html>

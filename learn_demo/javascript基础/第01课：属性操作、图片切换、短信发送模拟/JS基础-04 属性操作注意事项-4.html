@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oBtn1 = document.getElementById("btn1");
+            var oBtn2 = document.getElementById("btn2");
+            var oBtn3 = document.getElementById("btn3");
+            var oBtn4 = document.getElementById("btn4");
+            var oP = document.getElementById("p1");
+            var num = 16;
+            oBtn1.onclick = function () {
+                if (num > 10) {
+                    num--;
+                    oP.style.fontSize = num + 'px';
+                }
+            }
+            oBtn2.onclick = function () {
+                if (num < 20) {
+                    num++;
+                    oP.style.fontSize = num + 'px';
+                }
+            }
+            oBtn3.onclick = function () {
+                //动态给元素添加class
+                //class保留字，关键字：var function
+                //class->改成className
+                oP.className = 'red';
+            }
+            oBtn4.onclick = function () {
+                oP.classNames = 'yellow';
+            }
+
+
+
+        }
+
+
+    </script>
+    <style>
+        .red{
+            width: 300px;
+            background: red;
+            padding: 20px;
+            color: yellow;
+            border: 10px solid #ccc;
+        }
+        .yellow{
+            width: 300px;
+            background: yellow;
+            padding: 20px;
+            color: red;
+            border: 10px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<input type="button" id="btn1" value="-"/>
+<input type="button" id="btn2" value="+"/>
+<input type="button" id="btn3" value="红"/>
+<input type="button" id="btn4" value="黄"/>
+
+<p id="p1">
+    　人民网北京8月7日电(记者唐述权)中组部、中宣部、教育部等三部门日前下发《关于领导干部上讲台开展思想政治教育的意见》，要求领导干部上讲台为高校学生开展思想政治教育。
+    　　中央对高校思想政治教育工作高度重视。十八大以来，中央已出台《关于进一步加强和改进新形势下高校宣传思想工作的意见》等重要文件。这次更是要求省级领导干部把高校思想政治教育工作这份责任直接扛在肩上，以身作则，自己上讲台。
+</p>
+
+</body>
+
+
+</html>

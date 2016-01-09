@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: #000;
+        }
+
+        #canvas1 {
+            background: #fff;
+        }
+
+    </style>
+    <script>
+        /*
+         插入图片
+         --等图片加载完，再执行canvas操作
+         --图片预加载：在onload中调用方法
+         --drawImage(oImg,x,y,w,h);
+         --oImg:当前图片x,y  坐标  w h宽高
+         --例子：微博的图片旋转效果
+
+         设置背景:
+         createPattern(oImg,平铺方式);
+         --repeat、repeat-x、repeat-y、no-repeat
+
+         渐变：
+         createLinearGradient(x1,y1,x2,y2);
+         --线性渐变
+         --第一组参数：起始点坐标、第二组参数：结束点坐标
+         --addColorStop(位置，颜色)添加渐变点
+
+         createRadialGradient(x1,y1,r1,x2,y2,r2);
+         --放射性渐变:
+         --参数：第一个圆的坐标和半径，第二个圆的坐标和半径
+
+
+         文本：
+         strokeText(文字,x,y);
+         --文字边框
+         fillText(文字,x,y);
+         --文字填充
+         font
+         --文字大小：'60px impact'
+         textAlign:
+         --默认是start跟left一样的效果 end right center
+         textBaseline
+         --文字上下的位置的方式默认：alphabetic
+
+         文本2：
+         measureText()
+         --measureText(str).width:只有宽度，没有高度
+         --例子：文字居中
+
+         阴影：
+         shadowOffsetX、shadowOffsetY
+         --X轴偏移、Y轴偏移
+         shadowBlur
+         --高斯模糊值
+         shadowColor
+         --阴影颜色
+
+
+         */
+        window.onload = function () {
+            var aInput = document.getElementsByTagName("input")
+            var oImg = document.getElementById("img1");
+            var yImg = new Image();
+            var iNow = 0;
+            //var oC = document.createElement("canvas");
+            var oC = document.getElementById("canvas1");
+            var oGC = oC.getContext("2d");
+//            yImg.onload = function () {
+//                draw2(this);
+//            }
+//            yImg.src = 'img/1.png';
+//            function draw2(obj){
+//                var bg =oGC.createPattern(obj,'repeat');
+//                oGC.fillStyle = 'red';
+//                oGC.fillRect(0,0,300,300);
+//            }
+
+            //var obj = oGC.createLinearGradient(150,100,150,200);
+//          R  var obj = oGC.createRadialGradient(200,200,100,200,200,150);
+//            obj.addColorStop(0,'red');
+//            obj.addColorStop(1,'blue');
+//            oGC.fillStyle = obj;
+//            oGC.fillRect(0,0,oC.width,oC.height);
+
+            oGC.font = '60px impact';
+            //默认为文字的左下角
+            oGC.textBaseline = 'top';
+
+            oGC.shadowOffsetX = 10;
+            oGC.shadowOffsetY = 10;
+            oGC.shadowBlur = 3;
+            //默认颜色rgba(0,0,0,0);
+            //alert(oGC.shadowColor);
+            oGC.shadowColor = 'yellow';
+
+
+            //宽高
+            var w = oGC.measureText("妙味课堂").width;
+            oGC.fillText("妙味课堂",(oC.width-w)/2,(oC.height-60)/2);
+
+
+
+
+
+
+
+
+            function draw(obj) {
+                oC.width = obj.width;
+                oC.height = obj.height;
+                obj.parentNode.replaceChild(oC, obj);
+                oGC.drawImage(obj, 0, 0);
+                aInput[0].onclick = function () {
+                    if(iNow==3){
+                        iNow=0;
+                    }else{
+                        iNow++;
+                    }
+                    toChange(oC, oGC, obj);
+                }
+
+                aInput[1].onclick = function () {
+                    if(iNow==0){
+                        iNow=3;
+                    }else{
+                        iNow--;
+                    }
+                    toChange(oC, oGC, obj);
+                }
+
+
+
+
+
+
+            }
+
+            function toChange(oC, oGC, obj) {
+                switch (iNow) {
+                    case 1:
+                        oC.width = obj.height;
+                        oC.height = obj.width;
+                        oGC.rotate(90 * Math.PI / 180);
+                        oGC.drawImage(obj, 0, -obj.height)
+                        break;
+                    case 2:
+                        oC.width = obj.width;
+                        oC.height = obj.height;
+                        oGC.rotate(180 * Math.PI / 180);
+                        oGC.drawImage(obj, -obj.width, -obj.height);
+                        break;
+                    case 3:
+                        oC.width = obj.height;
+                        oC.height = obj.width;
+                        oGC.rotate(270 * Math.PI / 180);
+                        oGC.drawImage(obj, -obj.width, 0);
+                        break;
+                    case 0:
+                        oC.width = obj.width;
+                        oC.height = obj.height;
+                        oGC.rotate(0);
+                        oGC.drawImage(obj, 0, 0);
+                        break;
+
+
+                }
+            }
+
+
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" value="<"/>
+<input type="button" value=">"/>
+
+<canvas id="canvas1" width="400" height="400"></canvas>
+
+<div>
+    <!--<img id="img1" src="img/1.png" alt=""/>-->
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         //        alert('莫'.charCodeAt());
+         //        alert('莫涛'>'杜鹏');//莫和杜的编码大小
+         //        alert('abbbbb'>'b');
+         //substring() 截取类
+         var str = '妙味课堂是一支';
+         alert(str.substring(4));//从第四个
+         alert(str.substring(0,2));//从第0位开始，向后截取2位
+         alert(str.substring(2,0));//从第0位开始，向后截取2位
+         alert(str.substring(-3,0));//从-3当成0了，
+
+         alert(str.slice(0,2));//从左第0位向右截取2位
+         alert(str.slice(2,0));//不交换位置
+         alert(str.slice(-4,-2));//可以从后面倒着往前数
+         */
+        window.onload = function () {
+            var oP = document.getElementsByTagName("p")[0];
+            var oSpan = oP.getElementsByTagName("span")[0];
+            var oA = oP.getElementsByTagName("a")[0];
+            var str = oSpan.innerHTML;
+            var onOff = true;
+            oA.onclick = function () {
+                if (onOff) {
+                    oSpan.innerHTML = str.substring(0, 3);
+                    oA.innerHTML = '>>展开';
+                } else {
+                    oSpan.innerHTML = str;
+                    oA.innerHTML = '>>收缩';
+                }
+                onOff = !onOff;
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<p>
+    <span>dsfdsafsafiuhwefhweqohio0woeifjisdoajf ojokxjvoia jfpiojfpojfiosajfiowejfioweijfiowejfiojsfojweiofjiwefio</span><a
+        href="javascript:;">>>收缩</a></p>
+
+</body>
+</html>

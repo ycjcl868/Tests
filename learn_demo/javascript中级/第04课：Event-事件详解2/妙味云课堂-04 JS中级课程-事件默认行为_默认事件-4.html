@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 200px;
+            border: 1px solid red;
+            position: absolute;
+            display: none;
+        }
+
+    </style>
+    <script>
+        /*
+         事件默认行为：当一个事件发生的时候，浏览器自己会默认做的事情
+         怎么阻止？
+         1、当前这个行为是什么事件触发的
+         2、然后在这个给客人的处理函数中使用return false就可以了
+         */
+        //document.onkeydown = function(){
+        //    return false;
+        //}
+
+        //oncontextmenu:右键菜单事件，当右键菜单(环境菜单)显示出来的时候触发
+        //document.oncontextmenu = function(){
+        //     return false;
+        // }
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            document.oncontextmenu = function (ev) {
+                var ev = ev || event;
+                oDiv.style.left = ev.clientX + 'px';
+                oDiv.style.top = ev.clientY + 'px';
+                oDiv.style.display = 'block';
+                return false;
+            }
+
+            document.onclick = function(){
+                oDiv.style.display = 'none';
+
+            }
+        };
+
+
+    </script>
+</head>
+<body style="height: 2000px;">
+<div id="div1">
+
+
+</div>
+</body>
+</html>

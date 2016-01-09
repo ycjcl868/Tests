@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文档处理</title>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script>
+  $(function(){
+     //append() 和 appendTo()  两个相反，加到目标的后面
+     //$('body').append('<p>Hello World</p>');
+     //$('<p>Hello World</p>').appendTo($('body'));
+
+     //prepend()和prependTo()加到目标的前面
+
+     //after()<=>insertAfter()和before()<=>insertBefore()不加到对象内部，加到外面，而insertBefore()和insertAfter()对象颠倒      //$('p').before('<p>Hello World</p>')
+
+     //wrap()包裹起来
+     $("p").wrap('<div class="warp"></div>');
+
+     //replaceWith()用  将前面的替换掉
+     $('.third').replaceWith($('.first'));//这个是移动位置到替换
+
+     //replaceAll()和replaceWith()相反
+
+     //empty()删除元素的所有子节点
+     //$('.container').empty();
+
+     //remove()将Dom元素删除，()内可以带限制条件(".hello")将hello类的删
+     //$("p").remove(".abc");
+
+     //clone() 方法
+     $('.abc').clone().prependTo('.container');
+  })
+
+
+  </script>
+</head>
+<body>
+
+
+<p>abc</p>
+<p class="abc">wdsfa</p>
+<div class="container">
+  <div class="inner first">Hello</div>
+  <div class="inner second">And</div>
+  <div class="inner third">Goodbye</div>
+</div>
+
+
+</body>
+</html>

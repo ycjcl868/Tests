@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         XMLHttpRequest Level 2
+         --请求页面与数据页面必须属性不同的域
+         --服务器要设置响应头信息
+         --Origin值展现
+         --IE:XDomainRequest
+         --新的事件:onload
+
+         进度事件：
+         --upload.onprogress:上传
+         --FormData对象
+         --ev.total(已发送的问题)、ev.loaded(待发送的总量)
+         --onprogress:下载
+
+         */
+        window.onload = function () {
+            var oFile = document.getElementById("myFile");
+            var oBtn = document.getElementById("btn");
+            var oProcess = document.getElementById("process");
+            var oDiv = document.getElementById("div1");
+            oBtn.onclick = function(){
+                //alert(oFile.value);获取到的是file控件的value,显示给你看的文字，不是我们选择的文件
+                //alert(oFile.files); file控件中选择的文件列表对象
+
+                //通过ajax将oFile.files[0]发送给后端
+//                for(var attr in oFile.files){
+//                    console.log(oFile.files[attr]);
+//                }
+                var xhr = new XMLHttpRequest();
+                //监听上传
+                xhr.onload = function(){
+                  //var d = JSON.parse(this.responseText);
+//                    alert(d.msg+':'+ d.uri);
+                    //alert(1);
+                }
+
+                var oUpload = xhr.upload;
+                oUpload.onprogress = function(ev){
+                    oDiv.innerHTML = ev.loaded;
+                    oProcess.value = Math.floor(ev.loaded/ev.total)*100;
+                    console.log(ev.loaded+'...'+ev.total);
+                }
+
+
+                xhr.open('post','upload.php',true);
+                xhr.setRequestHeader('X-Request-With','XMLHttpRequest');
+                //构建表单提交数据
+                var oFormData = new FormData();
+                oFormData.append('file',oFile.files[0]);
+                xhr.send(oFormData);
+
+
+
+
+
+
+            }
+
+        };
+
+
+    </script>
+</head>
+<body>
+<input type="file" id="myFile"/>
+<input type="button" id="btn" value="上传"/>
+<div id="div1"></div>
+<progress id="process" max="100" value="50"></progress>
+
+</body>
+</html>

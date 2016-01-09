@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var drag = new Drag("div1");
+            drag.init();
+            var drag2 = new ChildDrag("div2");
+            drag2.init();
+
+            return false;
+        };
+
+        function Drag(id){
+            this.oDiv = document.getElementById(id);
+            this.disX = 0;
+            this.disY = 0;
+        }
+
+
+        Drag.prototype.init = function(){
+            var This = this;
+            this.oDiv.onmousedown = function(){
+                This.drag();
+            };
+        };
+
+        Drag.prototype.drag = function(ev){
+            var This = this;
+            var ev = ev || event;
+            this.disX = ev.clientX - this.oDiv.offsetLeft;
+            this.disY = ev.clientY - this.oDiv.offsetTop;
+            document.onmousemove = function(){
+                var ev = ev || event;
+                This.drag2(ev);
+            };
+            document.onmouseup = function(){
+                This.drag3();
+            };
+        };
+
+        Drag.prototype.drag2 = function(ev){
+            this.oDiv.style.left = ev.clientX - this.disX + 'px';
+            this.oDiv.style.top = ev.clientY - this.disY + 'px';
+        };
+
+        Drag.prototype.drag3 = function(ev){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+
+        function ChildDrag(id){
+            Drag.call(this,id);
+        }
+        extend(ChildDrag.prototype,Drag.prototype);
+
+
+        ChildDrag.prototype.drag2 = function(ev){
+            var L = ev.clientX-this.disX;
+            var T = ev.clientY-this.disY;
+            if(L<0){
+                L=0;
+            }else if(L>document.documentElement.clientWidth-this.offsetWidth){
+                L=document.documentElement.clientWidth-this.offsetWidth;
+            }
+
+            this.oDiv.style.left =L + 'px';
+            this.oDiv.style.top = T + 'px';
+
+        };
+
+
+
+        function extend(obj1,obj2){
+            for(var attr in obj2){
+                obj1[attr]=obj2[attr];
+            }
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+
+</body>
+</html>

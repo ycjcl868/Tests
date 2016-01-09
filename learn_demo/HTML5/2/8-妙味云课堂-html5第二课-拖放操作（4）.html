@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            display: inline-block;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        li {
+            float: left;
+            width: 200px;
+            border: 1px solid #000;
+            margin: 10px;
+        }
+
+        li img {
+            width: 200px;
+        }
+
+        p {
+            border-bottom: 1px dashed #000000;
+        }
+
+        #div1 {
+            width: 600px;
+            border: 1px solid #000;
+            height: 400px;
+        }
+
+        .box1 {
+            float: left;
+            width: 200px;
+        }
+
+        .box2 {
+            float: left;
+            width: 200px;
+        }
+
+        .box3 {
+            float: left;
+            width: 200px;
+        }
+
+        #allMoney {
+            float: right;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var aLi = document.getElementsByTagName("li");
+            var oDiv = document.getElementById("div1");
+            var obj = {};
+            var iNum = 0;
+            var allMoney = 0;
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].ondragstart = function (ev) {
+                    var ev = ev || event;
+                    var aP = this.getElementsByTagName("p");
+                    ev.dataTransfer.setData("title", aP[0].innerHTML);
+                    ev.dataTransfer.setData("money", aP[1].innerHTML);
+                    ev.dataTransfer.setDragImage(this, 0, 0);
+
+                }
+            }
+            ;
+            oDiv.ondragover = function (ev) {
+                ev.preventDefault();
+            }
+            oDiv.ondrop = function (ev) {
+                ev.preventDefault();
+                var sTitle = ev.dataTransfer.getData("title");
+                var sMoney = ev.dataTransfer.getData("money");
+                if (!obj[sTitle]) {
+                    var oP = document.createElement("p");
+                    var oSpan = document.createElement("span");
+                    oSpan.className = 'box1';
+                    oSpan.innerHTML = 1;
+                    oP.appendChild(oSpan);
+                    var oSpan = document.createElement("span");
+                    oSpan.className = 'box2';
+                    oSpan.innerHTML = sTitle;
+                    oP.appendChild(oSpan);
+                    var oSpan = document.createElement("span");
+                    oSpan.className = 'box3';
+                    oSpan.innerHTML = sMoney;
+                    oP.appendChild(oSpan);
+                    oDiv.appendChild(oP);
+                    obj[sTitle] = 1;
+                } else {
+                    //alert("已添加");
+                    var box1 = document.getElementsByClassName("box1");
+                    var box2 = document.getElementsByClassName("box2");
+
+                    for (var i = 0; i < box2.length; i++) {
+                        if (box2[i].innerHTML == sTitle) {
+                            box1[i].innerHTML = parseInt(box1[i].innerHTML) + 1;
+                        }
+                    }
+                    ;
+                }
+                if(!allMoney){
+                    allMoney = document.createElement("div");
+                    allMoney.id = "allMoney";
+                    oDiv.appendChild(allMoney);
+                }
+                iNum+=parseInt(sMoney);
+                allMoney.innerHTML = iNum+"元";
+
+            }
+
+
+        };
+    </script>
+</head>
+<body>
+
+<ul id="ul1">
+    <li draggable="true">
+        <img src="img/1.png" alt=""/>
+
+        <p>javascript语言精粹</p>
+
+        <p>40元</p>
+    </li>
+
+    <li draggable="true">
+        <img src="img/2.jpg" alt=""/>
+
+        <p>javascript权威指南</p>
+
+        <p>120元</p>
+    </li>
+
+    <li draggable="true">
+        <img src="img/3.jpg" alt=""/>
+
+        <p>DOM编程指南</p>
+
+        <p>120元</p>
+    </li>
+
+</ul>
+
+
+<div draggable="true" id="div1">
+    <!--<p>-->
+    <!--<span class="box1">1</span>-->
+    <!--<span class="box2">DOM编程艺术</span>-->
+    <!--<span class="box3">45元</span>-->
+    <!--</p>-->
+
+    <!--<p>-->
+    <!--<span class="box1">1</span>-->
+    <!--<span class="box2">DOM编程艺术</span>-->
+    <!--<span class="box3">45元</span>-->
+    <!--</p>-->
+
+    <!--<div id="allMoney">-->
+    <!--90元-->
+    <!--</div>-->
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            z-index: 2;
+        }
+
+        #img1 {
+            position: absolute;
+            left: 500px;
+            top: 200px;
+            width: 200px;
+        }
+    </style>
+    <script>
+        /*
+         碰撞其实检测的是位置重合
+
+         */
+        window.onload = function () {
+            var oImg = document.getElementById("img1");
+            var oDiv = document.getElementById("div1");
+
+
+            function drag(obj) {
+                obj.onmousedown = function (ev) {
+                    var ev = ev || event;
+                    var disX = ev.clientX - this.offsetLeft;
+                    var disY = ev.clientY - this.offsetTop;
+
+                    if (obj.setCapture) {
+                        obj.setCapture();
+                    }
+                    document.onmousemove = function (ev) {
+                        var ev = ev || event;
+                        //不能先犯错，再改变
+                        var L = ev.clientX - disX;
+                        var T = ev.clientY - disY;
+
+                        var L1 = L;
+                        var R1 = L + obj.offsetWidth;
+                        var T1 = T;
+                        var B1 = T + obj.offsetHeight;
+
+                        var L2 = oImg.offsetLeft;
+                        var R2 = L2 + oImg.offsetWidth;
+                        var T2 = oImg.offsetTop;
+                        var B2 = T2 + oImg.offsetHeight;
+
+                        if (R1 < L2 || L1 > R2 || B1<T2 || T1>B2) {
+                            oImg.src = 'img/1.png';
+                        } else {
+//                            alert("碰上了!");
+                            oImg.src = '';
+                        }
+
+
+                        obj.style.left = L + 'px';
+                        obj.style.top = T + 'px';
+                    };
+                    document.onmouseup = function () {
+                        document.onmousemove = document.onmouseup = null;
+                        //释放全局捕获releaseCapture()
+                        if (obj.releaseCapture) {
+                            obj.releaseCapture();
+                        }
+                    }
+                    return false;
+                }
+            };
+            drag(oDiv);
+        };
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<img id="img1" src="img/1.png" alt=""/>
+
+</body>
+</html>

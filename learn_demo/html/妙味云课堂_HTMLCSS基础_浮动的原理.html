@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*css reset*/
+
+        /*div,span{
+            width: 100px;
+            height: 100px;
+            background: red;
+            border: 1px solid black;
+        }
+        .div1{
+            float: left;
+        }
+        .div2{
+            clear: both;
+        }*/
+        /*
+
+        inline-block
+        1、使块元素在一行上显示
+        2、使内嵌支持宽高
+        3、换行被解析了
+        4、不设置宽度的时候宽度由内容撑开
+        5、在IE6、7下不支持块标签
+
+        浮动：
+        1、使块元素在同一行显示
+        2、使内嵌支持宽高
+        3、换行不被解析
+        4、脱离文档流
+        飘起来，不占位置
+
+        clear:left/right/both/none 元素的某个方向不能有浮动元素
+        */
+        body{margin: 0}
+        .box{
+            width: 900px;
+            margin: 0 auto;
+        }
+        .left{
+            width: 300px;
+            float: left;
+        }
+        .left div{
+            height: 298px;
+            background: #9f0;
+            border: 2px solid #f5f5f5;
+        }
+        .center{
+            width: 400px;
+            float: left;
+        }
+        .center div{
+            height: 200px;
+            background: black;
+            border: 2px solid #f5f5f5;
+        }
+
+        .right{
+            width: 200px;
+            float: right;
+        }
+        .right div{
+            height: 300px;
+            background-color: antiquewhite;
+            border: 2px solid #f5f5f5;
+        }
+        .left1{
+            height: 200px;
+            background: red;
+            float: left;
+        }
+        .left2{
+            height: 300px;
+            background: blue;
+            float: left;
+        }
+        .left3{
+            height: 240px;
+            background: green;
+            float: left;
+        }
+        .left4{
+            height: 300px;
+            background: pink;
+            float: left;
+        }
+        .left5{
+            height: 100px;
+            background: #000;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="div1">div1</div>
+<div class="div2">div2</div>
+<span class="span1">123</span>
+<span class="span2">456</span>-->
+<div class="box">
+    <div class="left">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="center">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="right">
+        <div></div>
+        <div></div>
+    </div>
+
+</div>
+
+</body>
+</html>

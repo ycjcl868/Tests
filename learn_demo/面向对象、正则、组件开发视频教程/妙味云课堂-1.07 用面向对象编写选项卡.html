@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .active {
+            background: red;
+        }
+    </style>
+    <script>
+        /*
+         面向对象的选项卡
+         -原则：
+         --先写出普通的写法，然后改成面向对象的写法
+         ---普通方法变型
+         ----尽量不要出现函数嵌套函数
+         ----可以有全局变量
+         ----把onload中不是赋值的语句放到单独函数中
+
+         ---改成面向对象
+         ----全局变量就是属性
+         ----函数就是方法
+         ----onload中创建对象
+         ----改this指向问题,在事件和定时器，让面向对象的this指向对象
+
+         先变形，再改
+
+         */
+
+
+        window.onload = function () {
+            var t1 = new Tab("div1");
+            t1.init();
+
+            var t2 = new Tab("div2");
+            t2.init();
+            t2.autoplay();
+
+
+        };
+
+        function Tab(id) {
+            this.oDiv = document.getElementById(id);
+            this.oInput = this.oDiv.getElementsByTagName("input");
+            this.aDiv = this.oDiv.getElementsByTagName("div");
+            this.iNow = 0;
+        }
+
+
+        Tab.prototype.init = function () {
+            var This = this;
+            for (var i = 0; i < this.oInput.length; i++) {
+                this.oInput[i].index = i;
+                this.oInput[i].onclick = function () {
+                    This.change(this);
+                };
+            }
+        };
+
+
+        Tab.prototype.change = function (obj) {
+            for (var i = 0; i < this.oInput.length; i++) {
+                this.oInput[i].className = '';
+                this.aDiv[i].style.display = 'none';
+            }
+            obj.className = 'active';
+            this.aDiv[obj.index].style.display = 'block';
+        };
+
+        Tab.prototype.autoplay = function () {
+            var This = this;
+            setInterval(function () {
+                if (This.iNow == This.oInput.length - 1) {
+                    This.iNow = 0;
+                } else {
+                    This.iNow++;
+                }
+                for (var i = 0; i < This.oInput.length; i++) {
+                    This.oInput[i].className = '';
+                    This.aDiv[i].style.display = 'none';
+                }
+                This.oInput[This.iNow].className = 'active';
+                This.aDiv[This.iNow].style.display = 'block';
+            },2000)
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="div1">
+    <input type="button" class="active" value="1"/>
+    <input type="button" value="2"/>
+    <input type="button" value="3"/>
+
+    <div style="display: block">1111</div>
+    <div style="display: none">222</div>
+    <div style="display: none;">333</div>
+</div>
+
+
+<div id="div2">
+    <input type="button" class="active" value="1"/>
+    <input type="button" value="2"/>
+    <input type="button" value="3"/>
+
+    <div style="display: block">1111</div>
+    <div style="display: none">222</div>
+    <div style="display: none;">333</div>
+</div>
+
+</body>
+</html>

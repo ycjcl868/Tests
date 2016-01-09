@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+            fn1(100);
+            fn1("miaovi");
+            fn1(function () {
+                alert(1);
+            })
+            function fn1(a) {
+                //数字且不是NaN
+                if (typeof  a === 'number' && a === a) {
+                    alert(a + 20);
+                } else if (typeof a === 'string') {
+                    alert(a.charAt(2));
+                } else if (typeof  a === 'function') {
+                    a();
+                }
+            };
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

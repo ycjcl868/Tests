@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+         事件委托
+         delegate
+
+         trigger():主动触发，特别适合自定义事件,多人协作和开发
+
+
+
+
+         */
+        $(function(){
+
+         /*   //冒泡
+            $('ul').delegate('li','click',function(){
+                this.style.background = 'red';
+                //取消事件委托
+                $('ul').undelegate();
+            })*/
+
+ /*           //主动触发
+            $('li').on('show',function(){
+                alert(123);
+            });
+
+            $('li').trigger('show');
+*/
+
+            $('#div1').on('click',{name:'hello'},function(ev){
+                //alert(ev.data.name);
+                alert(ev.target);//点击对象
+                alert(ev.type);//click事件
+            })
+
+        })
+
+    </script>
+</head>
+<body>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+</ul>
+
+<div id="div1"></div>
+
+
+</body>
+</html>

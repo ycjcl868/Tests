@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .div2{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+        hover()
+        show()  hide()      高度+宽度+透明度
+        fadeIn() fadeOut()  只变透明度,默认400mm
+        fadeTo()        透明度范围
+        slideDown()
+        slideUp()
+         */
+
+        $(function(){
+            $('.div1').hover(function(){
+                //$(this).css('background','blue');
+                //$('.div1').hide(1000);
+                //$('.div2').fadeOut(1000);
+                $('.div2').slideUp(1000);
+                //$('.div2').fadeTo(1000,0.5);
+            },function(){
+                //$(this).css('background','blue')
+                //$('.div2').fadeIn(1000);
+                $('.div2').slideDown(1000);
+                //$('.div2').fadeTo(1000,1);
+            });
+
+
+
+
+        })
+    </script>
+</head>
+<body>
+<div class="div1">
+
+</div>
+
+<div class="div2"></div>
+
+
+</body>
+</html>

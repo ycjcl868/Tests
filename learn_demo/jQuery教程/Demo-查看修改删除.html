@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看修改删除</title>
+    <style>
+        #table {
+            border: 1px solid #abcdef;
+        }
+
+        .popDiv {
+            width: 500px;
+            padding: 10px;
+            border: 1px solid red;
+            position: absolute;
+            left: 50%;
+            margin-left: -250px;
+            top: 200px;
+            background: white;
+            display: none;
+            z-index: 99999;
+        }
+
+        .popDiv p {
+            border-bottom: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<table id="table">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>职位</th>
+        <th>工资</th>
+        <th>操作</th>
+    </tr>
+
+    <tr>
+        <th>张三</th>
+        <th>23</th>
+        <th>前端工程师</th>
+        <th>6000</th>
+        <th><a href="#" class="view">查看</a><a href="#" class="del">删除</a><a href="#">修改</a></th>
+    </tr>
+
+    <tr>
+        <th>李四</th>
+        <th>28</th>
+        <th>Java工程师</th>
+        <th>8000</th>
+        <th><a href="#" class="view">查看</a><a href="#" class="del">删除</a><a href="#">修改</a></th>
+    </tr>
+
+    <tr>
+        <th>王五</th>
+        <th>30</th>
+        <th>Android工程师</th>
+        <th>8000</th>
+        <th><a href="#" class="view">查看</a><a href="#" class="del">删除</a><a href="#">修改</a></th>
+    </tr>
+
+</table>
+
+
+<div class="popDiv">
+    <p>
+        <strong>姓名：</strong><span></span>
+    </p>
+
+    <p>
+        <strong>年龄：</strong><span></span>
+    </p>
+
+    <p>
+        <strong>职位：</strong><span></span>
+    </p>
+
+    <p>
+        <strong>工资：</strong><span></span>
+    </p>
+    <a href="#" class="close">关闭</a>
+
+</div>
+
+
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+    $(function () {
+
+
+        $('.view').click(function () {
+
+            var maskHeight = $(document).height();
+            var maskWidth = $(document).width();
+
+            //添加遮罩层
+            $('<div class="mask"></div>').appendTo($('body'));
+            $('div.mask').css({
+                'opacity': 0.4,
+                'background': '#000',
+                'position': 'absolute',
+                'left': 0,
+                'top': 0,
+                'width': maskWidth,
+                'height': maskHeight
+            });
+
+            var arr = [];
+            $(this).parent().siblings().each(function () {
+                arr.push($(this).text());
+            });
+
+            $('.popDiv').show().children().each(function (i) {
+                $(this).children('span').text(arr[i]);
+            });
+
+            //到后面用dom.each()用的少
+            //实际上用的多的是$.each(obj)
+
+
+
+        });
+
+        //关闭
+        $('.close').click(function () {
+            $('.popDiv').hide();
+            $('div.mask').remove();
+        });
+
+
+        //删除
+        $('.del').click(function () {
+            //$(this).parent().parent().remove();
+            //或
+            $(this).parents('tr').remove();
+        })
+
+
+    })
+
+</script>
+
+</body>
+</html>

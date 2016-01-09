@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        /*
+         //不是作用作用域
+         alert(fn1);         //火狐不能对下面的函数进行预解析
+         //变量和函数，一般定义在外
+         if(true){
+         var a =1;
+         function fn1(){
+         alert(123);//456564
+         }
+         }
+
+         //=>function fn1(){alert(123);//456564}
+
+         //        var a = 1;
+         //        function fn1(a){
+         //            alert(a);  //1
+         //            a = 2;
+         //        }
+         //        fn1(a);
+         //        alert(a);   //2
+
+
+         var num = 0;
+         //全局变量可以被函数修改
+         function fn1() {
+         num++;
+         }
+         function fn2() {
+         num--;
+         }
+         fn2();
+         fn1();
+         fn2();
+
+
+         //可以由内向外找变量，不能从外向里面找变量
+         //想要获取函数内的值：
+         var str = '';
+
+         function fn3() {
+         var a = '大鸡腿~';
+         str = a;
+         }
+         fn3();
+         alert(a);
+
+         function fn4(){
+         var a = '9999克拉钻石';
+         fn5(a);
+         }
+         function fn5(b){
+         alert(b);
+         }
+
+         */
+        window.onload = function () {
+            var aBtn = document.getElementsByTagName("input");
+            for (var i = 0; i < aBtn.length; i++) {
+                aBtn[i].onclick = function () {
+
+                    /*
+                     for (var i = 0; i < aBtn.length; i++) {
+                     aBtn[i].style.background = 'yellow';
+                     }
+                     */
+
+
+                    alert(i);//=>undefine
+                    for(var i=0;i<aBtn.length;i++){
+                        aBtn[i].style.background = 'yellow';
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        作用域：
+        见到一个域就要预解析、逐行解读
+        单线程，先处理完一块域之后，再处理另一块
+        script 全局变量、全局函数
+        自上而下,由里到外
+
+        函数，也是一个域
+         */
+//        var a = 1;
+//        a = 2;
+//        alert(a);
+
+//        var a =1;
+//        function fn1(){
+//            alert(a);
+//            var a = 2;
+//        }
+//        fn1();
+//        alert(a);
+        /*
+        1)预解析：a
+        fn1 = function fn1(){
+            alert(a);
+            var a = 2
+        };
+
+        2)逐行解读代码
+        表达式
+
+         */
+
+
+        var a = 1;
+        function fn1(a){
+            alert(a);
+            a=2;
+        }
+        fn1();
+        alert(a);
+
+
+
+
+    </script>
+
+
+    <script>
+//        //var a = 1;
+//        alert(a);
+
+
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>

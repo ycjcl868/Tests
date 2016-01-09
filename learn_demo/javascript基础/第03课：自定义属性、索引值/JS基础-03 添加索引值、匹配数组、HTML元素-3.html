@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+    </style>
+    <script>
+
+        /*
+        想建立“匹配”，“对应”关系，就用索引
+        */
+        window.onload =function(){
+
+            var arr = ['莫莫','张森','小明'];
+
+            var oBtn = document.getElementsByTagName("input");
+            var oP = document.getElementsByTagName("p");
+            for(var i=0;oBtn.length;i++){
+                //没学闭包之前，不要在for包函数内使用i
+                oBtn[i].index = i;//添加索引值
+                oBtn[i].onclick =function(){
+                    this.value = arr[this.index];
+                    oP[this.index].innerHTML = arr[this.index];
+                    //alert(arr[this.index]);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="0"/>
+<input type="button" value="0"/>
+<input type="button" value="0"/>
+
+
+<p>a</p>
+<p>b</p>
+<p>c</p>
+</body>
+</html>

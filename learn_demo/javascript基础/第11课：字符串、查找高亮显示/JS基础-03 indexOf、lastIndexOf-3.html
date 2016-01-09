@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var str = 'www.miaovi.com/2013';
+        //方法一
+        for(var  i=0;i<str.length;i++){
+            if(str.charAt(i)==='i'){
+                alert(i);
+            }
+        }
+        //方法二，将位置找取来，indexOf('要找的',从哪一位开始找),
+        //-1表示没找到
+        alert(str.indexOf('m'));
+        var i =0;
+        for(;str.indexOf(s,i)!=-1;){
+            alert(str.indexOf(s,i));
+            i = str.indexOf(s,i)+ s.length;
+        };
+
+        //indexOf是向左往右找
+        //lastIndexOf
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+        js和jquery尽量不能混用
+        链式操作：
+
+         */
+
+        $(function(){
+      /*      var oDiv=  $('#div1');
+            oDiv.html('hello');
+            oDiv.css('background','red');
+            oDiv.click(function(){
+                alert(123);
+            })
+*/
+            //链式操作
+            $('#div1').html('hello').css('background','red').click(function(){
+                alert(123);
+            })
+        }
+
+
+                window.onload = function(){
+                    var a =  document.getElementById("div");
+
+                };
+
+
+
+
+    </script>
+</head>
+<body>
+
+
+
+
+</body>
+</html>

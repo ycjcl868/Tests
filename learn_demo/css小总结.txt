@@ -1,0 +1,16 @@
+﻿/*清浮动的方法*/
+.clear{zoom: 1;}
+.clear:after{content:" ";display:block;clear:both;}
+/*法二*/
+.clear{clear:both;}
+.clear:before,.clear:after{content:" ";display:block;}
+.clear:after{clear:both;}
+
+<button>的居中显示：
+button{display:block(必须得加);margin:0 auto;}
+
+textarea和form相联系：
+ <textarea name="" form="form表单的id" id="" cols="30" rows="10"></textarea>
+
+
+font-weight

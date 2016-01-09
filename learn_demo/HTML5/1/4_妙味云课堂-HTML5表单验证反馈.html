@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        表单验证：
+        validity对象，通过下面的valid可以查看验证是否通过，如果八种
+        验证都通过返回true，一种验证失败返回false
+        oText.addEventListener("invalid",fn1,false);
+        ev.preventDefault()
+        valueMissing:输入值为空
+        typeMismatch:控件值与预期类型不匹配
+        patternMismatch:输入值不满足pattern正则
+        tooLong:超过maxlength最大限制
+        rangeUnderflow:验证的range最小值
+        rangeOverflow:验证的range最大值
+        stepMismatch:验证range的当前值是否符合min,max及step的规则
+        customError不符合自定义验证
+        setCustomValidity()自定义验证
+         */
+    </script>
+</head>
+<body>
+<form action="">
+    <input type="text" id="text" required/>
+    <input type="submit"/>
+</form>
+<script>
+    var oText = document.getElementById("text");
+    oText.addEventListener('invalid',fn,false);
+    function fn(){
+        alert(this.validity.valueMissing);
+        ev.preventDefault();
+    }
+
+</script>
+</body>
+</html>

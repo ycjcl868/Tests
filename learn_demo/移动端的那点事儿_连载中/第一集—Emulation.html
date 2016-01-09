@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+
+    </style>
+    <script>
+        /*
+        resolution分辨率
+        viewport
+        touch事件
+         */
+        window.onload = function(){
+            var oBox = document.getElementById("box");
+            //若用onclick会有延迟
+           // oBox.onclick = function(){
+            //    alert("haha");
+          //  }
+            //移动端
+            //oBox.ontouchend = function(){
+           //     alert("haha2");
+           // };
+            //一般要通过addEventListener来添加
+            oBox.addEventListener("touchend",function(){
+                alert("haha3");
+            })
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="box"></div>
+
+</body>
+</html>

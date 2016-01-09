@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="index.js"></script>
+    <style>
+        h1{
+            margin: 0;
+        }
+        img{
+            border: none;
+            vertical-align: top;
+        }
+        body{
+            margin: 0;
+            position: relative;
+            font-family: Arial, "微软雅黑";
+            color: #666;
+            font-size: 26px;
+        }
+        .page{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+            background: #fff;
+            z-index: 1;
+            display: none;
+        }
+        .pageShow{
+            display: block;
+        }
+        .page:nth-of-type(1){
+            z-index: 10;
+        }
+        .page:nth-of-type(2){
+            z-index: 9;
+        }
+        .page:nth-of-type(3){
+            z-index: 8;
+        }
+        .page:nth-of-type(4){
+            z-index: 7;
+        }
+        .page:nth-of-type(5){
+            z-index: 6;
+        }
+
+        .tree{
+            position: absolute;
+            left: 0;
+            to                p: 10%;
+            width: 100%;
+        }
+
+    </style>
+    <script>
+        /*
+         进场页面：
+         animation 动画
+         animation-fill-mode:forwards;
+         预加载处理
+         transition 消失动画
+         transitionEnd
+
+         */
+        window.onload = function () {
+            document.body.style.height = view().h + "px";
+        };
+    </script>
+</head>
+<body>
+
+<section class="page pageShow" id="welcome">
+    <div class="tree">
+        <img src="tree.jpg" alt=""/>
+        <div class="welcome2">
+            <img src="title.png" alt=""/>
+            <span class="shake"></span>
+        </div>
+        <img src="title2.png" alt=""/>
+        <span class="cloud"></span>
+        <span class="cloud"></span>
+        <span class="cloud"></span>
+
+    </div>
+    <h1 id="logo">
+        <img src="logo.png" alt=""/>
+
+    </h1>
+</section>
+
+<section class="page">上传成功</section>
+<section class="page">表单页</section>
+<section class="page">新闻线索</section>
+<section class="page">跳转页面</section>
+<section class="page pageShow">首页</section>
+
+
+</body>
+</html>

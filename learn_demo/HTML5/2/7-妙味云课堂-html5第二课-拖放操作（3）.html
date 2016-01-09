@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 200px;
+        }
+    </style>
+    <script>
+
+        /*
+         解决FF下的问题
+         --必须设置dataTransfer对象的setData方法才可以拖拽图片外的其他标签
+
+         dataTransfer对象
+         setData():设置数据key和value  必须是字符串
+         getData():获取数据，根据key值，获取对应的value
+         effectAllowed
+         --effectAllowed:设置光标样式（none，copy，copyLink,copyMove
+         link linkMove move all uninitialized）
+         setDragImage
+         --三个参数：指定的元素，光标X，光标Y
+
+         files
+         --获取外部拖拽的文件，返回一个filesList列表
+         --filesList下有个type属性，返回文件的类型
+
+
+         FileReader(读取文件信息)
+         readAsDataURL
+         --参数为要读取的文件对象，将文件读取为DataUrl
+         onload
+         --当读取文件成功完成的时候触发此事件
+         --this.result，来获取读取的文件数据，如果是图片，将返回base64格式的图片数据
+
+         实例
+         --拖拽删除列表
+         --拖拽购物车
+         --上传图片预览功能
+
+         */
+
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            var oUl = document.getElementById("ul1");
+
+
+            oDiv.ondragenter = function () {
+                this.innerHTML = '可以释放啦~';
+            }
+            oDiv.ondragover = function (ev) {
+                var ev = ev || event;
+                //要想触发drop事件，就必须在dragover当中阻止默认事件
+                ev.preventDefault();
+
+
+            }
+            oDiv.ondragleave = function () {
+                this.innerHTML = '可以将文字拖拽到此区域';
+            }
+
+            oDiv.ondrop = function (ev) {
+                var ev = ev || event;
+                ev.preventDefault();
+                var fs = ev.dataTransfer.files;
+                //alert(fs.length);
+
+//                if (fs[0].type.indexOf('image') != -1) {
+//
+//                    var fd = new FileReader();
+//                    fd.readAsDataURL(fs[0]);
+//                    fd.onload = function () {
+//                        //alert(this.result);
+//                        var oLi = document.createElement("li");
+//                        var oImg = document.createElement("img");
+//                        oImg.src = this.result;
+//                        oLi.appendChild(oImg);
+//                        oUl.appendChild(oLi);
+//                    }
+//
+//                }else{
+//                    alert("请上传图片类型");
+//                }
+
+
+                //上传多张图片
+                for (var i = 0; i < fs.length; i++) {
+                    if (fs[i].type.indexOf('image') != -1) {
+                        var fd = new FileReader();
+                        fd.readAsDataURL(fs[i]);
+                        fd.onload = function () {
+                            //alert(this.result);
+                            var oLi = document.createElement("li");
+                            var oImg = document.createElement("img");
+                            oImg.src = this.result;
+                            oLi.appendChild(oImg);
+                            oUl.appendChild(oLi);
+                        }
+
+                    } else {
+                        alert("请上传图片类型");
+                    }
+                }
+                ;
+
+
+            }
+        };
+    </script>
+</head>
+<body>
+<div draggable="true" id="div1">
+    将文件拖拽到此区域
+</div>
+
+<ul id="ul1"></ul>
+
+</body>
+</html>

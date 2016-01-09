@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        继承的其他形式：
+        -类式继承
+        --利用构造函数类继承的方式
+        -原型继承
+        --借助原型来实现对象继承对象
+
+        类：JS是没有类的概念的，把构造函数看做的类
+
+         */
+
+        function Aaa(){
+            this.name='miaov';
+        }
+        Aaa.prototype.showName=function(){
+            alert(this.name);
+        };
+        function Bbb(){
+
+        }
+        //有很多问题
+        Bbb.prototype = new Aaa();
+        var b1 = new Bbb();
+        b1.showName();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

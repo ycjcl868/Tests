@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,target-densitydpi=device-dpi" />
+
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        /*手机和平板*/
+        @media all and (min-width: 1024px){
+            .box{
+                width: 1024px;
+                height: 400px;
+                background: blue;
+            }
+
+        }
+
+        /*手机*/
+        @media all and (max-width: 399px) and  (min-width: 220px){
+
+
+
+        }
+
+        @media all and (max-width: 219px){
+
+
+
+        }
+
+        /*竖屏*/
+        @media all and (orientation:portrait){
+
+        }
+        /*横屏*/
+        @media all and (orientation: landscape){
+
+        }
+
+
+
+
+
+
+
+    </style>
+    <script>
+        /*
+        媒体查询：
+        all 所有媒体
+        braille 盲文触觉设备
+        embossed 盲文打印机
+        print 手持设备
+        projection 打印预览
+        screen 彩屏设备
+        speech 听觉类似的媒体类型
+        tty 不适用像素的设备
+        tv 电视
+        only用来定某种特定的媒体类型
+
+        媒体特性：
+        1.(max-width:599px)
+        2.(min-width:600px)
+        3.(orientation:portrait)竖屏
+        4.(orientation:landscape)横屏
+        5.(-webkit-min-device-pixel-ratio:2)像素比
+
+        /*
+
+        pc 1024px ipad 手机 400px   220-399px 219px
+
+        1024px
+        400px
+        220px
+
+
+
+        */
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<div class="box"></div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        快速排序：
+        1、找一个基准点
+        2、建立两个数组，分别存储左边和右边的数组
+        3、利用递归进行下次比较
+         */
+
+        function quicksort(arr){
+            if(arr.length<=1){
+                return arr;
+            }
+            var num = Math.floor(arr.length/2);
+            var numValue = arr.splice(num,1);
+            var left = [];
+            var right = [];
+            for(var i =0;i<arr.length;i++){
+                if(arr[i]<numValue){
+                    left.push(arr[i]);
+                }else{
+                    right.push(arr[i]);
+                }
+            }
+
+            return quicksort(left).concat([numValue],quicksort(right));
+
+        }
+
+        var arr =[12,5,37,6,22,40];
+
+        console.time(1);
+        alert(quicksort(arr));
+        console.timeEnd(1);
+
+        console.time(2);
+        alert(arr.sort());
+        console.timeEnd(2);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

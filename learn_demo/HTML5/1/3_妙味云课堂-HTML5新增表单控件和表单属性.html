@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        /*
+         新增的表单控件：
+         email
+         tel
+         url
+         search
+         range
+         number
+         color
+         datetime
+         datetime-local
+         time
+         date
+         week
+         month
+         week
+
+         新的表单特性和函数
+         placeholder:提示信息
+         autocomplete:是否保存用户输入值
+         autofocus:指定表单获取输入焦点
+         list和datalist:为输入框构造一个选择列表
+         -list值为datalist标签的id
+         required：此项必填
+         pattern:正则验证
+         formaction在submit里定义提交地址
+
+         */
+    </script>
+    <title></title>
+</head>
+<body>
+<form action="http;//www.baidu.com">
+    <input type="email" />
+    <input type="submit" />
+    <input type="color" />
+    <input type="range" step="2" min="0" max="10" value="0" />
+    <input type="submit" value="提交" />
+    <input type="submit" value="保存至草稿箱" formaction="http://www.baidu.com" />
+
+
+</form>
+
+</body>
+</html>

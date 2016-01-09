@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax上传文件</title>
+  <script src='jquery-1.11.3.min.js'></script>
+   <script src="http://malsup.github.com/jquery.form.js"></script>
+  <script>
+  $(function(){
+    $('#myForm').ajaxForm(function() {
+                alert("Thank you for your comment!");
+    });
+  })
+
+
+  </script>
+
+</head>
+<body>
+  <form id="myForm" action="comment.php" method="post">
+    Name: <input type="text" name="name" />
+    Comment: <textarea name="comment"></textarea>
+    <input type="submit" value="Submit Comment" />
+</form>
+
+</body>
+</html>

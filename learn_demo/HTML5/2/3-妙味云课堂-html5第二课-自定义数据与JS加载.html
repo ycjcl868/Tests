@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="a.js" defer="defer"></script>
+    <script>
+        /*
+        data自定义数据
+        必须写data-
+
+        延迟加载js
+        js的加载会影响后面的内容加载
+        -很多浏览器都采用了并行加载js，但还是会影响其他内容
+        html5的defer和async
+        defer：延迟加载,会按顺序执行，在onload执行前被触发
+        async：异步加载，加载完就触发，有顺序问题
+
+        labjs库:异步加载js库的框架
+
+         */
+        window.onload = function(){
+            var oDiv = document.getElementById("div1");
+            alert(oDiv.dataset.miaov);
+            alert(oDiv.dataset.miaovAll);
+        };
+    </script>
+</head>
+<body>
+<div id="div1" data-miaov="妙味" data-miaov-all="课堂">div</div>
+
+</body>
+</html>

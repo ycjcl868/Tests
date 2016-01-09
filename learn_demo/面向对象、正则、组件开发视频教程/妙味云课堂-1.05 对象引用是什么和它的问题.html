@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        只要在程序中出现赋值，就要在内存中重新生成
+
+         */
+
+        function CreatePerson(name){
+            this.name = name;
+            this.showName = function(){
+                alert(this.name);
+            }
+        }
+
+        var p1 = new CreatePerson("小明");
+        var p2 = new CreatePerson("小明");
+        alert(p1==p2);//false，与对象的引用有关，值和引用都相同才行
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

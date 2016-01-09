@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        /*
+         第一种：
+         obj.onclick = fn;
+
+         事件绑定的第二种形式
+
+
+         call 函数下的一个方法，call方法第一个参数可以改变函数执行过程中的内部this的指向
+         call方法用于改变this的指向，call方法第二个参数开始就是原来函数的参数列表
+         若传入null
+
+         */
+
+        window.onload = function () {
+
+            function fn1() {
+                alert(1);
+            }
+
+            function fn2() {
+                alert(2);
+            }
+            function fn3(a,b){
+                alert(this);
+            }
+            //fn1();-->window
+           // fn1.call(1,a,b);//调用函数   fn1() == fn1.call()
+
+            //document.onclick = fn1;
+            //document.onclick = fn2;
+            //会覆盖前面绑定的函数，以一种赋值形式
+
+            //给一个对象绑定多个不同的事件
+
+            /*
+             兼容问题
+             ie:obj.attachEvent(事件名称，事件函数)
+                1.没有捕获
+                2.事件名称有on
+                3.事件函数执行的顺序：标准ie下，正序。非标准ie下，倒序
+                4.this指向window
+
+
+             标准下：obj.addEventListener(事件名称，事件函数，是否捕获)
+                1.有捕获
+                2.事件名称没有on
+                3.正序
+                4.this指向触发该事件的对象
+
+             是否捕获：默认是false，不捕获就冒泡
+
+             事件名称不一样，无on
+             */
+
+           // document.attachEvent('onclick', function () {
+           //     fn1.call(document);
+           // });
+           // document.attachEvent('onclick', fn2);
+           // document.addEventListener('click',fn1,false);
+           // document.addEventListener('click',fn2,false);
+
+
+            function bind(obj,evname,fn){
+                if(obj.addEventListener){
+                    obj.addEventListener(evname,fn,false);
+                }else{
+                    obj.attachEvent('on'+evname,function(){
+                        fn.call(obj);
+                    });
+                }
+            };
+            bind(document,'click',fn1);
+
+
+        }
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

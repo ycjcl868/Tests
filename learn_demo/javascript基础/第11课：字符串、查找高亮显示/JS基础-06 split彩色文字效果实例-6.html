@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+
+    </script>
+</head>
+<body>
+<div id="div1">
+    <span style="background:#FFC;">文</span>
+    <span style="background:#CC3;">字</span>
+    <span style="background:#6FC;">内</span>
+    <span style="background:#9C9;">容</span>
+
+</div>
+<input type="text"/>
+<input type="button" value="按钮"/>
+<script>
+    var oDiv = document.getElementById("div1");
+    var aInp = document.getElementsByTagName("input");
+    var arrColor = ['#FFC', '#CC3', '#6FC', '#9C9']
+    aInp[1].onclick = function () {
+        var str = aInp[0].value;
+        var arr = str.split('');
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = '<span style="background:' + arrColor[i%arrColor.length] + '">' + arr[i] + '</span>';
+        }
+        //arr得到的是一个数组，要变成字符串
+        oDiv.innerHTML += arr.join("");
+
+    };
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         函数声明：function 函数名(){}
+         函数表达式：function 函数名(可写可不写){}:命名函数表达式 匿名函数表达式
+         看上下文
+
+         区别：
+         函数表达式是可以在后面加()执行的，而函数声明是不行的
+
+
+         */
+
+        //写到了最顶端，函数声明
+        function aaa() {
+
+        }
+
+        //函数表达式
+        var a = function aaa() {
+
+        };
+
+        /*   //函数表达式
+         (function aaa(){});表达式
+         ~function aaa(){}
+         +function aaa(){}
+         !function aaa(){}*/
+
+        function aaa() {
+            alert(1);
+        }
+
+        var a = function () {
+            alert(1);
+        };
+        a();
+
+        if (true) {
+            var a = function aaa() {
+                alert(1);
+            };
+        }
+        else {
+            var a = function aaa() {
+                alert(2);
+            };
+        }
+
+
+        (function aaa(){
+            alert(1);
+        })
+        aaa();
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

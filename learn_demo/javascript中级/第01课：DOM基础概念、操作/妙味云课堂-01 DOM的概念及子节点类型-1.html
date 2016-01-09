@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         DOM:Document Object Model文档对象模型
+         文档：html页面
+         文档对象：页面中的元素
+         文档对象模型：定义，为了能够让js去操作页面中的元素,w3c
+
+         DOM会把文档看作一棵树
+         getElementById
+         getElementsByTagName
+         document
+         document.body
+         childNodes\children：获取第一级子元素，有兼容性问题，nodeType属性
+         firstChild\firstElementChild：获取子元素里的第一个
+         lastChild\lastElementChild：获取子元素里的最后一个
+
+
+         */
+        window.onload = function () {
+            var oUl = document.getElementById("ul1");
+            /*
+             childNodes:属性，某个对象下的，子节点列表集合
+             DOM节点的类型有很多种， 12种
+             标准下：包含了文本和元素类型的节点，也会包含非法嵌套的子节点
+             非标准下：只包含元素类型的节点,IE7以下不会包含非法嵌套子节点
+
+             nodeType:只读 属性 当前元素的节点类型
+             文本节点、元素节点
+             */
+            //总长度，是个9(5个文本节点，4个元素节点)，IE下是4
+            //alert(oUl.childNodes.length);
+            alert(oUl.nodeType);//1=>元素节点
+            alert(oUl.attributes[0].nodeType);//2=>属性节点
+            alert(oUl.childNodes[0].nodeType);//3=>文本节点
+
+
+            //属性
+            //元素.attributes  : 只读 属性列表集合
+
+            alert(oUl.attributes.length);//oUl的属性长度
+
+
+            for (var i = 0; i < oUl.childNodes.length; i++) {
+                //需要加判断是否是元素节点
+                if (oUl.childNodes[i].nodeType == 1) {
+                    oUl.childNodes[i].style.background = 'red';
+                }
+            };
+            //一般用children：只读 属性 子节点列表集合，
+            //标准下：只包含元素类型的节点
+            //非标准下：只包含元素类型的节点，
+
+
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="div1">
+    <p>123121</p>
+    <ul id="ul1">
+        <li>1213</li>
+        <li>1213</li>
+        <li>1213</li>
+        <li>1213</li>
+    </ul>
+
+</div>
+
+
+</body>
+</html>

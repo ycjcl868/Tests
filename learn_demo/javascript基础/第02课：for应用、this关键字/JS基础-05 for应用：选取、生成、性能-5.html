@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function(){
+            var str = '';
+            //性能有问题，不是for有问题，每次都要找到body，再塞进去。先用字符串
+            for (var i = 0; i < 2000; i++) {
+                str += '<input type="button" value="按钮">'
+            }
+            document.body.innerHTML = str;
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+
+
+</body>
+</html>

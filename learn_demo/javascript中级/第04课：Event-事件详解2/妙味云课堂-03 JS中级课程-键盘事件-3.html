@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+        /*
+         onkeydown：当键盘按下时
+         onkeyup：当键盘抬起时
+
+         event有一个属性，keyCode：数字类型，键值
+         ctrlKey,shiftKey,altKey 布尔值，
+         当一个事件发生时，如果ctrl || shift || alt是按下
+         的状态，返回true/false
+
+         */
+
+        /*
+         document.onkeydown = function(ev){
+         var ev = ev||event;
+         //alert(ev.keyCode);
+         }
+
+         document.onclick = function(){
+         var ev = ev ||event;
+         alert(ev.ctrlKey);
+         }
+         */
+        window.onload = function () {
+            /*
+             var oText = document.getElementById("text1");
+             var oUl = document.getElementById("ul1");
+             oText.onkeyup = function () {
+             var ev = ev || event;
+             if (this.value != '') {
+             if (ev.keyCode == 13 && ev.ctrlKey) {
+             var oLi = document.createElement("li");
+             oLi.innerHTML = this.value;
+             if (oUl.children[0]) {
+             oUl.insertBefore(oLi, oUl.children[0]);
+             } else {
+             oUl.appendChild(oLi);
+             }
+             this.value = '';
+
+             }
+             }
+             }
+             */
+
+
+            var oDiv = document.getElementById("div1");
+            //不是所有元素能够接收键盘事件的，能够响应用户输入的元素，能够接收焦点的元素就能够接收键盘事件
+            //有一个问题，当连续按下时，会有停顿
+            //onkeydown：按下不抬起，那么会连接触发
+            //可以用定时器
+            var timer = null;
+            document.onkeydown = function (ev) {
+                var ev = ev || event;
+                setInterval(move(ev), 1000);
+
+            };
+
+            function move(ev) {
+                switch (ev.keyCode) {
+                    case 37:
+                        oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+                        break;
+                    case 38:
+                        oDiv.style.top = oDiv.offsetTop - 10 + 'px';
+                        break;
+                    case 39:
+                        oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+                        break;
+                    case 40:
+                        oDiv.style.top = oDiv.offsetTop + 10 + 'px';
+                        break;
+                }
+            }
+
+            document.onkeyup = function () {
+                clearInterval(timer);
+            }
+
+
+        }
+        ;
+
+    </script>
+</head>
+<body>
+<!--<input type="text" id="text1"/>-->
+<!--<ul id="ul1">-->
+<!--</ul>-->
+<div id="div1">
+
+</div>
+
+
+</body>
+</html>

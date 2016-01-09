@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+         geolocation
+         地理位置
+         --经度：南北极的连接线
+         --纬度：东西连接的线
+
+         位置信息从何而来
+         --IP地址
+         --GPS全球定位系统
+         --Wi-Fi无线网络
+         --基站
+
+         LBS：基于地图信息的应用
+         navigator.geolocation
+         --单次定位请求：getCurrentPosition(请求成功，请求失败，数据收集方式)
+         --请求成功函数
+         经度：coords.longitude
+         纬度：coords.latitude
+         准确度：coords.accuracy
+         海拔：coords.altitude
+         海拔准确度：coords.altitudeAcuracy
+         行进方向：coords.heading
+         地面速度：coords.speed
+         时间戳：new Date(postion.timestamp)
+
+         请求失败的函数
+         --失败编号：code
+         --0:不包括其他错误编号中的错误
+         --1：用户拒绝浏览器获取位置信息
+         --2：尝试获取用户信息，但失败了
+         --3：设置了timeout值，获取位置超时了
+
+         数据收集：json的形式
+         --enableHighAcuracy:更精确的查找，默认false
+         --timeout：获取位置允许最长时间
+         --maximumAge:位置可以缓存的最大时间，默认0
+
+         --多次定位请求：watchPosition(像setInterval)
+           移动设备有用，位置改变才会触发
+           配置参数：frequency更新的频率
+
+        --关闭更新的请求:clearWatch(像clearInterval)
+
+
+
+
+
+         */
+        window.onload = function () {
+            var oInput = document.getElementById("input1");
+            var oT = document.getElementById("t1");
+            oInput.onclick = function () {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    oT.value+="经度为："+position.coords.longitude;
+                    oT.value+="纬度为："+position.coords.latitude;
+
+                    //经度
+                    ajax(position.coords.longitude,position.coords.latitude);
+
+
+                });
+
+            },function(err){
+                //err.code失败所对应的编号
+            },{
+            enableHighAcuracy:true,
+            timeout:5000,
+            maximumAge:5000
+
+        }
+
+            /**
+             *
+             * @param x 经度
+             * @param y 纬度
+             */
+            function ajax(x, y) {
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    var res = JSON.parse(this.responseText);
+                    alert(res.row.result.formatted_address);
+                };
+                xhr.open("get", "process.php?longitude="+x+"&latitude="+y, true);
+                xhr.send();
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" value="请求" id="input1"/>
+<textarea name="" id="t1" style="width: 400px;height: 400px;border: 1px solid black"></textarea>
+
+
+</body>
+</html>

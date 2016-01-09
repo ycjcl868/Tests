@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*
+        什么是SVG？
+        --在网页中绘制图形
+        --跟canvas的区别
+        基于xml
+
+        学习方式：
+        --通过实例来学习svg
+
+        实例：兴趣图谱
+        http://top.baidu.com
+         */
+        window.onload = function(){
+            var canvas = document.getElementById("canvas");
+            var pen = canvas.getContext("2d");
+            pen.beginPath();
+            pen.moveTo(0,0);
+            pen.lineTo(20,30);
+            pen.stroke();
+
+            pen.closePath();
+        };
+    </script>
+</head>
+<body>
+
+<canvas id="canvas" width="200" height="200"></canvas>
+
+</body>
+</html>

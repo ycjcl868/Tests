@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        /*
+        animate():
+        第一个参数：{}json
+        第二个参数：时间(默认400mm)
+        第三个参数：运动形式（只有两种运动形式，swing(慢快慢) linear(匀速)）
+        第四个参数：回调
+
+
+
+        stop():
+        只会阻止当前运动，在第一个参数中加一个(true)，阻止后续的运动
+        在第二个参数中加true时，直接到达目标点
+
+        finish():
+        停止到所有的目标点
+
+
+
+        delay()
+        delegate()
+        undelegate()
+        trigger()
+        ev.data
+        ev.target
+        ev.type
+
+         */
+        $(function(){
+            $('#div1').click(function(){
+             /*   $(this).animate({
+                    width:300
+                },2000,'swing',function(){
+                    $(this).animate({ height:400});
+                });*/
+
+
+                //链式操作
+                $(this).animate({width:300},2000).delay(2000).animate({height:300},2000);
+            });
+            $('#div2').click(function(){
+                $('#div1').stop(true);
+            })
+        })
+    </script>
+</head>
+<body>
+
+<div id="div1"></div>
+
+<div id="div2"></div>
+
+</body>
+</html>
