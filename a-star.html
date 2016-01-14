@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, ul {margin: 0;padding: 0;}
+        #ul1 {height: auto;overflow: hidden;margin: 20px auto;border: 1px solid black;border-bottom: none;border-right: none;}
+        #ul1 li {box-sizing:border-box;list-style: none;border: 1px solid black;border-top: none;border-left: none;float: left;
+        }
+        #ul1 li.begin {background: red;}
+        #ul1 li.end {background: green;}
+        #ul1 li.obstacle {background: blue;}
+        #input1 {width: 100px;position: absolute;left: 50%;margin-left: -50px;}
+    </style>
+</head>
+<body>
+<ul id="ul1">
+</ul>
+<input type="button" value="开始寻路" id="input1"/>
+
+<script>
+    var oUl = document.getElementById("ul1");
+    var aLi = oUl.getElementsByTagName("li");
+    var oInput = document.getElementById("input1");
+    var beginLi = oUl.getElementsByClassName("begin");
+    var endLi = oUl.getElementsByClassName("end");
+    var obstacle = oUl.getElementsByClassName("obstacle");
+    var map = [
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,3,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    ];
+    var cols = Math.sqrt(map.length);//一行有多少个网格
+    var sizeGird = 20;//每个网格大小
+    var openArr = [];//可能要走的路线
+    var closeArr = [];//已关闭的路线
+    init();
+   for (var i = 0; i < aLi.length; i++) {
+      aLi[i].addEventListener('click',function(){
+        for (var i = 0; i < aLi.length; i++) {
+          if(aLi[i].className == "begin"){
+            aLi[i].className = '';
+            map[i] = 0;
+          }
+        };
+        this.className = 'begin';
+        map[i] = 1;
+
+      });
+    }
+
+    /**
+     * [init 初始化]
+     * @return {[type]} [description]
+     */
+    function init(){
+        createMap();
+
+        oInput.addEventListener('click',function(){
+           openFn();
+           showLine();
+        })
+    }
+
+    /**
+     * [createMap 创建地图]
+     * @return {[type]} [description]
+     */
+    function createMap(){
+        oUl.style.width = cols * sizeGird + 'px';
+        allLi();
+    }
+
+    function allLi(){
+        //遍历全部网格
+        for (var i = 0; i < map.length; i++) {
+            var oLi = document.createElement("li");
+            oLi.style.width = sizeGird + 'px';
+            oLi.style.height = sizeGird + 'px';
+            oUl.appendChild(oLi);
+            if(map[i] == 1){
+                oLi.className = 'begin';
+                openArr.push(oLi);
+            }else if(map[i] == 2){
+                oLi.className = 'obstacle';
+                closeArr.push(oLi);
+            }else if(map[i] == 3){
+                oLi.className = 'end';
+            }
+        };
+    }
+
+    /**
+     * [openFn 收集可能需要找的路线]
+     * @return {[type]} [description]
+     */
+    function openFn(){
+        var nowLi = openArr.shift();//取出当前的结点
+        if(nowLi == endLi[0]){//最后一个出现的时候
+            return;//停止
+        }
+        closeFn(nowLi);//将nowLi放到
+        //找周围的
+        findLi(nowLi);
+        //升序排列
+        openArr.sort(function(li1,li2){
+            return li1.num - li2.num;
+        });
+        console.log(openArr);
+        openFn();
+    }
+
+    /**
+     * [closeFn 排队不需要走的路线]
+     * @return {[type]} [description]
+     */
+    function closeFn(nowLi){
+        closeArr.push(nowLi);//添加到关闭中
+    }
+
+    function findLi(nowLi){
+        var result = [];
+        for(var i=0;i<aLi.length;i++){
+            if( filter(aLi[i]) ){
+                result.push( aLi[i] );
+            }
+        }
+        function filter(li){
+            //排除障碍物
+            for(var i=0;i<closeArr.length;i++){
+                if( closeArr[i] == li ){
+                    return false;
+                }
+            }
+            //排除已走过的
+            for(var i=0;i<openArr.length;i++){
+                if( openArr[i] == li ){
+                    return false;
+                }
+            }
+            return true;
+        }
+        //搜索周边的
+        for(var i=0;i<result.length;i++){
+            if( (Math.abs(nowLi.offsetLeft - result[i].offsetLeft)<= sizeGird ) && (Math.abs(nowLi.offsetTop - result[i].offsetTop)<= sizeGird ) ){
+                result[i].num = f(result[i]);
+                result[i].parent = nowLi;
+                openArr.push( result[i] );
+            }
+        }
+
+    }
+
+
+    function showLine(){
+        var result = [];
+        var lastLi = closeArr.pop();//找到最后一个
+        var iNow = 0;
+        findParent(lastLi);
+        function findParent(li){
+            result.unshift(li);
+            if(li.parent == beginLi[0]){
+                return;
+            }
+            findParent(li.parent);
+        }
+
+        var timer = setInterval(function(){
+            result[iNow].style.background = 'red';
+            iNow++;
+            if(iNow == result.length){
+                clearInterval(timer);
+                alert("找到了");
+            }
+        },500)
+
+    }
+
+
+     /**
+      * [f 估价函数]
+      * @param  {[int]} nodeLi [节点序号]
+      * @return {[int]}        [估价函数]
+      */
+     function f(nodeLi){
+        return g(nodeLi) + h(nodeLi);
+     }
+
+     /**
+      * [g 初始点到n节点的实际代价]
+      * @param  {[type]} nodeLi []
+      * @return {[type]}        [description]
+      */
+     function g(nodeLi){
+        var a = beginLi[0].offsetLeft - nodeLi.offsetLeft;//a边
+        var b = beginLi[0].offsetTop - nodeLi.offsetTop;//b边
+        return Math.sqrt(a*a + b*b);
+     }
+
+     /**
+      * [h n节点到目标点的实际代价]
+      * @param  {[type]} nodeLi [description]
+      * @return {[type]}        [description]
+      */
+     function h(nodeLi){
+        var a = endLi[0].offsetLeft - nodeLi.offsetLeft;//a边
+        var b = endLi[0].offsetTop - nodeLi.offsetTop;//b边
+        return Math.sqrt(a*a + b*b);
+     }
+</script>
+</body>
+</html>
