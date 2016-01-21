@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>touch事件</title>
+  <script>
+  //touchstart事件
+  window.addEventListener('touchstart',function(event){
+    var allTouches = event.touches,//获得当前屏幕上所有接触的数组
+        allTouchesLength = allTouches.length;
+    console.log(allTouches);
+    console.log(allTouchesLength);
+
+  },false);
+
+  //touchmove事件
+  window.addEventListener('touchmove',function(event){
+  },false);
+
+  //touchend事件
+  window.addEventListener('touchend',function(event){
+  },false);
+
+
+  </script>
+</head>
+<body>
+
+
+</body>
+</html>
