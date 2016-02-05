@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Receive Data From Node Server</title>
+	<script>
+
+	function GetData(){
+		var xhr = {};
+		try{
+			xhr = new XMLHttpRequest();
+		}catch(e){
+			xhr = new ActiveObject("Microsoft.XMLHTTP")
+		}
+		xhr.open("get","http://localhost:1337",true);
+		xhr.send();
+		xhr.onreadystatechange = function(){
+			console.log(3);
+			if(xhr.readyState == 4){
+				console.log(2);
+				if(xhr.status == 200){
+					console.log(1);
+				}
+			}
+		}
+	}
+
+
+
+
+
+	</script>
+</head>
+<body>
+	<input type="button" value="获取数据" id="btn" onclick="GetData()">
+	<div id="div1"></div>
+</body>
+</html>

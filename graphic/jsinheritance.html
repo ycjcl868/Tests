@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Inheritance</title>
+	<script>
+	var pet = function(name,leg){
+		var that = {
+			name: name,
+			getDetail: function(){ //闭包，将legs值保存在闭包内部
+				return that.name + "has " + leg + " legs<br />" ;
+			}
+		}
+		return that;
+	}
+
+	var cat = function(name){
+		var that = pet(name,4);
+		that.action = function(){
+			return 'Catch a bird<br />';
+		};
+		return that;
+	}
+
+	var petCats = cat("Felix");
+
+	details = petCats.getDetail();
+	document.write(details);
+	action = petCats.action();
+	document.write(action);
+	petCats.name = 'Sy';
+	petCats.legs = 7;
+	details = petCats.getDetail();
+	document.write(details);
+
+
+
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

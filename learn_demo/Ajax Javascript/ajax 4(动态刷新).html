@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById("btn");
+
+            function ajax(method, url, data) {
+                var info = null;
+                try {
+                    info = new XMLHttpRequest();
+                } catch (e) {
+                    info = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                if (method == "get" && data) {
+                    url += '?' + data;
+                }
+                info.open(method, url, true);
+
+                if(method == 'get'){
+                    info.send();
+                }else{//post形式
+                    info.setRequestHeader('content-type','application/x-www-form-urlencoded');
+                }
+
+                info.onreadystatechange = function () {
+                    if (info.readyState == 4) {
+                        if (info.statue == 200) {
+
+                        }
+                    }
+                }
+
+            }
+
+
+            btn.onclick = function () {
+                ajax();
+
+            }
+
+            setInterval(function () {
+                ajax();
+
+            }, 1000);
+
+
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+</body>
+</html>

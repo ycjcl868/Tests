@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--瀑布流，固定列和非固定列,按需加载-->
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="ajax.js"></script>
+
+    <script>
+        window.onload = function () {
+
+            var oUl = document.getElementById('ul1');
+            var aLi = oUl.getElementsByTagName('li');
+            var iLen = aLi.length;
+            var iPage = 1;
+            var b = true;
+
+
+            function getList() {
+                ajax('get', 'Pic.json', '', function (data) {
+                    var data = JSON.parse(data);
+
+                    //后续没有数据了
+                    if(!data.lengh){
+                        return;
+                    }
+
+
+                    for (var i = 2; i < data.length; i++) {
+                        //得到最短的li,图片加载可能造成误差，处理方法是1、后台传入宽高，2、图片预加载
+
+                        var _index = getShort();
+                        //创建
+                        var oDiv = document.createElement('div');
+                        var oImg = document.createElement('img');
+                        //设置一个宽高
+                        oImg.style.width = '180px';
+                        oImg.style.height = data[i].height * (180 / data[i].width) + 'px';
+                        oImg.src = data[i].preview;
+                        oDiv.appendChild(oImg);
+                        var oP = document.createElement('p');
+                        oP.innerHTML = data[i].title;
+                        oDiv.appendChild(oP);
+                        aLi[_index].appendChild(oDiv);
+                    }
+                    b = true;
+                });
+            };
+            getList();
+
+
+            //滚动条触发事件
+            window.onscroll = function () {
+                var _index = getShort();
+
+                var oLi = aLi[_index];
+                //滚动条的距离
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                //进来的条件
+                if (getTop(oLi) + oLi.offsetHeight < document.documentElement.clientHeight + scrollTop) {
+                    //有个问题，滚动时要触发多次，ipgae加了多次
+                    if (b) {
+                        b = false;
+                        iPage++;
+                        //方法是进行预加载，做一个开头
+                        //重新进行ajax()
+                        getList();
+                    }
+
+                }
+
+
+            }
+
+            //获取到顶部的值
+            function getTop(obj) {
+                var iTop = 0;
+                while (obj) {
+                    iTop += obj.offsetTop;
+                    obj = obj.offsetParent;
+                }
+                return iTop
+            };
+
+
+            //找到最短一列li
+            function getShort() {
+                var index = 0;
+                var ih = aLi[index].offsetHeight;//当前li的高度
+                for (var i = 1; i < iLen; i++) {
+                    if (aLi[i].offsetHeight < ih) {
+                        index = i;
+                        ih = aLi[i].offsetHeight;
+                    }
+                }
+                return index;
+            }
+        }
+
+    </script>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #ul1 {
+            width: 1000px;
+            margin: 100px auto 0;
+        }
+
+        li {
+            width: 200px;
+            list-style: none;
+            float: left;
+            margin: 10px
+        }
+
+        li div {
+            border: 1px solid #000;
+            padding: 15px
+        }
+
+        li div img {
+            width: 180px;
+            display: block;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<ul id="ul1">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+</body>
+</html>

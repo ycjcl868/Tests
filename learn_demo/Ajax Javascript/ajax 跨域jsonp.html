@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://api.douban.com/v2/book/search?q=javascript"></script>
+    <script>
+        /*
+        跨域，在一个域名下的文件去请求了和他不一样的域名下的资源
+        JSONP:
+        1.script标签
+        2.用script标签加载资源是没有跨域问题的
+        3.文件类型不是由后缀名决定
+
+        在资源加载进来之前定义好一个函数，这个函数接收一个参数，函数里面利用这个参数做一些事情
+        然后需要的时候通过script标签加载对应远程文件资源，当远程的文件资源被加载进来的时候，
+        就会去执行定义好的防水涂料发，并且把数据当作这个函数的参数传入进去
+         */
+        window.onload = function(){
+            var btn = document.getElementById("btn");
+            btn.onclick = function(){
+                var xhr = new XMLHttpRequest();
+                xhr.open('get','',true);
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState==4){
+                        if(xhr.status == 200){
+                            alert(xhr.responseText);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+<input type="button" value="提交" id="btn"/>
+
+</body>
+</html>

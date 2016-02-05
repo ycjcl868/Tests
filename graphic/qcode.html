@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>qcode</title>
+	<script>
+	window.onload = function(){
+		document.getElementById("submit").onclick = function(){
+			var text = document.getElementById("text-input").value;
+			var URL = "https://chart.googleapis.com/chart?"+"chs=256&"+"cht=qr&"+"chl="+escape(text)+"&"+"choe=UTF-8&";
+			document.getElementById('chart').setAttribute('src',URL);
+		}
+	}
+	</script>
+
+</head>
+<body>
+	<img src="" alt="" id="chart">
+	<hr />
+	<input type="text" id="text-input">
+	<input type="button" id="submit" value="提交">
+</body>
+</html>
