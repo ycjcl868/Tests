@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+	<style>
+	body{
+		background: #ddd;
+	}
+	#c1{
+		background: #fff;
+		border: 1px inset #aaa;
+	}
+	
+
+
+	</style>
+	<script>
+	window.onload = function(){
+		var oCanvas = document.getElementById('c1'),
+			context = oCanvas.getContext('2d'),
+			oInput  = document.getElementById('userInput');
+		console.log(context);
+
+
+		context.font = '38px Arial';
+		context.fillStyle = 'cornflowerblue';
+		context.strokeStyle = 'blue';
+
+
+		oInput.onkeyup = function(){
+			context.clearRect(0,0,oCanvas.width,oCanvas.height);
+			context.strokeText(oInput.value,oCanvas.width/2-150,oCanvas.height/2-15);
+			console.log(oCanvas.toDataURL());
+		}
+	}
+
+	</script>
+</head>
+<body>
+	<canvas id="c1" width="600" height="600">
+		Canvas not supported
+	</canvas>
+	<input type="text" id="userInput">
+	
+</body>
+</html>

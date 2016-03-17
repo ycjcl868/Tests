@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>水波纹</title>
+	<script src="http://runjs.cn/js/sandbox/jquery/jquery-1.8.3.min.js"></script>
+	<style>
+		ul{position:relative;width: auto;-webkit-user-select:none;margin:0;font-size:0;padding: 0;}
+		li{font-size:16px;-webkit-user-select:none;text-align:center;line-height:40px;display:inline-block;width: 160px;height: 40px;background:#E95546;color:#fff;position:relative;cursor:pointer;overflow:hidden;}
+		.slider{display:block;position:absolute;bottom:0;left:0;height:4px;background: #4FC2E5;transition:all .5s;}
+		.ripple{width: 0;height: 0;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);position:absolute;opacity:1;}
+		.rippleEffect{animation:rippleDrop .4s linear;}
+		@keyframes
+			rippleDrop{
+				100%{
+					transform:scale(2);
+					opacity:0;
+				}
+			}
+	</style>
+	<script>
+	window.onload = function() {
+		$("ul li").click(function(e){
+			var Index = $(this).index();
+			var MoveDistance = 160*Index;
+			$(".slider").css({
+				left:MoveDistance
+			});
+			$(".ripple").remove();
+			var posX = $(this).offset().left,
+				posY = $(this).offset().top,
+				buttonWidth = $(this).width(),
+				buttonHeight = $(this).height();
+
+			$(this).prepend("<span class='ripple'></span>");
+
+			//取max(height,width)，使之成为一个圆
+			if(buttonWidth >= buttonHeight){
+				buttonHeight = buttonWidth;
+			}else{
+				buttonWidth = buttonHeight;
+			}
+			var x = e.pageX - posX - buttonWidth/2;
+			var y = e.pageY - posY - buttonHeight/2;
+			$(".ripple").css({
+				width:buttonWidth,
+				height:buttonHeight,
+				top:y,
+				left:x
+			}).addClass("rippleEffect");
+
+
+
+
+
+		})
+
+	}
+
+
+	</script>
+</head>
+<body>
+	<ul>
+		<li>Tab One</li>
+		<li>Tab Two</li>
+		<li>Tab Three</li>
+		<li class="slider"></li>
+		<li class="ripple"></li>
+	</ul>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Attribute、Property</title>
+	<script>
+	window.onload = function(){
+		var oP = document.getElementById("pId");
+		var oImg = document.getElementById("imgId");
+
+		//使用Property
+		console.log(oP);
+		console.log(oP.id);
+		console.log(oP.className);
+		console.log(oP.abc);
+		console.log(oImg.src);
+		oImg.alt = "abcdefg";
+		console.log(oImg.alt);
+	}
+	</script>
+
+</head>
+<body>
+	<p abc="p自定义" class="pClass" id="pId">234234</p>
+	<img id="imgId" src="../img/1.png" alt="imgAlt" abc="img自定义">
+</body>
+</html>

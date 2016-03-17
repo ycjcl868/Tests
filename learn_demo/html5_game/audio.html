@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>audio、video</title>
+	<script>
+		window.onload = function(){
+			var oA = document.getElementById("mp3");
+			var oBtn = document.getElementById("btn");
+			oBtn.click(function(event) {
+				oA.play();
+			});
+		}
+	</script>
+</head>
+<body>
+	<h2>简单的音视频</h2>
+	<audio src="audio/wtd.mp3" id="mp3" mediagroup="gp" controls>
+		你的浏览器不支持html5
+	</audio>
+	<button id="btn">开始播放</button>
+	
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Clock</title>
+	<style>
+	body{
+		background:#ddd;
+	}
+	#clock{
+		background:#fff;
+		border:1px inset gray;
+	}
+	</style>
+
+</head>
+<body>
+	<canvas id="clock" width="500" height="500">
+		Canvas not supported
+	</canvas>
+	
+
+<script>
+
+var oClock = document.getElementById('clock'),
+	cxt    = oClock.getContext('2d'),
+	scale  = 20,//刻度长度
+	LINE_STYLE = '#000',//线段颜色
+	LINE_WIDTH = 3,//线段宽度
+	PI = Math.PI,
+	FONT_STYLE = '18px Arial';
+	WIDTH  = oClock.width,//画布宽度
+	HEIGHT = oClock.height,//画布高度
+	radius = WIDTH/2,//半径
+	NUM_TEXT = ['3','6','9','12'];
+	center = {x:WIDTH/2,y:HEIGHT/2};//圆心的位置
+
+	window.onload = function(){
+
+
+		init();
+
+
+
+	}
+	
+
+	/**
+	 * 初始化钟表盘
+	 * @return {[type]}     [description]
+	 */
+	function init(){
+		cxt.beginPath();
+		cxt.strokeStyle = LINE_STYLE;
+		cxt.lineWidth = LINE_WIDTH;
+		cxt.font = FONT_STYLE;
+		cxt.arc(center.x,center.y,250,0,PI*2);//画个大圆
+		cxt.stroke();
+		cxt.closePath();
+
+		drawScale();
+	}
+
+	function drawScale(){
+		cxt.beginPath();
+		//画中心点
+		cxt.arc(center.x, center.y,2,0,PI*2);
+		cxt.fill();
+
+		//移动了旋转的中心点
+		cxt.translate(center.x,center.y);
+		for(var i = 0; i<12; i++){
+			cxt.moveTo(0, center.y);
+			cxt.lineTo(0, center.y-scale);
+			cxt.rotate(PI/6);
+		}
+		//画刻度
+		cxt.fillText(NUM_TEXT[0],center.y-scale-20,5);
+		cxt.fillText(NUM_TEXT[1],-5,center.y-scale-20);
+		cxt.fillText(NUM_TEXT[2],scale+20-center.y,5);
+		cxt.fillText(NUM_TEXT[3],-10,scale+20-center.y);
+		cxt.stroke();
+		cxt.closePath();
+
+		//画时、分、秒针
+		cxt.beginPath();
+		cxt.moveTo(0,0);
+		cxt.lineTo(0,-100);
+		cxt.stroke();
+		cxt.closePath();
+	}
+
+
+	</script>	
+</body>
+</html>

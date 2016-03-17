@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用素数比较字符串</title>
+	<script>
+	/**
+	 * 
+	 * 假设这有一个各种字母组成的字符串，假设这还有另外一个字符串，而且这个字符串里的字母数相对少一些。从算法是讲，什么方法能最快的查出所有小字符串里的字母在大字符串里都有？
+		比如，如果是下面两个字符串：
+		 String 1: ABCDEFGHLMNOPQRS
+		 String 2: DCGSRQPOM
+		答案是true，所有在string2里的字母string1也都有。
+		如果是下面两个字符串：
+		 String 1: ABCDEFGHLMNOPQRS
+		 String 2: DCGSRQPOZ
+		答案是false，因为第二个字符串里的Z字母不在第一个字符串里。
+	 */
+	
+	/**
+	 * 测试时间的函数
+	 */
+	var str1 = 'ABCDEFGHLMNOPQRS';
+	var str2 = 'DCGSRQPOM';
+	var arr1 = str1.split("");
+	var arr2 = str2.split("");
+	var numObject = {};
+	function findAll(a1,a2) {
+		var results = [];
+		var len1 = a1.length;
+		var len2 = a2.length;
+		for(var i = 0;i<len2;i++){
+			if(a1.indexOf(a2[i]) != -1){
+				results.push(i);
+			}else{
+				continue;
+			}	
+		}
+		if(results.length == len2){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function findAll2(str1,str2){
+		var i,
+			flag,
+			strLong = 1,
+			strShort = 2,
+			strArray = [str1,str2];
+		//当str1长度小于str2时
+		if(str1.length<str2.length){
+			strLong = 2;
+			strShort = 1;
+			str1 = strArray[1];
+			str2 = strArray[0];
+		}
+		for(i=0,length = str1.length;i<length;i++){
+			//如果同一个字母出现多次，只对第一个添加属性
+			if(!numObject[str1.substr(i,1)]){
+				numObject[str1.substr(i,1)] = 1;
+			}
+		}
+		for(i=0,length=str2.length;i<length;i++){
+			//如果str2中同一个字母出现多次，只对第一次进行比较
+			if(numObject[str2.substr(i,1)] === 0){
+				continue;
+			}
+			//如果numObject中不存在这个属性，说明这个字母str1中没有
+			if(!numObject[str2.substr(i,1)]){
+				console.log("str" + strShort + "中的第" + (i + 1) + "个字母不存在str" + strLong + "中");
+				return;
+			}else{
+				//已经出现过一次了，赋值为0
+	            numObject[str2.substr(i, 1)] = 0;
+			}
+		}
+		console.log("str" + strShort + "中的字母str" + strLong + "均存在");
+	}
+
+
+
+	function test(func){
+		var start = new Date().getTime();
+		func(arr1,arr2);
+		var end = new Date().getTime();
+		return (end-start)+"ms";
+	}	
+	function test2(func){
+		var start = new Date().getTime();
+		func(str1,str2);
+		var end = new Date().getTime();
+		return (end-start)+"ms";
+	}
+	console.log(test(findAll));
+	console.log(test2(findAll2));
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

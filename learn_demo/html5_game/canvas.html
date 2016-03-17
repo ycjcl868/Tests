@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+	<script>
+		window.onload = function(){
+		/*	var can = document.getElementById("can");
+			var ctx = can.getContext("2d");
+			var width = can.width,
+				height = can.height;*/
+/*	画箭头	var pts = [[30,100],[300,100],[300,50],[350,130],[300,210],[300,160],[30,160]];
+			ctx.strokeStyle = "red";
+			ctx.lineWidth = 2;
+			ctx.beginPath();
+			ctx.moveTo(pts[0][0],pts[0][1]);
+			for(var i=1;i<pts.length;i++){
+				ctx.lineTo(pts[i][0],pts[i][1]);
+			}
+			ctx.closePath();
+			ctx.stroke()*/
+/*			var xOff = width*0.5 +5,yOff = height*0.5+5;
+			for(var i=0;i<8;i++){
+				ctx.strokeRect(xOff-10*i,yOff-10*i,i*20+10,i*20+10);
+			}*/
+
+/*			var xOff = width*0.5,
+				yOff = height*0.5;
+			for(var i=1;i<=8;i++){
+				ctx.beginPath();
+				ctx.fillStyle = "rgba(255,0,0,"+(30*i)/500+")";
+				ctx.arc(xOff,yOff,120-i*15,0,Math.PI*2,true);
+				ctx.closePath();
+				ctx.fill();
+			}*/
+
+/*			var imgSrc = ["img/1.png","img/2.jpg"];
+			//创建Image对象和pattern对象
+			for(var i=0;i<imgSrc.length;i++){
+				var img = new Image();
+				img.src = imgSrc[i];
+				img.onload = (function(im,i){
+					var self = im;
+					return function(){
+						var p = ctx.createPattern(self,"repeat");
+						if(i==0){
+							ctx.beginPath();
+							ctx.fillStyle = p;
+							ctx.fillRect(38,38,520,232);
+						}else{
+							ctx.beginPath();
+							ctx.strokeStyle = p;
+							ctx.lineWidth = 18;
+							ctx.strokeRect(28,28,540,250);
+						}
+					}
+				}(img,i))
+			}*/
+
+			//放大镜
+			function $(id){
+				return document.getElementById(id);
+			}
+			var Glass = {
+				bind:function(imgId,zRat){
+					var self = this;
+					this.canvas = document.createElement("canvas");
+					this.canvas.style.display = "none";
+					this.canvas.style.position = "absolute";
+					this.canvas.style.top = '0px';
+					this.canvas.style.left = '0px';
+					this.ctx = this.canvas.getContext("2d");
+					this.canvas.width = 100;
+					this.canvas.height = 100;
+					this.hEle = $(imgId);
+					//设置放大比例
+					this.zRat = zRat|2;
+					document.body.appendChild(this.canvas);
+					document.body.onmousemove = function(e) {
+						e.preventDefault();
+						draw(e);
+						//定义绘制方法
+						function draw(e){
+							//获取鼠标位置
+							var x = e.pageX,
+								y = e.pageY;
+							//获取图片相对位置
+							var exOff = x-self.hEle.offsetLeft,
+								eyOff = y-self.hEle.offsetTop;
+							//设置获取图片周围长度
+							var rLen = 50/self.zRat;
+							self.copyImg(exOff-rLen,eyOff-rLen,rLen*2,rLen*2);
+							self.show(x-50,y-50);
+						}
+						document.body.onmousemove = draw;
+						document.body.onmouseup = function() {
+							self.hide();
+							document.body.onmousemove = null;
+						};
+					}
+				},
+				copyImg:function(x,y,w,h){
+					this.ctx.arc(50,50,50,0,Math.PI*2,true);
+					//设置路径剪裁形成圆形
+					this.ctx.clip();
+					this.ctx.drawImage(this.hEle,x,y,w,h,0,0,100,100);
+				},
+				show:function(x,y){
+					this.canvas.style.display = "block";
+					this.canvas.style.pixelLeft = x;
+					this.canvas.style.pixelTop = y;
+				},
+				hide:function(x,y){
+					this.canvas.style.display = "none";
+				}
+			};
+			Glass.bind("can1");
+		};
+		
+	</script>
+</head>
+<body>
+<!-- 	<canvas id="can" width="400" height="300">
+	不支持canvas属性
+</canvas> -->
+<img src="img/1.png" id="can1" alt="">
+</body>
+</html>

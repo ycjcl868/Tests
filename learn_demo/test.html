@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js设计模式</title>
+	<script>
+	var obj = {name:'micha',age:30};//单例模式
+
+	//工厂模式：,同样形式参数返回不同的实例
+	function Person(){
+		this.name = 'Person';
+	}
+	function Animal(){
+		this.name = 'Animal1';
+	}
+	function Factory(){
+		Factory.prototype.getInstance = function(className){
+			return eval('new '+className+'()');
+		}
+	}
+
+	var factory = new Factory();
+	var obj1 = factory.getInstance('Person');
+	var obj2 = factory.getInstance('Animal');
+	console.log(obj1.name);
+	console.log(obj2.name);
+
+
+	//观察者
+	function Publisher(){
+		this.listeners = [];
+	}
+	Publisher.prototype = {
+		'addListener':function(listener){
+			this.listeners.push(listener);
+		},
+		'removeListener':function(listener){
+			delete this.listeners[listener];
+		},
+		'notify':function(obj){
+			for(var i = 0;i<this.listners.length;i++){
+				var listner = this.listeners[i];
+				if(typeof listener !== 'undefined'){
+					listner.process(obj);
+				}
+			}
+		},
+	};
+
+
+	window.onload =function(){
+		var oP = document.getElementById('456');
+		console.log(oP.attributes);
+		console.log(oP.getAttribute('abc'));
+		oP.id = 'id123';
+		console.log(oP.id);
+	}
+
+
+
+
+
+	</script>
+</head>
+<body>
+	<p abc="123" id="456">234234</p>
+</body>
+</html>

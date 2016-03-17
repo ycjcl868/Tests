@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS贪心解法入门：找零问题</title>
+	<script>
+		/**
+		 * 在现实生活中，经常遇到找零问题，假设有数目不限的面值为20,10,5,1的硬币。 给出需要找零数，求出找零方案，要求：使用数目最少的硬币。
+		 */
+		var money = [11,5,1];
+
+		/**
+		 * m[]: 存放可供找零的面值，降序排列
+		 * n: 需要找零数
+		 */
+		function greedyMoney(m,n){
+			//先按一次降序排列
+			m = m.sort(function(a,b){return b-a;});
+			for(var i=0;i<m.length;i++){
+				while(n>=m[i] && n>0){
+					document.write(m[i]+" ");
+					n = n-m[i];
+				}
+			}
+			document.write("<br />");
+		}
+		greedyMoney(money,15);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

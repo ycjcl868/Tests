@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS去重</title>
+	<script>
+	Array.prototype.unique1 = function(){
+		var n = [];
+		for(var i = 0; i < this.length;i++){
+			if(n.indexOf(this[i]) == -1){
+				n.push(this[i]);
+			}
+		}
+		return n;
+	}
+
+	Array.prototype.unique1 = function() {
+		var n = [];
+		for(var i=0;i<this.length;i++){
+			if(n.indexOf(this[i] == -1)){
+				n.push(this[i]);
+			}
+		}
+		return n;
+	}
+
+
+
+
+	Array.prototype.unique2 = function(){
+		var n = [this[0]];
+		for(var i = 1;i<this.length;i++){
+			if(this.indexOf(this[i]) == i){
+				n.push(this[i]);
+			}
+		}
+		return n;
+	}
+
+	//计算字符数
+	function GetBytes(str){
+		var len = str.length;
+		var bytes = len;
+		for(var i =0;i<len;i++){
+			if(str.charCodeAt(i)>255){
+				bytes++;
+			}
+		}
+		return bytes;
+	}
+
+	var a = [100,200,300,23,23,23,423,243,23,523,4,234,2342,3423,12];
+	console.log(a.unique1());
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

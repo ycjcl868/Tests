@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	<style>
+	*{margin: 0px 0px; padding: 0px 0px; }
+	#m1{width:662px; height:200px; position: absolute; left:143px; top:20px;}
+	#m2{width:662px; height:200px; position: absolute; left:805px; top:20px; }
+	span{position:absolute; left:100px; top: 120px; }
+	.clear{zoom:1;}
+	.clear:after{content:""; display:block; clear:both; }
+	ul{width: 1040px; border: 10px black solid; list-style: none;overflow: hidden; height:200px;position: absolute; }
+	ul:after{content: "";display: block;clear: both; }
+	li{float:left;padding-left: 0px; }
+	img{width:250px;height:200px; }
+	a{text-decoration: none;font-size: 20px; }
+	#d2{width:1040px;height:200px;margin:20px auto;overflow: hidden;position:relative;}
+		</style>
+    <script>
+		var length=document.documentElement.clientWidth;
+		window.onload = function(){
+		var uu = document.getElementById("uu");
+		uu.innerHTML += uu.innerHTML;
+		var list = uu.getElementsByTagName("li");
+		
+		uu.style.width=(list[0].offsetWidth)*list.length+"px";
+		var wz = [];
+		var m1 = document.getElementById("m1");
+	    var m2 = document.getElementById("m2");				
+		var timer=null;				
+		//左移函数
+		m1.onmousemove = function(){
+				
+				     clearInterval(timer);		
+							
+				 timer=setInterval(function(){					
+						if(Math.abs(uu.offsetLeft) >= parseInt(uu.offsetWidth/2)){
+							uu.style.left="0px";
+						}
+						uu.style.left=uu.offsetLeft-15+"px";	
+					},100);
+			  }
+			  m1.onmouseout=function(){
+				   clearInterval(timer);	
+				  }
+			//右移函数
+			  m2.onmousemove = function(){
+				 clearInterval(timer);					
+			timer=setInterval(function(){						 		
+						if(uu.offsetLeft >=0){							
+							uu.style.left=-(uu.offsetWidth/2)+"px";
+						}
+						uu.style.left=uu.offsetLeft+15+"px";	
+					},100);		
+			  }
+			   m2.onmouseout=function(){
+				   clearInterval(timer);	
+				  }
+			}
+			function startMove(obj,dir){
+				clearInterval(timer);		
+				var speen=dir=="right"?10:-10;
+				timer=setInterval(function(){
+					if(dir=="right"){
+						if(uu.offsetLeft==0){
+							uu.style.left=-(uu.offsetWidth/2)+"px";
+							}
+						}else{
+							if(Math.abs(uu.offsetLeft) >= parseInt(uu.offsetWidth/2)){
+							uu.style.left="0px";
+						}
+							
+							}
+					
+					var x=obj.offsetLeft;
+					obj.style.left=x+speed+"px";
+					
+					},100);
+			}
+			
+	</script>
+	</head>
+<body>
+		<div id="d2">
+	  <ul id="uu" class="clear">
+				<li>
+					<img src="img/1.jpg"/>
+				</li>
+				<li>
+					<img src="img/2.jpg"/>
+				</li>
+				<li>
+					<img src="img/3.jpg"/>
+				</li>
+				<li>
+					<img src="img/4.jpg"/>
+				</li>
+				<li>
+					<img src="img/5.jpg"/>
+				</li>
+				<li>
+					<img src="img/6.jpg"/>
+				</li>
+				<li>
+					<img src="img/7.jpg"/>
+				</li>
+				<li>
+					<img src="img/8.jpg"/>
+				</li>
+				<li>
+					<img src="img/9.jpg"/>
+				</li>
+		  </ul>
+</div>
+		
+        <div id="m1"></div>
+         <div id="m2"></div>
+
+</body>
+<html>

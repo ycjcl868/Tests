@@ -199,9 +199,8 @@ function Dog(words){
 var dog = new Dog('wang');
 dog.speak();*/
 
-var http  = require("http");
-http
-    .createServer(function(req,res){
+/*var http  = require("http");
+http.createServer(function(req,res){
         res.writeHead(200,{'Content-Type':'Text/plain'});
         res.write('Hello Nodejs');
         res.end();
@@ -214,4 +213,25 @@ window.onload = function(){
 };
 
 
+*/
 
+
+
+//代理服务器
+var http = require('http');
+var url  = require('url');
+var server = http.createServer(function(sreq,sres){
+    var url_parts = url.parse(sreq.url);//返回 url对象
+    var opts = {
+        host: 'www.baidu.com',
+        port: 80,
+        path: url_parts.pathname,
+        header: sreq.headers
+    };
+    var creq = http.get(opts,function(cres){//发送get 请求
+        sres.writeHead(cres.statusCode, cres.headers);
+        cres.pipe(sres);
+    });
+    sreq.pipe(creq);
+});
+server.listen(1337);

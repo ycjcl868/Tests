@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js利用栈判断字符串是否是回文</title>
+	<script>
+		/**
+		 *  回文是指一种现象：一个单词、短语或数字，从前往后写和从后往前写都是一样的。比如，单词"dad"
+		 */
+		function Stack(){
+			this.dataStore = [];//数组实现的栈
+			this.top = 0;
+			this.push = push;
+			this.pop  = pop;
+			this.peek = peek;//返回栈顶的元素
+			this.clear = clear;
+			this.length = length;
+		}
+		function push(element){
+			this.dataStore[this.top++] = element;
+		}
+		function peek(){
+			return this.dataStore[--this.top];
+		}
+		function clear(){
+			this.top = 0;
+		}
+		function length(){
+			return this.top;
+		}
+		function pop(){
+			return this.dataStore[--this.top];
+		}
+		//回文判断
+		function isPalindrome(word){
+			var s = new Stack();
+			for(var i=0;i<word.length;i++){
+				s.push(word[i]);
+			}
+			var rword = "";
+			while(s.length() >0){
+				rword+=s.pop();
+			}
+			if(word == rword){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		var word = "hello";
+		alert(isPalindrome(word));
+		var word = "dad";
+		alert(isPalindrome(word));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

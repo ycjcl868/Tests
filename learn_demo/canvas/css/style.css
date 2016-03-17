@@ -1,0 +1,4 @@
+body,div{margin: 0;padding: 0;text-align: center;}
+#cav{border:2px solid black;border-radius: 4px;box-shadow: 1 1 10px black;}
+#bk{margin: 10px auto;width: 400px;height: 36px;}
+.bk{text-align: center;width: 20px;height: 20px;margin: 12px;display: inline-block;border: 1px dotted gray}

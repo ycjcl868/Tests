@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js数组方法</title>
+	<script>
+	/**
+	 * 数组部分
+	 */
+	var empty = [];
+	var a = [,,];
+	var b = [[1,{x:1,y:2}],[2,{x:3,y:5}]];
+	//console.log(a.length);//2个元素
+	//console.log(b[0][0]);
+	//console.log(b[0][1].x);
+
+	//push方法
+	var arr = [1,2,3,4,6,324,234,23,324,234,"324324"];
+	console.log(arr.length);
+	console.log("push方法："+arr.push(1));//push(value 1,...)方法往数组尾部增加元素，返回数组的个数
+	console.log(arr);
+	console.log("pop方法："+arr.pop());//pop()方法删除最后一个元素并返回
+	console.log(arr);
+	console.log("shift方法："+arr.shift());//shift()删除第一个元素并返回
+	console.log(arr);
+	console.log("unshift方法："+arr.unshift(1));//unshift(value 1,...)方法往数组头部增加元素，返回数组的个数
+	console.log(arr);
+	console.log('<br />');
+	console.log(arr.splice(2,1,"abc"));//splice(index(从0开始s),total,add)方法，返回删除的元素
+	console.log(arr);
+	console.log(arr.join(":"));//join(分割符)，将数组转化成字符串。返回字符串
+	console.log(arr);
+	console.log(arr.join(":").split(":"));//split(分割符)，将字符串转化为数组，数组
+	console.log(arr);
+	console.log(arr.reverse());//reverse()逆转，返回数组
+	console.log(arr.sort());//sort()排序，返回数组
+	console.log(arr.concat(["abc","qwe","ghj"]));//concat(arr)连接数组，返回数组
+	console.log(arr);
+	console.log(arr.slice(-3,-1));//slice(index,end)  选定区域，index要是为负数时，最后一个数是-1。第二个参数为负数时，最后一个数为0
+	console.log(arr);
+	
+	console.log(arr.toLocaleString());
+	console.log(arr.toString());
+
+	/**
+	 * ECMAScript 5中的数组方法
+	 */
+	var data = [1,2,3,4,5,1,3];
+	data.forEach(function(value,index,array){ //forEach()方法，从头至尾遍历数组
+		console.log(value);
+	});
+
+	console.log(data.map(function(x){return x*x}));  //map()方法返回的是新数组，不修改调用的数组
+
+	console.log(data.filter(function(x){return x<3}));
+	//压缩稀疏数组的空缺
+	console.log(data.filter(function(x){return true}));
+
+	console.log(data.every(function(x){return x<10}));//every()方法，检测所有的。返回true/false
+
+	console.log(data.some(function(x){return x<3}));//some()方法，检测某些值。返回true/false
+
+	var abc = [];
+	console.log(abc.every(function(){}));//true
+	console.log(abc.some(function(){}));//false
+
+
+	console.log(data.reduce(function(x,y){return x+y},0));//第二个参数是当作运算的第一个值
+
+	//将数组对象转成对象
+/*	var objects = [{x:1},{y:2},{z:3}];
+	var merged  = objects.reduce(function(x){Array.union(x)});
+	console.log(merged);*/
+
+	//判断是否为数组类型
+	console.log(Array.isArray(abc));
+
+	console.log(data.indexOf(3));//返回索引，第二个参数是从哪开始找
+	console.log(data.lastIndexOf(3));//返回索引，第二个参数是从哪开始找
+
+	//查找所有
+	function findAll(a,x) {
+		var results = [];
+		var len = a.length;
+		var pos = 0;
+		while(pos<len){
+			pos = a.indexOf(x,pos);
+			if(pos == -1){
+				break;
+			}
+			results.push(pos);
+			pos++;
+		}
+	}
+
+	var str = 'abcd';
+	console.log(str.charAt(1));  //<=>data[1]
+	console.log(str[1]);  //<=>data[1]
+
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

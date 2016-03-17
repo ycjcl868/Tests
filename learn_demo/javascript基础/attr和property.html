@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>attribute和property的区别</title>
+
+	<script>
+	window.onload = function() {
+		var oA = document.getElementById("a");
+		console.log(oA.href);
+		oA.href = 'abcdef';
+		console.log(oA.getAttribute("href"));
+		console.log(oA.property);
+	}
+
+	</script>
+</head>
+<body>
+
+	<a id="a" href="abcd">abc</a>
+	
+</body>
+</html>

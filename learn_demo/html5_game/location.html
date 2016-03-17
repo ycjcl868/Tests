@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Location</title>
+	<script>
+		//检测是否支持地理信息
+		function isSupportGeo() {
+			return (navigator.geolocation!=null);
+		}
+		function doSucc(position) {
+			alert(position.coords.longitude+","+position.coords.latitude);
+		}
+		function doFail(error) {
+			var errors = ["拒绝地理信息服务","获取不到地理信息","获取信息超时"];
+			alert(errors[error.code+1]);
+		}
+		if(!isSupportGeo()){
+			alert("不支持地理定位");
+		}else{
+			var nav = navigator.geolocation.getCurrentPosition(doSucc,doFail);
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
