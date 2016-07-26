@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>欧几里得算法</title>
+	<script>
+		//返回两个整数的最大公约数
+		function gcd(a,b){
+			var t;
+			if(a<b){ //从大到小 a>=b
+				t=b;
+				b=a;
+				a=t;
+			}
+			while(b != 0){
+				t=b;
+				b=a%b;
+				a=t;
+			}
+			return a;
+		}
+		console.log(gcd(100,5));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
