@@ -3,9 +3,231 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ECMAScript 6简介</title>
+	<style>
+		div{
+			display: none;
+		}
+		.show{
+			display: block;
+		}
+		.active{
+			background-color:  yellow;
+		}
+
+	</style>
+	<script>
+		/**
+		 * chrome使用：js开始部分加'use strict'
+		 * firefox使用：<script type='application/javascript;version=1.7'> 
+		 * 
+		 */
+		
+		/**
+		 * 声明变量，
+		 * let: 1、不允许重复声明  2、没有预解析过程  3、块级作用域
+		 */
+		'use strict'
+		 let  b =1;
+		 console.log(b);
+
+		 // 块级代码域
+		 {
+		 	let a = 1;
+		 	console.log(a);
+
+		 }
+		 // console.log(a);
+
+		 for(var i=0;i<10;i++){ // for循环的速度更快
+		 	setTimeout(function(){
+		 		console.log(i);
+		 	})
+		 }		 
+
+		 for(let i=0;i<10;i++){ // 依次打印出来
+		 	setTimeout(function(){
+		 		console.log(i);
+		 	})
+		 }
+
+		 window.onload = function(){
+			 var tabs = document.getElementsByTagName('input');
+			 var divs = document.getElementsByTagName('div');
+
+			 // for(var i = 0; i<tabs.length;i++){
+			 // 	tabs[i].index = i;
+			 // 	tabs[i].onclick = function(){
+			 // 		for(var i=0;i<tabs.length;i++){
+				//  		divs[i].className = '';
+				//  		tabs[i].className = '';
+			 // 		}
+				//  	this.className = 'active';
+				//  	divs[this.index].className = 'show';
+			 // 	}
+			 // }				 
+
+			 for(let i = 0; i<tabs.length;i++){
+			 	tabs[i].onclick = function(){
+			 		for(var j=0;j<tabs.length;j++){
+				 		divs[j].className = '';
+				 		tabs[j].className = '';
+			 		}
+				 	this.className = 'active';
+				 	divs[i].className = 'show';
+			 	}
+			 }		 	
+		 }
+
+
+		 /**
+		  * const常量，如果是对象就可以修改
+		  */
+		 
+		 // const aa= 1;
+		 // // a =2;
+		 // console.log(aa);
+
+		 // const bb = {
+		 // 	name:'leo'
+		 // }
+		 // bb.name = 'hello';//可以修改
+		 // console.log(bb);
+
+
+		 // /**
+		 //  * 解析赋值：
+		 //  * ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构(Destructuring)
+		 //  * 数组的解构赋值：按照对应的顺序解构
+		 //  */
+		 // var arr = [1,2,3];
+		 // var [a,b,c] = arr;
+		 // console.log(a,b,c);
+
+		 // var obj = {
+		 // 	foo:function(){
+
+		 // 	},
+		 // 	o:{
+
+		 // 	},
+		 // 	arr:[],
+		 // 	str:'abc'
+		 // }
+		 // // 一一对应
+		 // var {foo,arr,str} = obj;
+		 // console.log(foo,arr,str)
+		 
+		 // // 交换值
+		 // var a = 1;
+		 // var b = 2;
+		 // var [a,b] = [b,a];
+		 // console.log(a,b);
+
+
+		 //模板字符串
+		 var name = 'leo';
+		 var age = 39;
+		 var str = `你的名字是：${name}你的年龄是：${age}`;
+		 console.log(str);
+
+		 //字符串
+		 var num = 1.23324;
+		 console.log(Math.trunc(num));  // 干掉小数点
+		 console.log(Math.sign(2));		// 判断参数是正数/负数/正0/负0
+
+
+		 /**
+		  * 数组的扩展 
+		  */
+		 
+		 window.onload = function(){
+			 var divs = document.getElementsByTagName('div');
+			 var eles  = [].slice.call(divs);  //转成数组
+			 console.log(eles);		
+			 
+			 var eles2 = Array.from(divs);
+			 console.log(eles2);
+
+			 var arr = Array.of(1,2,3,45);// 把参数转成数组 	
+		 }
+
+
+
+		 function fn(x,y){
+		 	x++;
+		 	y++;
+
+		 	return {
+		 		x:x,
+		 		y:y
+		 	}
+		 }
+
+		 console.log(fn(1,2));
+
+
+		 var obj = {
+		 	name:'momo',
+		 	showName:function(){
+		 		return this.name
+		 	}
+		 }
+
+		 let person = {
+		 	name:'momo',
+		 	[sex]:false
+		 }
+
+		 /**
+		  * Object.is() 判断传入的参数是否是相等的
+		  */
+		 
+
+		 var Cat = function(){
+		 	this.name = name;
+		 }
+		 Cat.prototype.showname = function(){
+
+		 }
+
+		 var obj = {
+		 	a:1,
+		 	b:2
+		 }
+
+		 var p1 = new Proxy(obj,{
+		 	get(obj,attr){
+
+		 	},
+		 	set(){
+		 		
+		 	}
+		 })
+
+
+
+
+
+
+
+
+
+		 
+
+
+
+
+
+
+	</script>
 </head>
 <body>
-<input type="number" name="" value="" placeholder="">
+<input type="button" value="tab1" class="active">
+<input type="button" value="tab2">
+<input type="button" value="tab3">
+<div class="show">div1</div>
+<div>div2</div>
+<div>div3</div>
 	
 </body>
 </html>
