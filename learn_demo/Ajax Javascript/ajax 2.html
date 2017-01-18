@@ -21,7 +21,12 @@
                     //throw new Error();//手动去抛一个错
                     info = new XMLHttpRequest();
                 } catch (e) {
-                    info = new ActiveXObject("Microsoft.XMLHTTP");
+                    try {
+                        info = new ActiveXObject("Msxml2.XMLHTTP");
+                    }catch (e){
+                        info = new ActiveXObject("Microsoft.XMLHTTP");    
+                    }
+                    
                 }
                 /*
                  open(1，2，3)方法，

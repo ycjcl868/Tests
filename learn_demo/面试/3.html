@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>前端面试题</title>
+	<script>
+		/**
+		 * 写一个字符串转成驼峰的方法
+		 * 例如：border-bottom-color  -> borderBottomColor
+		 */
+		function convert(str){   // 方法一
+			var arr = str.split('-');
+			for(var i=1;i<arr.length;i++){
+				arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substring(1);
+			}
+			return arr.join('');
+		}
+
+		function convert2(str){ //正则
+			var re = /-(\w)/g;
+			return str.replace(re)
+		}  
+		convert('border-bottom-color');
+
+		/**
+		 * 查找字符串中出现最多的字符和个数
+		 * 例如：sdjksfssscfssdd -> 字符最多的是s，出现了7次
+		 */
+		function tongji(str){
+			var obj = {
+				// s:[],  形成一个一个的数组
+				// d:[]
+			};
+			var num = 0;
+			var value = '';
+
+			for(var i=0;i<str.length;i++){
+				if(!obj[str[i]]){ // 创建
+					obj[str[i]] = [];
+				}
+				obj[str[i]].push(str[i]);
+			}
+
+			for(var attr in obj){
+				if(num < obj[attr].length){
+					num = obj[attr].length;
+					value = obj[attr][0];
+				}
+			}
+			return '最多的字符是:'+ value+'，出现次数'+num;
+		}
+
+		function tongji1(str){
+			var arr = str.split('');
+			arr.sort();
+			str = arr.join('');
+			var re = /(\w)\1+/g;
+
+
+			var num = 0;
+			var value = '';
+
+			str.replace(re,function($0,$1){
+				if(num < $0.length){
+					num = $0.length;
+					value = $1;
+				}
+			});
+		}
+
+		console.log(tongji('wefwefwevdsaewjo'));
+
+		/**
+		 * 如何给字符串加千分符？
+		 * 例如：3562123761 -> 3,562,123,761
+		 * 
+		 */
+		var str = '1232341238723984729';
+
+		function qianfenwei(str){
+			var iNum = str.length % 3;
+			var prev = '';
+			var arr = [];
+			var iNow = 0;
+			var tmp = '';
+
+			if(iNum != 0){
+				prev = str.substring(0,iNum);
+				arr.push(prev);
+			}
+			str = str.substring(iNum);
+			for(var i=0; i<str.length;i++){
+				iNow++;
+				tmp += str[i];
+
+				if(iNow==3 && tmp) {
+					arr.push(tmp);
+					tmp = '';
+					iNow = 0;
+				}
+			}
+			return arr.join(',');
+		}
+		console.log(qianfenwei(str));
+
+		/**
+		 *
+		 * (?=) ： 前向声明   后面要==
+		 * (?!) ： 反前向声明 后面不==
+		 */
+		var str = 'abacad';
+		var re = /a(?=b)/g;
+		str.replace(re,'*');
+		alert(str);
+
+
+		var str = '213323289423749823';
+		function qianfenwei2(str){  // + 至少出现1次 $从后往前 \b代表正则里的独立部分 不包括起始位置
+			var re = /(?=(?!\b)(\d{3})+$)/g;  //3位3位的字符
+			return str.replace(re,',');
+		}
+		console.log(qianfenwei2(str));
+
+		/**
+		 * 返回一个只包含数字类型的一个数组
+		 * 例如：js123ldkaweoj5234 => [123,5234]
+		 */
+
+		
+
+		
+		
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
